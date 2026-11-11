@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ReLink — Classroom Lost & Found Management System
 
 ReLink is a classroom lost and found management system for students to report lost and found items and claim found items after staff verify their student status. Staff review found-item reports before publication, review claims, and review student ID submissions. Student ID photos and claim verification details are restricted to staff.
@@ -149,3 +150,7 @@ The local Apache URL uses the project directory as its base because the current 
 ## Manual testing
 
 See [docs/test-plan.md](docs/test-plan.md) for the recorded manual security and accessibility checks. See [docs/demo-script.md](docs/demo-script.md) for a guided student-to-staff walkthrough.
+=======
+# ReLink_Lost-Found
+School Lost &amp; Found Management System
+>>>>>>> origin/main

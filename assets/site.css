@@ -1,0 +1,6616 @@
+@layer components {
+:root {
+    color-scheme: light;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0f172a;
+    background: #f8fafc;
+    line-height: 1.5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+header,
+footer {
+    border-color: #cbd5e1;
+    border-style: solid;
+    background: #fff;
+}
+
+header {
+    border-width: 0 0 1px;
+}
+
+footer {
+    margin-top: auto;
+    border-width: 1px 0 0;
+}
+
+header > div,
+footer > div {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+    padding-block: 1rem;
+}
+
+header > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+footer > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    color: #475569;
+    font-size: 0.875rem;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+main {
+    width: min(100% - 2rem, 72rem);
+    min-height: 60vh;
+    margin-inline: auto;
+    padding-block: 2rem 3rem;
+    flex: 1;
+}
+
+section,
+article {
+    min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+p,
+li {
+    line-height: 1.6;
+}
+
+a {
+    color: #1e40af;
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: #1e3a8a;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+summary:focus {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+summary:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+.skip-link {
+    position: absolute;
+    z-index: 10;
+    top: 0.75rem;
+    left: -10000px;
+    padding: 0.75rem 1rem;
+    border: 2px solid #1e40af;
+    border-radius: 0.375rem;
+    background: #fff;
+    color: #1e3a8a;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    left: 0.75rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+form {
+    margin-block: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+input:not([type="checkbox"]):not([type="hidden"]),
+select,
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid #64748b;
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.75rem;
+    background: #fff;
+    color: #0f172a;
+    font: inherit;
+}
+
+input[type="checkbox"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0.25rem 0.2rem 0 0;
+    accent-color: #1e40af;
+}
+
+input[type="file"] {
+    padding: 0.5rem;
+}
+
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+button,
+[class~="bg-blue-800"] {
+    min-height: 2.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.1rem;
+    background: #1e40af;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+[class~="bg-green-800"],
+[class~="bg-red-800"] {
+    min-height: 2.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.1rem;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+[class~="bg-green-800"] {
+    background: #166534;
+}
+
+[class~="bg-red-800"] {
+    background: #991b1b;
+}
+
+button:hover,
+[class~="bg-blue-800"]:hover {
+    background: #1e3a8a;
+}
+
+a[class~="text-white"]:hover {
+    color: #fff;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+details,
+[class~="rounded-xl"][class~="bg-white"],
+article[class~="bg-white"] {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #fff;
+    padding: 1.25rem;
+}
+
+ul,
+ol {
+    padding-inline-start: 1.5rem;
+}
+
+[class~="flex"] {
+    display: flex;
+}
+
+[class~="inline-flex"] {
+    display: inline-flex;
+}
+
+[class~="grid"] {
+    display: grid;
+}
+
+[class~="flex-wrap"] {
+    flex-wrap: wrap;
+}
+
+[class~="flex-col"] {
+    flex-direction: column;
+}
+
+[class~="items-center"] {
+    align-items: center;
+}
+
+[class~="items-start"] {
+    align-items: flex-start;
+}
+
+[class~="justify-between"] {
+    justify-content: space-between;
+}
+
+[class~="justify-center"] {
+    justify-content: center;
+}
+
+[class~="w-full"] {
+    width: 100%;
+}
+
+[class~="max-w-xl"] {
+    max-width: 36rem;
+}
+
+[class~="max-w-2xl"] {
+    max-width: 42rem;
+}
+
+[class~="max-w-3xl"] {
+    max-width: 48rem;
+}
+
+[class~="max-w-6xl"] {
+    max-width: 72rem;
+}
+
+[class~="mx-auto"] {
+    margin-inline: auto;
+}
+
+[class~="mt-1"] {
+    margin-top: 0.25rem;
+}
+
+[class~="mt-2"] {
+    margin-top: 0.5rem;
+}
+
+[class~="mt-3"] {
+    margin-top: 0.75rem;
+}
+
+[class~="mt-4"] {
+    margin-top: 1rem;
+}
+
+[class~="mt-5"] {
+    margin-top: 1.25rem;
+}
+
+[class~="mt-6"] {
+    margin-top: 1.5rem;
+}
+
+[class~="mt-8"] {
+    margin-top: 2rem;
+}
+
+[class~="mt-10"] {
+    margin-top: 2.5rem;
+}
+
+[class~="mt-12"] {
+    margin-top: 3rem;
+}
+
+[class~="mb-1"] {
+    margin-bottom: 0.25rem;
+}
+
+[class~="mb-6"] {
+    margin-bottom: 1.5rem;
+}
+
+[class~="gap-2"] {
+    gap: 0.5rem;
+}
+
+[class~="gap-3"] {
+    gap: 0.75rem;
+}
+
+[class~="gap-4"] {
+    gap: 1rem;
+}
+
+[class~="gap-5"] {
+    gap: 1.25rem;
+}
+
+[class~="space-y-2"] > * + * {
+    margin-top: 0.5rem;
+}
+
+[class~="space-y-3"] > * + * {
+    margin-top: 0.75rem;
+}
+
+[class~="space-y-5"] > * + * {
+    margin-top: 1.25rem;
+}
+
+[class~="p-4"] {
+    padding: 1rem;
+}
+
+[class~="p-5"] {
+    padding: 1.25rem;
+}
+
+[class~="p-6"] {
+    padding: 1.5rem;
+}
+
+[class~="px-4"] {
+    padding-inline: 1rem;
+}
+
+[class~="px-5"] {
+    padding-inline: 1.25rem;
+}
+
+[class~="px-6"] {
+    padding-inline: 1.5rem;
+}
+
+[class~="py-2"] {
+    padding-block: 0.5rem;
+}
+
+[class~="py-3"] {
+    padding-block: 0.75rem;
+}
+
+[class~="py-4"] {
+    padding-block: 1rem;
+}
+
+[class~="rounded-lg"] {
+    border-radius: 0.5rem;
+}
+
+[class~="rounded-xl"] {
+    border-radius: 0.75rem;
+}
+
+[class~="rounded-2xl"] {
+    border-radius: 1rem;
+}
+
+[class~="rounded-full"] {
+    border-radius: 9999px;
+}
+
+[class~="border"] {
+    border: 1px solid #cbd5e1;
+}
+
+[class~="bg-white"] {
+    background-color: #fff;
+}
+
+[class~="bg-slate-50"] {
+    background-color: #f8fafc;
+}
+
+[class~="bg-slate-100"] {
+    background-color: #f1f5f9;
+}
+
+[class~="bg-blue-50"] {
+    background-color: #eff6ff;
+}
+
+[class~="bg-blue-900"] {
+    background-color: #1e3a8a;
+}
+
+[class~="bg-amber-50"] {
+    background-color: #fffbeb;
+}
+
+[class~="bg-green-50"] {
+    background-color: #f0fdf4;
+}
+
+[class~="bg-red-50"] {
+    background-color: #fef2f2;
+}
+
+[class~="text-slate-600"] {
+    color: #475569;
+}
+
+[class~="text-slate-700"] {
+    color: #334155;
+}
+
+[class~="text-slate-800"] {
+    color: #1e293b;
+}
+
+[class~="text-slate-900"] {
+    color: #0f172a;
+}
+
+.site-app {
+    --palette-surface: #f8f9ff;
+    --palette-surface-strong: #e9f0ff;
+    --palette-card: #ffffff;
+    --palette-panel: #eff4ff;
+    --palette-border: #dfeafc;
+    --palette-primary: #091426;
+    --palette-primary-strong: #1e293b;
+    --palette-secondary: #006a61;
+    --palette-secondary-soft: #86f2e4;
+    --palette-warning: #f59e0b;
+    --palette-warning-soft: #fef3c7;
+    --palette-danger: #ef4444;
+    --palette-danger-soft: #fee2e2;
+    --palette-text: #0b1c30;
+    --palette-muted: #516275;
+    --palette-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--palette-surface);
+    color: var(--palette-text);
+}
+
+.site-app * {
+    box-sizing: border-box;
+}
+
+.site-app a {
+    color: var(--palette-primary);
+    text-decoration: none;
+}
+
+.site-app a:hover {
+    color: var(--palette-primary-strong);
+}
+
+.site-app .page-shell {
+    width: min(100%, 1100px);
+    margin-inline: auto;
+    padding: 2rem 1rem 3rem;
+}
+
+.site-app .page-card {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.6rem;
+}
+
+.site-app .surface-card {
+    background: var(--palette-card);
+    border: 1px solid var(--palette-border);
+    border-radius: 1.25rem;
+    box-shadow: var(--palette-shadow);
+}
+
+.site-app .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 0;
+}
+
+.site-app .stat-card {
+    display: grid;
+    gap: 0.5rem;
+    min-height: 8.5rem;
+    padding: 1.1rem 1rem 1rem;
+    border: 1px solid var(--palette-border);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+}
+
+.site-app .stat-card dt,
+.site-app .stat-card strong {
+    display: block;
+    color: var(--palette-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.site-app .stat-card dd {
+    margin: 0;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--palette-primary);
+}
+
+.site-app .stat-card a {
+    display: inline-block;
+    margin-top: auto;
+    font-weight: 700;
+}
+
+.site-app .activity-list {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+}
+
+.site-app .activity-item {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--palette-border);
+    border-radius: 1rem;
+    background: #fff;
+}
+
+.site-app .activity-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.site-app .activity-title {
+    margin: 0;
+    color: var(--palette-text);
+    font-weight: 700;
+}
+
+.site-app .browse-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.site-app .browse-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.site-app .browse-card-image {
+    display: block;
+    width: 100%;
+    height: 12.5rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    background: #eef4ff;
+}
+
+.site-app .browse-card-copy {
+    margin: 0;
+    white-space: pre-line;
+    color: var(--palette-muted);
+}
+
+.site-app .browse-card-location {
+    margin: 0;
+}
+
+.site-app .browse-card-location strong {
+    color: var(--palette-text);
+}
+
+.site-app .surface-card + .surface-card,
+.site-app .surface-card + .page-shell,
+.site-app .stack > * + * {
+    margin-top: 1.25rem;
+}
+
+.site-app .page-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.site-app .page-topbar .subtle-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--palette-text);
+    font-weight: 600;
+}
+
+.site-app .page-topbar .subtle-link::before {
+    content: "←";
+    font-size: 1.2rem;
+}
+
+.site-app .mini-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.site-app .icon-button,
+.site-app .secondary-button,
+.site-app .primary-button,
+.site-app .ghost-button {
+    min-height: 2.75rem;
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+    padding: 0.7rem 1.1rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-app .icon-button,
+.site-app .secondary-button,
+.site-app .ghost-button {
+    background: var(--palette-panel);
+    color: var(--palette-text);
+    border-color: var(--palette-border);
+}
+
+.site-app .primary-button {
+    background: var(--palette-primary);
+    color: #fff;
+    box-shadow: 0 12px 22px rgba(9, 20, 38, 0.18);
+}
+
+.site-app .ghost-button {
+    background: #fff;
+}
+
+.site-app .primary-button:hover,
+.site-app .secondary-button:hover,
+.site-app .ghost-button:hover,
+.site-app .icon-button:hover {
+    transform: translateY(-1px);
+}
+
+.site-app .eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--palette-secondary);
+}
+
+.site-app h1,
+.site-app h2,
+.site-app h3,
+.site-app h4,
+.site-app p {
+    margin-top: 0;
+}
+
+.site-app h1 {
+    margin-bottom: 0;
+    font-size: clamp(2rem, 4vw, 2.85rem);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+}
+
+.site-app h2 {
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.site-app h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.site-app p,
+.site-app li,
+.site-app label,
+.site-app input,
+.site-app textarea,
+.site-app select,
+.site-app button {
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.site-app .status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    border: 1px solid transparent;
+}
+
+.site-app .status-open {
+    background: #edf3ff;
+    color: var(--palette-primary);
+    border-color: #d9e4ff;
+}
+
+.site-app .status-pending {
+    background: #fff5d6;
+    color: #8a5700;
+    border-color: #f7e0a7;
+}
+
+.site-app .status-approved,
+.site-app .status-returned {
+    background: #eafbf5;
+    color: #0d6b52;
+    border-color: #bfead8;
+}
+
+.site-app .status-rejected {
+    background: #fee2e2;
+    color: #b42318;
+    border-color: #f7b7b5;
+}
+
+.site-app .detail-layout {
+    display: grid;
+    grid-template-columns: 1.45fr 0.9fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.site-app .item-detail-shell {
+    max-width: 1180px;
+}
+
+.site-app .detail-media {
+    position: relative;
+    overflow: hidden;
+    padding: 0.8rem;
+    background: #f3f7ff;
+}
+
+.site-app .detail-media .media-frame {
+    position: relative;
+    min-height: 22rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e6edf9, #dfeaff);
+}
+
+.site-app .detail-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.site-app .media-placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 22rem;
+    border-radius: 1rem;
+    background: var(--palette-panel);
+    color: var(--palette-muted);
+    font-weight: 600;
+    text-align: center;
+    padding: 1.25rem;
+}
+
+.site-app .media-badges {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.site-app .meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    background: rgba(9, 20, 38, 0.82);
+    color: #fff;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.site-app .detail-panel {
+    padding: 1.4rem;
+}
+
+.site-app .detail-header,
+.site-app .claim-card-head,
+.site-app .section-header,
+.site-app .confirmation-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.site-app .detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 0.8rem;
+}
+
+.site-app .detail-meta .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: var(--palette-panel);
+    color: var(--palette-text);
+    border: 1px solid var(--palette-border);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.site-app .detail-points {
+    display: grid;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.site-app .detail-points .point {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.8rem 0.9rem;
+    background: var(--palette-panel);
+    border: 1px solid var(--palette-border);
+    border-radius: 1rem;
+}
+
+.site-app .detail-points strong {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--palette-muted);
+}
+
+.site-app .security-callout {
+    margin-top: 1rem;
+    background: #ecf5ff;
+    border: 1px solid #d7ebff;
+    border-radius: 1rem;
+    padding: 1rem 1rem 0.9rem;
+}
+
+.site-app .security-callout h3 {
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+}
+
+.site-app .stack {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.site-app .section-card,
+.site-app .claim-card,
+.site-app .review-card,
+.site-app .confirmation-card {
+    background: var(--palette-card);
+    border: 1px solid var(--palette-border);
+    border-radius: 1.2rem;
+    box-shadow: var(--palette-shadow);
+    padding: 1.3rem;
+}
+
+.site-app .claim-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.site-app .field {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.site-app .field label,
+.site-app .field .label {
+    color: var(--palette-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.site-app .eyebrow.dark {
+    color: var(--palette-secondary);
+}
+
+.site-app input:not([type="checkbox"]),
+.site-app textarea,
+.site-app select {
+    width: 100%;
+    min-height: 2.9rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.9rem;
+    background: #fff;
+    padding: 0.8rem 0.9rem;
+    color: var(--palette-text);
+    font: inherit;
+}
+
+.site-app .claim-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(9, 20, 38, 0.5);
+    z-index: 40;
+}
+
+.site-app .claim-modal-card {
+    width: min(100%, 32rem);
+    background: var(--palette-card);
+    border: 1px solid var(--palette-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 24px 48px rgba(9, 20, 38, 0.18);
+    padding: 1.4rem;
+}
+
+.site-app .claim-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.site-app .claim-modal-header h3 {
+    margin: 0.2rem 0 0.2rem;
+    font-size: 1.4rem;
+}
+
+.site-app .claim-modal-header p {
+    margin: 0;
+    color: var(--palette-muted);
+    font-size: 0.85rem;
+}
+
+.site-app .claim-modal-close {
+    width: 2.28rem;
+    height: 2.28rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid var(--palette-border);
+    background: var(--palette-panel);
+    color: var(--palette-text);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.site-app .claim-modal-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.site-app .upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 6rem;
+    border: 1px dashed #b9c9eb;
+    border-radius: 1rem;
+    background: var(--palette-panel);
+    color: var(--palette-muted);
+    text-align: center;
+    padding: 1rem;
+}
+
+.site-app .upload-box .upload-icon {
+    font-size: 1.5rem;
+    color: var(--palette-secondary);
+}
+
+.site-app .upload-box small {
+    color: var(--palette-muted);
+}
+
+.site-app textarea {
+    min-height: 7.2rem;
+    resize: vertical;
+}
+
+.site-app .checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: var(--palette-muted);
+}
+
+.site-app .checkbox-field > input[type="checkbox"] {
+    flex: 0 0 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0.2rem 0 0;
+    accent-color: var(--palette-primary);
+}
+
+.site-app .checkbox-field > label,
+.site-app .checkbox-field > span {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.site-app label.checkbox-field {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.site-app .empty-state {
+    background: var(--palette-card);
+    border: 1px solid var(--palette-border);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    color: var(--palette-muted);
+}
+
+.site-app .claim-list,
+.site-app .review-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.site-app .claim-card,
+.site-app .review-card {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.site-app .claim-card-head {
+    align-items: center;
+}
+
+.site-app .claim-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.8rem;
+    color: var(--palette-muted);
+    font-size: 0.85rem;
+}
+
+.site-app .proof-box,
+.site-app .verification-box {
+    background: var(--palette-panel);
+    border: 1px solid var(--palette-border);
+    border-radius: 0.9rem;
+    padding: 0.9rem 1rem;
+}
+
+.site-app .proof-box strong,
+.site-app .verification-box strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--palette-muted);
+}
+
+.site-app .review-card .action-row,
+.site-app .claim-card .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+}
+
+.site-app .form-panel {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.site-app .confirmation-card {
+    display: grid;
+    gap: 1rem;
+}
+
+.site-app .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.site-app .info-box {
+    border: 1px solid var(--palette-border);
+    border-radius: 0.9rem;
+    background: var(--palette-panel);
+    padding: 0.9rem 1rem;
+}
+
+.site-app .field-note {
+    color: var(--palette-muted);
+    font-size: 0.8rem;
+}
+
+.site-app .error-box {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    border-radius: 1rem;
+    padding: 1rem 1rem 0.75rem;
+    color: #991b1b;
+}
+
+.site-app .error-box ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+}
+
+@media (max-width: 760px) {
+    .site-app .page-shell {
+        padding-top: 1.25rem;
+    }
+
+    .site-app .page-topbar,
+    .site-app .section-header,
+    .site-app .confirmation-header,
+    .site-app .claim-card-head,
+    .site-app .detail-header {
+        display: grid;
+        gap: 0.7rem;
+    }
+
+    .site-app .detail-layout,
+    .site-app .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+[class~="text-blue-800"],
+[class~="text-blue-900"] {
+    color: #1e3a8a;
+}
+
+[class~="text-blue-100"] {
+    color: #dbeafe;
+}
+
+[class~="text-blue-200"] {
+    color: #bfdbfe;
+}
+
+[class~="text-amber-950"] {
+    color: #451a03;
+}
+
+[class~="text-red-900"] {
+    color: #7f1d1d;
+}
+
+[class~="text-green-900"] {
+    color: #14532d;
+}
+
+[class~="text-white"] {
+    color: #fff;
+}
+
+[class~="font-medium"] {
+    font-weight: 600;
+}
+
+[class~="font-semibold"] {
+    font-weight: 700;
+}
+
+[class~="font-bold"] {
+    font-weight: 700;
+}
+
+[class~="text-sm"] {
+    font-size: 0.875rem;
+}
+
+[class~="text-xl"] {
+    font-size: 1.25rem;
+}
+
+[class~="text-2xl"] {
+    font-size: 1.5rem;
+}
+
+[class~="text-3xl"] {
+    font-size: 1.875rem;
+}
+
+[class~="text-center"] {
+    text-align: center;
+}
+
+[class~="underline"] {
+    text-decoration-line: underline;
+}
+
+[class~="list-disc"] {
+    list-style-type: disc;
+}
+
+[class~="capitalize"] {
+    text-transform: capitalize;
+}
+
+[class~="whitespace-pre-line"] {
+    white-space: pre-line;
+}
+
+[class~="min-h-10"] {
+    min-height: 2.5rem;
+}
+
+[class~="min-h-11"] {
+    min-height: 2.75rem;
+}
+
+[class~="min-h-12"] {
+    min-height: 3rem;
+}
+
+[class~="h-44"] {
+    height: 11rem;
+}
+
+[class~="h-56"] {
+    height: 14rem;
+}
+
+[class~="max-h-48"] {
+    max-height: 12rem;
+}
+
+[class~="max-h-64"] {
+    max-height: 16rem;
+}
+
+[class~="max-h-96"] {
+    max-height: 24rem;
+}
+
+[class~="object-contain"] {
+    object-fit: contain;
+}
+
+[class~="object-cover"] {
+    object-fit: cover;
+}
+
+[class~="overflow-hidden"] {
+    overflow: hidden;
+}
+
+[class~="shadow-sm"] {
+    box-shadow: 0 1px 3px rgb(15 23 42 / 0.12);
+}
+
+[class~="sr-only"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (min-width: 640px) {
+    main {
+        padding-block: 3rem;
+    }
+
+    [class~="sm:flex-row"] {
+        flex-direction: row;
+    }
+
+    [class~="sm:grid-cols-2"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    [class~="sm:grid-cols-3"] {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    [class~="md:grid-cols-3"] {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    [class~="lg:grid-cols-3"] {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+[class~="bg-blue-900"] a:focus-visible,
+[class~="bg-blue-900"] button:focus-visible {
+    outline-color: #fff;
+}
+
+[class~="bg-blue-900"] a[class~="bg-white"]:focus-visible {
+    outline-color: #1d4ed8;
+}
+
+[class~="bg-blue-800"]:focus-visible,
+[class~="bg-green-800"]:focus-visible,
+[class~="bg-red-800"]:focus-visible {
+    outline-color: #fff;
+}
+
+.website-shell.design-zeta {
+    --palette-surface: #02040f;
+    --palette-card: #232c5f;
+    --palette-panel: #372d97;
+    --palette-border: #47a6d7;
+    --palette-primary: #7c44f4;
+    --palette-primary-strong: #372d97;
+    --palette-secondary: #47a6d7;
+    --palette-text: #fff;
+    --palette-muted: rgb(255 255 255 / 0.76);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: #02040f;
+    color: #fff;
+}
+
+.website-shell.design-zeta header {
+    border: 0;
+    background: #02040f;
+    box-shadow: none;
+}
+
+.website-shell.design-zeta header > div {
+    width: min(100% - 3rem, 1200px);
+    min-height: 5rem;
+}
+
+.website-shell.design-zeta header > div > a,
+.website-shell.design-zeta .primary-navigation li span {
+    color: #fff;
+}
+
+.website-shell.design-zeta .brand-mark {
+    background: #7c44f4;
+}
+
+.website-shell.design-zeta .primary-navigation li a {
+    color: rgb(255 255 255 / 0.82);
+}
+
+.website-shell.design-zeta .primary-navigation li a:hover,
+.website-shell.design-zeta .primary-navigation li a[aria-current="page"] {
+    background: rgb(124 68 244 / 0.22);
+    color: #fff;
+}
+
+.website-shell.design-zeta .primary-navigation button {
+    background: #232c5f;
+    color: #fff;
+}
+
+.website-shell.design-zeta > main {
+    width: min(100% - 3rem, 1200px);
+    min-height: 0;
+    padding: 2rem 0 5rem;
+}
+
+.website-shell.design-zeta .zeta-home {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.website-shell.design-zeta .zeta-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+    align-items: center;
+    min-height: 32rem;
+    overflow: hidden;
+    padding: clamp(2rem, 6vw, 5rem);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 1.5rem;
+    background:
+        radial-gradient(ellipse at 75% 78%, rgb(124 68 244 / 0.95), transparent 48%),
+        linear-gradient(120deg, #232c5f 0%, #372d97 53%, #7c44f4 100%);
+    box-shadow: 0 24px 70px rgb(55 45 151 / 0.28);
+}
+
+.website-shell.design-zeta .zeta-hero-copy {
+    position: relative;
+    z-index: 2;
+    max-width: 38rem;
+}
+
+.website-shell.design-zeta .zeta-eyebrow {
+    margin-bottom: 1rem;
+    color: #47a6d7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.website-shell.design-zeta .zeta-hero h1 {
+    max-width: 12ch;
+    margin-bottom: 1.25rem;
+    color: #fff;
+    font-size: clamp(2.7rem, 5.5vw, 4.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+}
+
+.website-shell.design-zeta .zeta-hero-description {
+    max-width: 34rem;
+    margin-bottom: 1.8rem;
+    color: rgb(255 255 255 / 0.84);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+}
+
+.website-shell.design-zeta .zeta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.website-shell.design-zeta .zeta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.2rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.website-shell.design-zeta .zeta-button:hover {
+    transform: translateY(-2px);
+}
+
+.website-shell.design-zeta .zeta-button-light {
+    background: #fff;
+    color: #02040f;
+}
+
+.website-shell.design-zeta .zeta-button-light:hover {
+    background: #47a6d7;
+    color: #02040f;
+}
+
+.website-shell.design-zeta .zeta-button-outline {
+    border-color: rgb(255 255 255 / 0.45);
+    background: rgb(2 4 15 / 0.12);
+    color: #fff;
+}
+
+.website-shell.design-zeta .zeta-button-outline:hover {
+    background: rgb(2 4 15 / 0.35);
+    color: #fff;
+}
+
+.website-shell.design-zeta .zeta-hero-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 25rem;
+}
+
+.website-shell.design-zeta .zeta-orbit {
+    position: absolute;
+    width: min(28rem, 95%);
+    aspect-ratio: 1;
+    border: 1px solid rgb(255 255 255 / 0.24);
+    border-radius: 50%;
+}
+
+.website-shell.design-zeta .zeta-orbit-outer {
+    transform: rotate(-24deg) scaleY(0.56);
+}
+
+.website-shell.design-zeta .zeta-orbit-inner {
+    width: min(22rem, 75%);
+    transform: rotate(32deg) scaleY(0.57);
+}
+
+.website-shell.design-zeta .zeta-item-card {
+    position: absolute;
+    display: grid;
+    width: min(18rem, 75%);
+    gap: 0.8rem;
+    padding: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: 1.1rem;
+    background: rgb(35 44 95 / 0.88);
+    box-shadow: 0 24px 54px rgb(2 4 15 / 0.32);
+    color: #fff;
+    backdrop-filter: blur(14px);
+}
+
+.website-shell.design-zeta .zeta-item-card strong {
+    max-width: 12ch;
+    font-size: 1.35rem;
+    line-height: 1.2;
+}
+
+.website-shell.design-zeta .zeta-item-label {
+    color: rgb(255 255 255 / 0.7);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.website-shell.design-zeta .zeta-item-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.85rem;
+    background: #372d97;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.website-shell.design-zeta .zeta-item-card-back {
+    top: 17%;
+    right: 3%;
+    transform: rotate(8deg);
+}
+
+.website-shell.design-zeta .zeta-item-card-front {
+    bottom: 12%;
+    left: 5%;
+    transform: rotate(-7deg);
+}
+
+.website-shell.design-zeta .zeta-item-icon-accent {
+    justify-self: end;
+    background: #47a6d7;
+    color: #02040f;
+}
+
+.website-shell.design-zeta .zeta-card-line {
+    width: 100%;
+    height: 1px;
+    background: rgb(255 255 255 / 0.25);
+}
+
+.website-shell.design-zeta .zeta-card-caption {
+    color: rgb(255 255 255 / 0.76);
+    font-size: 0.75rem;
+}
+
+.website-shell.design-zeta .zeta-spark {
+    position: absolute;
+    color: #47a6d7;
+    font-size: 1.5rem;
+}
+
+.website-shell.design-zeta .zeta-spark-one {
+    top: 15%;
+    left: 13%;
+}
+
+.website-shell.design-zeta .zeta-spark-two {
+    right: 12%;
+    bottom: 14%;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.website-shell.design-zeta .zeta-process {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 1.25rem;
+    background: #02040f;
+}
+
+.website-shell.design-zeta .zeta-process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.website-shell.design-zeta .zeta-process-step + .zeta-process-step {
+    border-left: 1px solid rgb(255 255 255 / 0.14);
+}
+
+.website-shell.design-zeta .zeta-step-number {
+    color: #7c44f4;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.website-shell.design-zeta .zeta-process-step h2 {
+    margin-bottom: 0.45rem;
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.website-shell.design-zeta .zeta-process-step p {
+    margin: 0;
+    color: rgb(255 255 255 / 0.68);
+    font-size: 0.85rem;
+}
+
+.website-shell.design-zeta .zeta-categories {
+    padding: 1.5rem 0 0.5rem;
+}
+
+.website-shell.design-zeta .zeta-section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.website-shell.design-zeta .zeta-section-heading .zeta-eyebrow {
+    margin-bottom: 0.55rem;
+}
+
+.website-shell.design-zeta .zeta-section-heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    letter-spacing: -0.04em;
+}
+
+.website-shell.design-zeta .zeta-section-heading > a {
+    color: #47a6d7;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.website-shell.design-zeta .zeta-section-heading > a:hover {
+    color: #7c44f4;
+}
+
+.website-shell.design-zeta .zeta-home-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.website-shell.design-zeta .zeta-home-actions a {
+    display: grid;
+    min-height: 6.5rem;
+    align-content: center;
+    gap: 0.35rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(71 166 215 / 0.3);
+    border-radius: 0.9rem;
+    background: #232c5f;
+    color: #fff;
+    text-decoration: none;
+    transition: border-color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.website-shell.design-zeta .zeta-home-actions a:hover {
+    transform: translateY(-2px);
+    border-color: #47a6d7;
+    background: #2a3674;
+}
+
+.website-shell.design-zeta .zeta-home-actions a:focus-visible {
+    outline: 3px solid #47a6d7;
+    outline-offset: 3px;
+}
+
+.website-shell.design-zeta .zeta-home-actions strong {
+    font-size: 0.95rem;
+}
+
+.website-shell.design-zeta .zeta-home-actions span {
+    color: rgb(255 255 255 / 0.7);
+    font-size: 0.78rem;
+}
+
+.website-shell.design-zeta > footer {
+    border-color: rgb(255 255 255 / 0.14);
+    background: #02040f;
+}
+
+.website-shell.design-zeta > footer > div {
+    color: rgb(255 255 255 / 0.7);
+}
+
+.website-shell.design-zeta > footer a {
+    color: #47a6d7;
+}
+
+.website-shell.design-zeta > footer a:hover {
+    color: #7c44f4;
+}
+
+.website-shell.design-zeta a:focus-visible,
+.website-shell.design-zeta button:focus-visible {
+    outline-color: #47a6d7;
+}
+
+@media (max-width: 760px) {
+    .website-shell.design-zeta header > div,
+    .website-shell.design-zeta > main,
+    .website-shell.design-zeta > footer > div {
+        width: min(100% - 2rem, 1200px);
+    }
+
+    .website-shell.design-zeta > main {
+        padding-block: 1.25rem 3.5rem;
+    }
+
+    .website-shell.design-zeta .zeta-hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem 1rem;
+    }
+
+    .website-shell.design-zeta .zeta-hero h1 {
+        max-width: 20ch;
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .website-shell.design-zeta .zeta-hero-art {
+        min-height: 20rem;
+        margin-top: -0.5rem;
+    }
+
+    .website-shell.design-zeta .zeta-item-card-back {
+        right: 5%;
+    }
+
+    .website-shell.design-zeta .zeta-process {
+        grid-template-columns: 1fr;
+    }
+
+    .website-shell.design-zeta .zeta-process-step + .zeta-process-step {
+        border-top: 1px solid rgb(255 255 255 / 0.14);
+        border-left: 0;
+    }
+
+    .website-shell.design-zeta .zeta-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+
+    .website-shell.design-zeta .zeta-home-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .website-shell.design-zeta .zeta-button {
+        transition: none;
+    }
+
+    .website-shell.design-zeta .zeta-home-actions a {
+        transition: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+.design-reference {
+    --palette-surface: #f8f9ff;
+    --palette-surface-strong: #e5eeff;
+    --palette-card: #fff;
+    --palette-panel: #eff4ff;
+    --palette-border: #e4eaf5;
+    --palette-primary: #091426;
+    --palette-secondary: #006a61;
+    --palette-secondary-soft: #86f2e4;
+    --palette-text: #0b1c30;
+    --palette-muted: #45474c;
+    width: min(100%, 450px);
+    margin-inline: auto;
+    color: var(--palette-text);
+    background: #f8f9ff;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 36px rgb(9 20 38 / 0.08);
+}
+
+.design-reference header {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    border: 0;
+    box-shadow: 0 2px 12px rgb(9 20 38 / 0.06);
+}
+
+.design-reference header > div {
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.55rem 1rem;
+    gap: 0.5rem;
+}
+
+.design-reference header > div > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--palette-text);
+    font-size: 1.05rem;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.45rem;
+    height: 2.45rem;
+    border-radius: 0.7rem;
+    background: #2563eb;
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.brand-mark svg {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.brand-name {
+    line-height: 1;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.brand-tagline {
+    color: #47a6d7;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.design-reference .primary-navigation {
+    display: none;
+}
+
+.design-account-menu {
+    position: relative;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.design-account-menu > summary {
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 50%;
+    background: #e5eeff;
+    color: #091426;
+    cursor: pointer;
+    font-size: 1.35rem;
+    line-height: 1;
+    list-style: none;
+}
+
+.design-account-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.account-menu-panel {
+    position: absolute;
+    z-index: 25;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    display: grid;
+    gap: 0.1rem;
+    width: 13rem;
+    max-height: min(70vh, 28rem);
+    overflow: auto;
+    padding: 0.55rem;
+    border: 1px solid #e4eaf5;
+    border-radius: 0.85rem;
+    background: #fff;
+    box-shadow: 0 10px 24px rgb(9 20 38 / 0.15);
+}
+
+.account-menu-panel p {
+    margin: 0;
+    padding: 0.45rem;
+    color: #536173;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.account-menu-panel a,
+.account-menu-panel button {
+    display: block;
+    width: 100%;
+    min-height: 2.25rem;
+    margin: 0;
+    padding: 0.45rem;
+    border: 0;
+    border-radius: 0.45rem;
+    background: transparent;
+    color: #0b1c30;
+    font: inherit;
+    font-size: 0.74rem;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+}
+
+.account-menu-panel a:hover,
+.account-menu-panel button:hover {
+    background: #eff4ff;
+    color: #0b1c30;
+}
+
+.account-menu-panel form {
+    margin: 0;
+}
+
+.design-reference > main {
+    width: 100%;
+    min-height: calc(100vh - 3.5rem);
+    padding: 1rem 1rem 6.5rem;
+}
+
+.design-reference .page-shell {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+}
+
+.design-reference > footer {
+    position: fixed;
+    z-index: 30;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: min(100%, 450px);
+    margin: 0 auto;
+    border: 0;
+    background: transparent;
+    box-shadow: 0 -8px 24px rgb(9 20 38 / 0.08);
+}
+
+.design-reference > footer > div {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.design-reference > footer p,
+.design-reference > footer nav[aria-label="Legal"] {
+    display: none;
+}
+
+.design-bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    min-height: 4.6rem;
+    padding: 0.35rem 0.45rem calc(0.35rem + env(safe-area-inset-bottom));
+    border-top: 1px solid #e8edf6;
+    background: rgb(255 255 255 / 0.97);
+}
+
+.design-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    color: #202b3b;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.design-bottom-nav a[aria-current="page"] {
+    color: #006a61;
+}
+
+.design-bottom-nav a span {
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.design-reference .surface-card {
+    border: 0;
+    border-radius: 1.1rem;
+    box-shadow: 0 2px 8px rgb(9 20 38 / 0.06);
+}
+
+.design-reference .primary-button,
+.design-reference .secondary-button,
+.design-reference .ghost-button {
+    min-height: 2.9rem;
+    border-radius: 0.85rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.94rem;
+}
+
+.design-reference .primary-button {
+    background: #091426;
+    box-shadow: 0 3px 6px rgb(9 20 38 / 0.18);
+    color: #fff;
+}
+
+.design-reference .primary-button:hover {
+    background: #1e293b;
+}
+
+.design-reference .status-pill {
+    border: 0;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.73rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.design-reference .status-open {
+    background: #dce9ff;
+    color: #0b1c30;
+}
+
+.design-reference .status-pending {
+    background: #fff0d4;
+    color: #8b4d00;
+}
+
+.design-reference .status-approved,
+.design-reference .status-returned {
+    background: #86f2e4;
+    color: #005c54;
+}
+
+.design-reference .status-rejected {
+    background: #ffdad6;
+    color: #93000a;
+}
+
+.design-reference .field-note {
+    color: #536173;
+}
+
+.design-reference input:not([type="checkbox"]):not([type="hidden"]),
+.design-reference select,
+.design-reference textarea {
+    min-height: 2.8rem;
+    border: 0;
+    border-radius: 0.8rem;
+    padding: 0.75rem;
+    background: #eff4ff;
+    color: #0b1c30;
+}
+
+.design-reference textarea {
+    min-height: 6rem;
+}
+
+.design-reference label {
+    font-size: 0.78rem;
+}
+
+.design-reference button:focus-visible,
+.design-reference a:focus-visible,
+.design-reference input:focus-visible,
+.design-reference select:focus-visible,
+.design-reference textarea:focus-visible {
+    outline-color: #006a61;
+}
+
+.design-reference .error-box {
+    margin-bottom: 1rem;
+}
+
+.design-reference .feed-content {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.feed-search {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    height: 2.8rem;
+    margin: 0;
+    padding: 0 0.75rem;
+    border-radius: 0.85rem;
+    background: #fff;
+    box-shadow: 0 1px 4px rgb(9 20 38 / 0.06);
+}
+
+.feed-search > span {
+    color: #39485d;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.design-reference .feed-search input {
+    min-width: 0;
+    min-height: 2.5rem;
+    padding: 0;
+    background: transparent;
+    font-size: 0.8rem;
+}
+
+.feed-search button {
+    min-height: 2rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.5rem;
+    background: #eff4ff;
+    color: #0b1c30;
+    font-size: 0.7rem;
+}
+
+.feed-filter-chips {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding: 0.05rem 0;
+    scrollbar-width: none;
+}
+
+.feed-filter-chips > a,
+.feed-more-filters > summary {
+    flex: 0 0 auto;
+    padding: 0.38rem 0.58rem;
+    border-radius: 999px;
+    background: #e5eeff;
+    color: #27374b;
+    font-size: 0.65rem;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.feed-filter-chips > a.is-selected {
+    background: #091426;
+    color: #fff;
+}
+
+.feed-more-filters {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.feed-more-filters > summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.feed-more-filters > summary::-webkit-details-marker {
+    display: none;
+}
+
+.feed-more-filters form {
+    position: absolute;
+    z-index: 15;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    display: grid;
+    gap: 0.55rem;
+    width: 17rem;
+    max-height: 70vh;
+    overflow: auto;
+    margin: 0;
+    padding: 0.85rem;
+    border: 1px solid #e4eaf5;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 10px 24px rgb(9 20 38 / 0.15);
+}
+
+.feed-more-filters .field {
+    gap: 0.2rem;
+}
+
+.feed-more-filters label {
+    margin: 0;
+    font-size: 0.68rem;
+    text-transform: none;
+}
+
+.feed-more-filters input,
+.feed-more-filters select {
+    min-height: 2.2rem !important;
+    padding: 0.45rem !important;
+    font-size: 0.75rem !important;
+}
+
+.feed-more-filters .primary-button {
+    min-height: 2.35rem;
+    padding: 0.45rem;
+    font-size: 0.75rem;
+}
+
+.feed-category-heading,
+.feed-section-heading,
+.history-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.feed-category-heading h2,
+.history-heading h2 {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.2;
+}
+
+.feed-category-heading > span,
+.history-heading > span {
+    font-size: 0.62rem;
+}
+
+.feed-category-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+}
+
+.feed-category-list a {
+    display: flex;
+    align-items: center;
+    min-height: 2.55rem;
+    padding: 0.4rem;
+    border: 1px solid #e7edf6;
+    border-radius: 0.75rem;
+    background: #fff;
+    color: #182539;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.feed-recent-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 4rem;
+    padding: 0.65rem;
+    border-radius: 0.9rem;
+    background: #006a61;
+    color: #fff;
+}
+
+.recent-icon {
+    display: grid;
+    flex: 0 0 2rem;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #86f2e4;
+    color: #006a61;
+    font-size: 1.35rem;
+}
+
+.feed-recent-banner p {
+    display: grid;
+    gap: 0.08rem;
+    margin: 0;
+    font-size: 0.7rem;
+    line-height: 1.25;
+}
+
+.feed-recent-banner p span {
+    color: #d8fff9;
+    font-size: 0.62rem;
+}
+
+.recent-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #86f2e4;
+}
+
+.feed-section-heading {
+    align-items: end;
+    margin-top: 0.15rem;
+}
+
+.feed-section-heading h1 {
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+
+.feed-section-heading p {
+    margin: 0.15rem 0 0;
+    color: #667085;
+    font-size: 0.62rem;
+}
+
+.feed-sort-label {
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #e6eaf2;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.62rem;
+    white-space: nowrap;
+}
+
+.design-reference .feed-item-list {
+    gap: 0.55rem;
+    margin: 0;
+}
+
+.design-reference .feed-card {
+    gap: 0.38rem;
+    padding: 0 0 0.55rem;
+    overflow: hidden;
+    border: 1px solid #e7edf6;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 1px 4px rgb(9 20 38 / 0.04);
+}
+
+.design-reference .feed-card .browse-card-image,
+.design-reference .feed-card > .media-placeholder {
+    display: block;
+    width: 100%;
+    height: 8.6rem;
+    min-height: 8.6rem !important;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.design-reference .feed-card .claim-card-head,
+.design-reference .feed-card > .field-note,
+.design-reference .feed-card .browse-card-copy {
+    margin-inline: 0.6rem !important;
+}
+
+.design-reference .feed-card .claim-card-head {
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.design-reference .feed-card .claim-card-head h2 {
+    flex: 1;
+    font-size: 0.82rem;
+    line-height: 1.3;
+}
+
+.design-reference .feed-card > .field-note,
+.design-reference .feed-card .browse-card-copy {
+    color: #536173;
+    font-size: 0.65rem;
+    line-height: 1.35;
+}
+
+.design-reference .feed-card .browse-card-copy {
+    max-height: 2.7em;
+    overflow: hidden;
+}
+
+.design-reference .feed-card .status-pill {
+    flex: 0 0 auto;
+    font-size: 0.6rem;
+    padding: 0.22rem 0.45rem;
+}
+
+.feed-card-link {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.55rem;
+    background: #eff4ff;
+    color: #091426;
+    font-size: 0.66rem;
+    font-weight: 700;
+}
+
+.feed-card-link .feed-action-icon {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.feed-card-link span {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    text-align: center;
+}
+
+.feed-card-actions {
+    display: grid;
+    gap: 0.4rem;
+    margin-inline: 0.6rem;
+    margin-top: auto;
+}
+
+.feed-card-actions .feed-card-link {
+    margin: 0 !important;
+}
+
+.browse-card-actions {
+    display: flex;
+    margin-top: auto;
+}
+
+.browse-card-action {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
+    align-items: center;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.65rem;
+    line-height: 1.2;
+}
+
+.browse-card-action .feed-action-icon {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.browse-card-action span {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    text-align: center;
+}
+
+.feed-claim-link,
+.feed-claimed-state,
+.feed-own-item {
+    border-radius: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.feed-claimed-state,
+.feed-own-item {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #166534;
+    cursor: default;
+}
+
+.feed-own-item {
+    border-color: #ddd6fe;
+    background: #f5f3ff;
+    color: #5b21b6;
+}
+
+.feed-action-icon {
+    display: block;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+}
+
+.feed-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+}
+
+.feed-pagination .secondary-button {
+    min-height: 2rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+}
+
+.design-claims .page-shell {
+    display: grid;
+    gap: 1rem;
+}
+
+.student-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.student-summary h1 {
+    margin: 0;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+}
+
+.student-summary p {
+    margin: 0.1rem 0 0;
+    color: #586477;
+    font-size: 0.8rem;
+}
+
+.verified-badge {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.65rem;
+    border-radius: 999px;
+    background: #86f2e4;
+    color: #005d55;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.claim-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2rem;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    background: #e5eeff;
+}
+
+.claim-tabs a {
+    display: grid;
+    place-items: center;
+    min-height: 2.8rem;
+    border-radius: 0.75rem;
+    color: #243246;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.claim-tabs a.is-active {
+    background: #fff;
+    box-shadow: 0 1px 4px rgb(9 20 38 / 0.08);
+}
+
+.design-reference .claim-pass-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.claim-pass-card {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 1.15rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgb(9 20 38 / 0.06);
+}
+
+.claim-item-heading {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.7rem;
+}
+
+.claim-item-icon,
+.history-icon {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.7rem;
+    background: #e8efff;
+    color: #091426;
+    font-size: 1.8rem;
+}
+
+.claim-item-copy h2 {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.25;
+}
+
+.claim-item-copy p {
+    margin: 0.22rem 0 0;
+    color: #526073;
+    font-size: 0.7rem;
+    line-height: 1.3;
+}
+
+.claim-item-copy p.claim-found-date {
+    font-size: 0.65rem;
+}
+
+.claim-item-heading .status-pill {
+    max-width: 5.3rem;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.62rem;
+    text-align: center;
+}
+
+.verification-stepper {
+    padding: 0.85rem;
+    border-radius: 0.9rem;
+    background: #eff4ff;
+}
+
+.verification-stepper h3 {
+    margin: 0 0 0.6rem;
+    font-size: 0.8rem;
+}
+
+.verification-stepper ol {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.verification-stepper li {
+    display: grid;
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.5rem;
+    min-height: 2.1rem;
+}
+
+.step-mark {
+    display: grid;
+    place-items: center;
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 50%;
+    background: #c7d7f1;
+    color: #26364a;
+    font-size: 0.8rem;
+}
+
+.step-complete .step-mark {
+    background: #006a61;
+    color: #fff;
+}
+
+.step-current .step-mark {
+    background: #58667d;
+    color: #fff;
+}
+
+.verification-stepper li div {
+    display: grid;
+    gap: 0.1rem;
+}
+
+.verification-stepper strong {
+    font-size: 0.75rem;
+    line-height: 1.25;
+}
+
+.verification-stepper li div span {
+    color: #526073;
+    font-size: 0.69rem;
+    line-height: 1.35;
+}
+
+.claim-pass-actions .primary-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.claim-history {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.claim-history ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.claim-history li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem;
+    border-radius: 0.85rem;
+    background: #fff;
+}
+
+.claim-history .history-icon {
+    flex: 0 0 2.8rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.2rem;
+}
+
+.claim-history li div {
+    display: grid;
+    gap: 0.12rem;
+}
+
+.claim-history li strong {
+    font-size: 0.78rem;
+}
+
+.claim-history li div span {
+    color: #586477;
+    font-size: 0.68rem;
+}
+
+.report-item-link {
+    display: block;
+    padding: 0.8rem;
+    border-radius: 0.85rem;
+    background: #dce9ff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.claim-empty-state {
+    text-align: center;
+}
+
+.claim-empty-state h2 {
+    margin-bottom: 0.4rem;
+    color: #0b1c30;
+    font-size: 1.1rem;
+}
+
+.claim-empty-state p {
+    font-size: 0.8rem;
+}
+
+.design-detail .item-detail-shell {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.design-reference .detail-topbar {
+    display: flex;
+    min-height: 2rem;
+    margin: 0;
+}
+
+.design-reference .detail-topbar .subtle-link {
+    font-size: 0.78rem;
+}
+
+.detail-page-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.design-reference .detail-gallery {
+    padding: 0.5rem;
+}
+
+.design-reference .detail-media {
+    padding: 0;
+    background: transparent;
+}
+
+.design-reference .detail-media .media-frame {
+    min-height: 16.5rem;
+    height: 16.5rem;
+    border-radius: 0.9rem;
+}
+
+.design-reference .detail-media .media-frame > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.design-reference .detail-media .media-placeholder {
+    min-height: 16.5rem;
+    height: 100%;
+    border-radius: 0.9rem;
+}
+
+.serial-redacted,
+.detail-image-count {
+    position: absolute;
+    z-index: 2;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    background: rgb(9 20 38 / 0.8);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+}
+
+.serial-redacted {
+    top: 0.55rem;
+    left: 0.55rem;
+}
+
+.detail-image-count {
+    right: 0.55rem;
+    bottom: 0.55rem;
+}
+
+.design-reference .detail-summary {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1rem;
+}
+
+.detail-summary-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    color: #344054;
+    font-size: 0.68rem;
+}
+
+.secure-label {
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: #86f2e4;
+    color: #005d55;
+    font-weight: 700;
+}
+
+.design-reference .detail-summary h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.detail-category {
+    margin: -0.35rem 0 0;
+    color: #526073;
+    font-size: 0.8rem;
+}
+
+.detail-info-list {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.detail-info-row {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem;
+    border-radius: 0.8rem;
+    background: #eff4ff;
+}
+
+.detail-info-icon,
+.pickup-icon {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: #dce9ff;
+    color: #091426;
+    font-size: 1.2rem;
+}
+
+.detail-info-row div {
+    display: grid;
+    gap: 0.1rem;
+}
+
+.detail-info-row small {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.detail-info-row strong {
+    font-size: 0.9rem;
+}
+
+.detail-info-row div span {
+    color: #526073;
+    font-size: 0.68rem;
+}
+
+.detail-public-description {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.2rem 0.1rem 0;
+}
+
+.detail-public-description small {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.detail-public-description p {
+    margin: 0;
+    color: #526073;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    white-space: pre-line;
+}
+
+.design-reference .detail-security {
+    display: flex;
+    gap: 0.7rem;
+    margin: 0;
+    border: 0;
+    border-radius: 1rem;
+    background: #dce9ff;
+    padding: 0.8rem;
+}
+
+.security-icon {
+    display: grid;
+    flex: 0 0 2rem;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #091426;
+    color: #86f2e4;
+    font-size: 1rem;
+}
+
+.detail-security h2 {
+    margin: 0 0 0.2rem;
+    font-size: 0.85rem;
+}
+
+.detail-security p {
+    margin: 0;
+    color: #344054;
+    font-size: 0.68rem;
+    line-height: 1.45;
+}
+
+.design-reference .detail-claim-card,
+.design-reference .pickup-card {
+    display: grid;
+    gap: 0.55rem;
+    padding: 1rem;
+}
+
+.claim-card-intro {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #005d55;
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.availability-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #53d3c1;
+}
+
+.claim-review-label {
+    margin-left: auto;
+    color: #344054;
+    font-size: 0.6rem;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.design-reference .detail-claim-card h2,
+.pickup-heading h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.detail-claim-card > p {
+    margin: 0;
+    color: #526073;
+    font-size: 0.72rem;
+    line-height: 1.45;
+}
+
+.proof-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.proof-chips span {
+    padding: 0.28rem 0.45rem;
+    border-radius: 999px;
+    background: #e5eeff;
+    color: #26364a;
+    font-size: 0.62rem;
+}
+
+.verification-button {
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.pickup-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.pickup-heading > div {
+    flex: 1;
+}
+
+.pickup-heading p {
+    margin: 0.1rem 0 0;
+    color: #526073;
+    font-size: 0.68rem;
+}
+
+.desk-open-label {
+    padding: 0.28rem 0.45rem;
+    border-radius: 0.5rem;
+    background: #dce9ff;
+    font-size: 0.6rem;
+}
+
+.pickup-hours {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.65rem;
+    border-radius: 0.8rem;
+    background: #eff4ff;
+}
+
+.pickup-hours span {
+    font-size: 0.72rem;
+}
+
+.pickup-hours strong {
+    color: #526073;
+    font-size: 0.66rem;
+    font-weight: 500;
+}
+
+.pickup-contact {
+    display: block;
+    padding: 0.6rem;
+    border-radius: 0.7rem;
+    background: #e5eeff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.design-reference .claim-modal-backdrop {
+    z-index: 50;
+}
+
+.design-reference .claim-modal-card {
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    border-radius: 1.1rem;
+}
+
+.design-reference .claim-modal-card h3 {
+    font-size: 1.1rem;
+}
+
+.design-report-found .page-shell {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.design-item-form .page-shell {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.design-item-form .edit-item-form {
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.edit-current-image {
+    display: grid;
+    gap: 0.55rem;
+    padding: 0.55rem;
+    border-radius: 0.85rem;
+    background: #f4f7fd;
+}
+
+.edit-current-image img {
+    display: block;
+    width: 100%;
+    max-height: 12rem;
+    border: 1px solid #e4eaf5;
+    border-radius: 0.7rem;
+    background: #fff;
+    object-fit: contain;
+}
+
+.edit-current-image .checkbox-field {
+    margin: 0;
+    padding: 0.2rem 0.15rem;
+    font-size: 0.68rem;
+}
+
+.edit-current-image .checkbox-field input {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.12rem;
+}
+
+.edit-form-actions {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.edit-form-actions > * {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.report-found-hero {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.6rem;
+    padding: 0.9rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #091426, #1b2e40);
+    color: #fff;
+}
+
+.report-hero-icon {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: #344254;
+    color: #86f2e4;
+    font-size: 1.35rem;
+}
+
+.report-found-hero .eyebrow {
+    color: #86f2e4;
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+}
+
+.report-found-hero h1 {
+    margin: 0.12rem 0 0.25rem;
+    color: #fff;
+    font-size: 0.98rem;
+    letter-spacing: 0;
+}
+
+.report-found-hero p {
+    max-width: 18rem;
+    margin: 0;
+    color: #c9d3e0;
+    font-size: 0.69rem;
+    line-height: 1.4;
+}
+
+.report-manage-link {
+    padding: 0.32rem 0.45rem;
+    border: 1px solid rgb(255 255 255 / 0.24);
+    border-radius: 0.55rem;
+    color: #fff !important;
+    font-size: 0.6rem;
+    white-space: nowrap;
+}
+
+.design-reference .report-errors {
+    margin: 0;
+}
+
+.design-reference .report-found-page .form-panel {
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.report-step {
+    display: grid;
+    gap: 0.55rem;
+    padding: 0.85rem;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgb(9 20 38 / 0.05);
+}
+
+.report-step-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.report-step-heading > span {
+    display: grid;
+    flex: 0 0 1.5rem;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #e5eeff;
+    color: #091426;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.report-step-heading h2 {
+    flex: 1;
+    margin: 0;
+    font-size: 0.88rem;
+    letter-spacing: 0;
+}
+
+.report-step-heading small {
+    color: #006a61;
+    font-size: 0.62rem;
+}
+
+.report-step-help {
+    margin: -0.15rem 0 0;
+    color: #526073;
+    font-size: 0.68rem;
+    line-height: 1.4;
+}
+
+.report-step .field {
+    gap: 0.27rem;
+}
+
+.report-step .field label {
+    margin: 0;
+    font-size: 0.67rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.report-step .field-note {
+    font-size: 0.62rem;
+    line-height: 1.35;
+}
+
+.category-field {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.category-field legend {
+    margin-bottom: 0.35rem;
+    color: #0b1c30;
+    font-size: 0.67rem;
+    font-weight: 700;
+}
+
+.category-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.design-reference .category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: #eff4ff;
+    color: #17283d;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.design-reference .category-chip input[type="radio"] {
+    flex: 0 0 auto;
+    width: 0.9rem;
+    height: 0.9rem;
+    min-height: 0.9rem;
+    margin: 0;
+    accent-color: #006a61;
+}
+
+.design-reference .category-chip:has(input:checked) {
+    border-color: #79ddcf;
+    background: #86f2e4;
+    color: #005d55;
+}
+
+.report-photo-upload {
+    padding: 0.55rem;
+    border-radius: 0.85rem;
+    background: #f4f7fd;
+}
+
+.design-reference .report-photo-upload input[type="file"] {
+    min-height: 2.5rem;
+    padding: 0.45rem;
+    background: #fff;
+    font-size: 0.65rem;
+}
+
+.design-reference .report-found-page .checkbox-field {
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0.2rem 0.15rem;
+    color: #344054;
+    font-size: 0.68rem;
+}
+
+.design-reference .report-found-page .checkbox-field input {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.12rem;
+}
+
+.report-privacy-note {
+    margin: 0;
+    color: #344054;
+    font-size: 0.65rem;
+    line-height: 1.4;
+}
+
+.design-reference .report-submit-button {
+    width: 100%;
+    min-height: 2.9rem;
+}
+
+@media (max-width: 360px) {
+    .feed-category-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .student-summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .claim-item-heading {
+        grid-template-columns: 3.4rem minmax(0, 1fr);
+    }
+
+    .claim-item-icon {
+        width: 3.4rem;
+        height: 3.4rem;
+    }
+
+    .claim-item-heading .status-pill {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .report-found-hero {
+        grid-template-columns: 2.3rem minmax(0, 1fr);
+    }
+
+    .report-manage-link {
+        grid-column: 2;
+        justify-self: start;
+    }
+}
+
+.website-shell.design-reference {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    border: 0;
+    background: #f7f9fc;
+    color: #0b1c30;
+    box-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.website-shell.design-reference header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    width: 100%;
+    border-bottom: 1px solid #e1e7f0;
+    background: rgb(255 255 255 / 0.97);
+    box-shadow: 0 2px 10px rgb(9 20 38 / 0.04);
+}
+
+.website-shell.design-reference header > div {
+    display: flex;
+    width: min(100% - 3rem, 1200px);
+    min-height: 5rem;
+    margin-inline: auto;
+    padding: 0.7rem 0;
+    gap: 2rem;
+}
+
+.website-shell.design-reference header > div > a {
+    flex: 0 0 auto;
+    gap: 0.7rem;
+    color: #0b1c30;
+    font-size: 1.2rem;
+}
+
+.website-shell.design-reference .brand-mark {
+    width: 2.65rem;
+    height: 2.65rem;
+}
+
+.website-shell.design-reference .brand-name {
+    white-space: nowrap;
+}
+
+.website-shell.design-reference .primary-navigation {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: auto;
+}
+
+.website-shell.design-reference .primary-navigation ul {
+    justify-content: flex-end;
+    gap: 0.3rem;
+}
+
+.website-shell.design-reference .primary-navigation li a,
+.website-shell.design-reference .primary-navigation li span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.55rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.55rem;
+    color: #344054;
+    font-size: 0.84rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.website-shell.design-reference .primary-navigation li a:hover {
+    background: #eff4ff;
+    color: #091426;
+}
+
+.website-shell.design-reference .primary-navigation li a[aria-current="page"] {
+    background: #eff4ff;
+    color: #091426;
+}
+
+.website-shell.design-reference .primary-navigation li span {
+    color: #526073;
+}
+
+.website-shell.design-reference .primary-navigation form {
+    margin: 0;
+}
+
+.website-shell.design-reference .primary-navigation button {
+    min-height: 2.45rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.55rem;
+    background: #eff4ff;
+    color: #0b1c30;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.website-shell.design-reference .design-account-menu {
+    display: none;
+}
+
+.website-shell.design-reference > main {
+    width: min(100% - 3rem, 1200px);
+    min-height: 60vh;
+    margin-inline: auto;
+    padding: 2.25rem 0 4rem;
+}
+
+.website-shell.design-reference .page-shell {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 0;
+}
+
+.website-shell.design-reference .page-shell h1 {
+    font-size: clamp(1.9rem, 3.4vw, 2.65rem);
+    letter-spacing: -0.035em;
+}
+
+.website-shell.design-reference .page-shell h2 {
+    font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+}
+
+.website-shell.design-reference .surface-card,
+.website-shell.design-reference .section-card,
+.website-shell.design-reference .claim-card,
+.website-shell.design-reference .review-card,
+.website-shell.design-reference .confirmation-card,
+.website-shell.design-reference .info-box,
+.website-shell.design-reference .proof-box,
+.website-shell.design-reference .verification-box {
+    border-color: #e3e9f2;
+    box-shadow: 0 4px 14px rgb(9 20 38 / 0.045);
+}
+
+.website-shell.design-reference .primary-button,
+.website-shell.design-reference .secondary-button,
+.website-shell.design-reference .ghost-button {
+    min-height: 2.75rem;
+    border-radius: 0.65rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+.website-shell.design-reference .status-pill {
+    font-size: 0.76rem;
+}
+
+.website-shell.design-reference .field label,
+.website-shell.design-reference .field .label {
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.website-shell.design-reference > footer {
+    position: static;
+    inset: auto;
+    width: 100%;
+    margin: auto 0 0;
+    border: 0;
+    border-top: 1px solid #e1e7f0;
+    background: #fff;
+    box-shadow: none;
+}
+
+.website-shell.design-reference > footer > div {
+    display: flex;
+    width: min(100% - 3rem, 1200px);
+    margin-inline: auto;
+    padding: 1.25rem 0;
+    gap: 1rem 2rem;
+}
+
+.website-shell.design-reference > footer p,
+.website-shell.design-reference > footer nav[aria-label="Footer navigation"] {
+    display: block;
+}
+
+.website-shell.design-reference > footer nav ul {
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+}
+
+.website-shell.design-reference > footer nav a {
+    color: #526073;
+    font-size: 0.78rem;
+    text-decoration: none;
+}
+
+.website-shell.design-reference .design-bottom-nav {
+    display: none;
+}
+
+.website-shell.design-reference .feed-content {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+}
+
+.website-shell.design-reference .feed-category-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.65rem;
+}
+
+.website-shell.design-reference .feed-category-list a {
+    min-height: 3.25rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.8rem;
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .feed-recent-banner {
+    gap: 2rem;
+    min-height: 4.5rem;
+    padding: 0.85rem 1rem;
+}
+
+.website-shell.design-reference .feed-recent-banner p {
+    font-size: 0.82rem;
+}
+
+.website-shell.design-reference .feed-section-heading h1 {
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+}
+
+.website-shell.design-reference .feed-section-heading p {
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .feed-content > .feed-more-filters {
+    justify-self: start;
+    width: fit-content;
+}
+
+.website-shell.design-reference .feed-more-filters > summary {
+    border: 1px solid rgb(71 166 215 / 0.45);
+    background: #232c5f;
+    color: #fff;
+}
+
+.website-shell.design-reference .feed-more-filters form {
+    width: min(17rem, calc(100vw - 3rem));
+    right: auto;
+    left: 0;
+    border-color: rgb(71 166 215 / 0.45);
+    background: #232c5f;
+    color: #fff;
+    box-shadow: 0 12px 28px rgb(2 4 15 / 0.55);
+}
+
+.website-shell.design-reference .feed-more-filters form label {
+    color: #fff;
+}
+
+.website-shell.design-reference .feed-more-filters form input,
+.website-shell.design-reference .feed-more-filters form select {
+    border-color: rgb(71 166 215 / 0.55);
+    background: #02040f;
+    color: #fff;
+    color-scheme: dark;
+}
+
+.website-shell.design-reference .feed-section-heading {
+    align-items: center;
+    margin-top: 0.6rem;
+}
+
+.website-shell.design-reference .feed-page > .empty-state {
+    margin-top: 1rem;
+}
+
+.website-shell.design-reference .feed-heading-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .website-shell.design-reference .feed-section-heading {
+        flex-wrap: wrap;
+    }
+
+    .website-shell.design-reference .feed-heading-copy {
+        flex: 1 1 100%;
+    }
+
+    .website-shell.design-reference .feed-heading-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.website-shell.design-reference .feed-item-list {
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.website-shell.design-reference .feed-card .browse-card-image,
+.website-shell.design-reference .feed-card > .media-placeholder {
+    height: 12rem;
+    min-height: 12rem !important;
+}
+
+.website-shell.design-reference .feed-card .claim-card-head h2 {
+    font-size: 1rem;
+}
+
+.website-shell.design-reference .feed-card > .field-note,
+.website-shell.design-reference .feed-card .browse-card-copy {
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .feed-card .feed-card-link {
+    min-height: 2.5rem;
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .claim-pass-page {
+    max-width: 960px;
+}
+
+.website-shell.design-reference .claim-pass-list {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    align-items: start;
+}
+
+.website-shell.design-reference .claim-pass-card {
+    padding: 1.25rem;
+}
+
+.website-shell.design-reference .item-detail-shell {
+    max-width: 1000px;
+}
+
+.website-shell.design-reference .detail-media .media-frame,
+.website-shell.design-reference .detail-media .media-placeholder {
+    min-height: clamp(19rem, 45vw, 30rem);
+}
+
+.website-shell.design-reference .detail-media .media-frame {
+    height: clamp(19rem, 45vw, 30rem);
+}
+
+.website-shell.design-reference .detail-summary,
+.website-shell.design-reference .detail-claim-card,
+.website-shell.design-reference .pickup-card {
+    padding: 1.35rem;
+}
+
+.website-shell.design-reference .report-found-page {
+    max-width: 900px;
+}
+
+.website-shell.design-reference .report-found-hero {
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: 1.15rem;
+}
+
+.website-shell.design-reference .report-hero-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.website-shell.design-reference .report-found-hero h1 {
+    margin: 0.2rem 0 0.35rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.website-shell.design-reference .report-found-hero p {
+    max-width: 34rem;
+    font-size: 0.84rem;
+}
+
+.website-shell.design-reference .report-manage-link {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.8rem;
+}
+
+.website-shell.design-reference .report-step {
+    padding: 1.15rem;
+}
+
+.website-shell.design-reference .report-step-heading h2 {
+    font-size: 1.05rem;
+}
+
+.website-shell.design-reference .report-step-help {
+    font-size: 0.8rem;
+}
+
+.website-shell.design-reference .report-step .field label,
+.website-shell.design-reference .category-field legend {
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .report-step .field-note {
+    font-size: 0.73rem;
+}
+
+.website-shell.design-reference .report-photo-upload {
+    padding: 0.85rem;
+}
+
+.website-shell.design-reference .report-privacy-note,
+.website-shell.design-reference .report-found-page .checkbox-field {
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference .report-submit-button {
+    width: auto;
+    min-width: 16rem;
+    justify-self: end;
+    padding-inline: 1.5rem;
+}
+
+.website-shell.design-reference .report-found-page .form-panel {
+    padding: 1.1rem;
+    border: 1px solid #e3e9f2;
+    border-radius: 1.1rem;
+    background: #fff;
+    box-shadow: 0 4px 14px rgb(9 20 38 / 0.045);
+}
+
+.website-shell.design-reference .claim-modal-backdrop {
+    position: fixed;
+}
+
+.website-shell.design-zeta.design-claims .claim-tabs {
+    background: var(--palette-panel);
+}
+
+.website-shell.design-zeta.design-claims .claim-tabs a {
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .claim-tabs a.is-active {
+    background: var(--palette-card);
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .claim-pass-card,
+.website-shell.design-zeta.design-claims .claim-history li,
+.website-shell.design-zeta.design-claims .claim-empty-state {
+    border: 1px solid var(--palette-border);
+    background: var(--palette-card);
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .verification-stepper,
+.website-shell.design-zeta.design-claims .claim-item-icon,
+.website-shell.design-zeta.design-claims .history-icon {
+    background: var(--palette-panel);
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .student-summary p,
+.website-shell.design-zeta.design-claims .claim-item-copy p,
+.website-shell.design-zeta.design-claims .verification-stepper li div span,
+.website-shell.design-zeta.design-claims .claim-history li div span {
+    color: var(--palette-muted);
+}
+
+.website-shell.design-zeta.design-claims .claim-empty-state h2 {
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .report-item-link {
+    border: 1px solid var(--palette-border);
+    background: var(--palette-panel);
+    color: var(--palette-text);
+}
+
+.website-shell.design-zeta.design-claims .report-item-link:hover {
+    background: var(--palette-primary);
+    color: var(--palette-text);
+}
+
+@media (max-width: 1100px) {
+    .website-shell.design-reference header > div {
+        gap: 1rem;
+    }
+
+    .website-shell.design-reference .primary-navigation li a,
+    .website-shell.design-reference .primary-navigation li span {
+        padding-inline: 0.45rem;
+        font-size: 0.76rem;
+    }
+}
+
+@media (max-width: 1040px) {
+    .website-shell.design-reference header > div {
+        width: min(100% - 2rem, 1200px);
+    }
+
+    .website-shell.design-reference .primary-navigation {
+        display: none;
+    }
+
+    .website-shell.design-reference .design-account-menu {
+        display: block;
+        margin-left: auto;
+    }
+
+    .website-shell.design-reference .design-account-menu > summary {
+        display: flex;
+        width: auto;
+        min-width: 2.6rem;
+        height: 2.6rem;
+        padding: 0 0.65rem;
+        gap: 0.4rem;
+        border: 1px solid #e3e9f2;
+        border-radius: 0.65rem;
+        background: #fff;
+        font-size: 1rem;
+    }
+
+    .website-shell.design-reference .account-menu-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+    }
+
+    .website-shell.design-reference > main {
+        width: min(100% - 2rem, 1200px);
+        padding-block: 1.75rem 3rem;
+    }
+
+    .website-shell.design-reference > footer > div {
+        width: min(100% - 2rem, 1200px);
+    }
+}
+
+.website-shell.design-reference .auth-page {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(25rem, 1.05fr);
+    align-items: stretch;
+    max-width: 1000px;
+    gap: 1.5rem;
+    margin: 1rem auto;
+}
+
+.website-shell.design-reference .auth-intro-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 30rem;
+    padding: clamp(1.5rem, 4vw, 3.25rem);
+    border-radius: 1.15rem;
+    background: linear-gradient(145deg, #091426, #213a4e);
+    color: #fff;
+}
+
+.auth-intro-mark {
+    display: grid;
+    place-items: center;
+    width: 3.3rem;
+    height: 3.3rem;
+    margin-bottom: 2rem;
+    border-radius: 0.85rem;
+    background: #2563eb;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.website-shell.design-reference .auth-intro-panel .eyebrow {
+    color: #86f2e4;
+}
+
+.website-shell.design-reference .auth-intro-panel h2 {
+    max-width: 22rem;
+    margin: 0.65rem 0;
+    color: #fff;
+    font-size: clamp(1.8rem, 3.4vw, 2.65rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.website-shell.design-reference .auth-intro-panel > p:not(.eyebrow) {
+    max-width: 26rem;
+    margin: 0;
+    color: #d3dce8;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.website-shell.design-reference .auth-intro-panel > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: 0.65rem;
+    color: #fff;
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.website-shell.design-reference .auth-intro-panel > a:hover {
+    background: rgb(255 255 255 / 0.1);
+}
+
+.website-shell.design-reference .auth-card {
+    align-self: center;
+    width: 100%;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: clamp(1.35rem, 3vw, 2.5rem) !important;
+}
+
+.website-shell.design-reference .auth-card .stack {
+    gap: 1.1rem;
+}
+
+.website-shell.design-reference .auth-card h1 {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+}
+
+.website-shell.design-reference .auth-card .form-panel {
+    gap: 1.1rem;
+    margin: 0;
+}
+
+.website-shell.design-reference .auth-card .primary-button {
+    width: 100%;
+    margin-top: 0.2rem;
+}
+
+.website-shell.design-reference .auth-alternate {
+    margin: 0;
+    color: #526073;
+    font-size: 0.84rem;
+    text-align: center;
+}
+
+.website-shell.design-reference .auth-alternate a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+@media (max-width: 860px) {
+    .website-shell.design-reference .auth-page {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 34rem;
+        margin-block: 0;
+    }
+
+    .website-shell.design-reference .auth-intro-panel {
+        min-height: 0;
+        padding: 1.25rem;
+    }
+
+    .auth-intro-mark {
+        width: 2.65rem;
+        height: 2.65rem;
+        margin-bottom: 0.9rem;
+        font-size: 1.6rem;
+    }
+
+    .website-shell.design-reference .auth-intro-panel h2 {
+        max-width: none;
+        font-size: 1.55rem;
+    }
+
+    .website-shell.design-reference .auth-intro-panel > p:not(.eyebrow) {
+        font-size: 0.82rem;
+    }
+
+    .website-shell.design-reference .auth-intro-panel > a {
+        margin-top: 0.9rem;
+    }
+
+    .website-shell.design-reference .auth-card {
+        padding: 1.25rem !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .website-shell.design-reference header > div {
+        min-height: 4.25rem;
+    }
+
+    .website-shell.design-reference header > div > a {
+        font-size: 1rem;
+    }
+
+    .website-shell.design-reference .brand-mark {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+
+    .website-shell.design-reference .brand-tagline {
+        font-size: 0.46rem;
+        letter-spacing: 0.05em;
+    }
+
+    .website-shell.design-reference > main {
+        width: min(100% - 2rem, 1200px);
+        padding-block: 1.25rem 2.5rem;
+    }
+
+    .website-shell.design-reference .page-shell h1 {
+        font-size: clamp(1.65rem, 7vw, 2rem);
+    }
+
+    .website-shell.design-reference .page-shell h2 {
+        font-size: 1.2rem;
+    }
+
+    .website-shell.design-reference .feed-item-list,
+    .website-shell.design-reference .claim-pass-list {
+        grid-template-columns: 1fr;
+    }
+
+    .website-shell.design-reference .report-found-hero {
+        grid-template-columns: 2.5rem minmax(0, 1fr);
+        padding: 1rem;
+    }
+
+    .website-shell.design-reference .report-hero-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .website-shell.design-reference .report-found-hero h1 {
+        font-size: 1.15rem;
+    }
+
+    .website-shell.design-reference .report-manage-link {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .website-shell.design-reference .report-found-page .form-panel {
+        padding: 0.75rem;
+    }
+
+    .website-shell.design-reference .report-submit-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .website-shell.design-reference > footer > div {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-block: 1rem;
+    }
+
+    .website-shell.design-reference > footer nav ul {
+        gap: 0.35rem 0.8rem;
+    }
+}
+
+body.website-shell.design-reference.design-zeta {
+    background: #02040f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta header {
+    border-color: rgb(255 255 255 / 0.14);
+    background: #02040f;
+}
+
+body.website-shell.design-reference.design-zeta header > div > a {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .brand-mark {
+    background: #7c44f4;
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation li a {
+    color: rgb(255 255 255 / 0.82);
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation li a:hover,
+body.website-shell.design-reference.design-zeta .primary-navigation li a[aria-current="page"] {
+    background: rgb(124 68 244 / 0.22);
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation button {
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta > footer {
+    border-color: rgb(255 255 255 / 0.14);
+    background: #02040f;
+}
+
+body.website-shell.design-reference.design-zeta > footer > div {
+    color: rgb(255 255 255 / 0.7);
+}
+
+body.website-shell.design-reference.design-zeta > footer a {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta > footer a:hover {
+    color: #7c44f4;
+}
+
+body.website-shell.design-reference.design-zeta .zeta-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(2.7rem, 5.5vw, 4.8rem);
+}
+
+@media (max-width: 760px) {
+    body.website-shell.design-reference.design-zeta .zeta-hero h1 {
+        max-width: 20ch;
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+}
+
+body.website-shell.design-reference.design-zeta {
+    --palette-surface: #02040f;
+    --palette-surface-strong: #232c5f;
+    --palette-card: #232c5f;
+    --palette-panel: #372d97;
+    --palette-border: #47a6d7;
+    --palette-primary: #7c44f4;
+    --palette-primary-strong: #372d97;
+    --palette-secondary: #47a6d7;
+    --palette-secondary-soft: #47a6d7;
+    --palette-warning: #47a6d7;
+    --palette-warning-soft: #232c5f;
+    --palette-danger: #7c44f4;
+    --palette-danger-soft: #232c5f;
+    --palette-text: #fff;
+    --palette-muted: rgb(255 255 255 / 0.72);
+    --palette-shadow: 0 12px 28px rgb(2 4 15 / 0.32);
+    background: #02040f;
+    color: #fff;
+    color-scheme: dark;
+}
+
+body.website-shell.design-reference.design-zeta > main {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main h1,
+body.website-shell.design-reference.design-zeta main h2,
+body.website-shell.design-reference.design-zeta main h3,
+body.website-shell.design-reference.design-zeta main h4,
+body.website-shell.design-reference.design-zeta main p,
+body.website-shell.design-reference.design-zeta main li,
+body.website-shell.design-reference.design-zeta main label,
+body.website-shell.design-reference.design-zeta main legend,
+body.website-shell.design-reference.design-zeta main dt,
+body.website-shell.design-reference.design-zeta main dd,
+body.website-shell.design-reference.design-zeta main th,
+body.website-shell.design-reference.design-zeta main td,
+body.website-shell.design-reference.design-zeta main summary,
+body.website-shell.design-reference.design-zeta main small {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .eyebrow,
+body.website-shell.design-reference.design-zeta main .field-note,
+body.website-shell.design-reference.design-zeta main .claim-meta,
+body.website-shell.design-reference.design-zeta main .feed-sort-label,
+body.website-shell.design-reference.design-zeta main .report-step-help,
+body.website-shell.design-reference.design-zeta main .report-privacy-note,
+body.website-shell.design-reference.design-zeta main .auth-alternate {
+    color: rgb(255 255 255 / 0.72);
+}
+
+body.website-shell.design-reference.design-zeta main .feed-card .browse-card-copy {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main a:not(.primary-button):not(.secondary-button):not(.ghost-button):not(.icon-button):not(.feed-card-link):not(.report-manage-link):not(.report-item-link) {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main a:not(.primary-button):not(.secondary-button):not(.ghost-button):not(.icon-button):not(.feed-card-link):not(.report-manage-link):not(.report-item-link):hover {
+    color: #7c44f4;
+}
+
+body.website-shell.design-reference.design-zeta .surface-card,
+body.website-shell.design-reference.design-zeta .section-card,
+body.website-shell.design-reference.design-zeta .claim-card,
+body.website-shell.design-reference.design-zeta .review-card,
+body.website-shell.design-reference.design-zeta .confirmation-card,
+body.website-shell.design-reference.design-zeta .stat-card,
+body.website-shell.design-reference.design-zeta .activity-item,
+body.website-shell.design-reference.design-zeta .info-box,
+body.website-shell.design-reference.design-zeta .proof-box,
+body.website-shell.design-reference.design-zeta .verification-box,
+body.website-shell.design-reference.design-zeta .empty-state,
+body.website-shell.design-reference.design-zeta .feed-card,
+body.website-shell.design-reference.design-zeta .report-step,
+body.website-shell.design-reference.design-zeta .report-found-page .form-panel,
+body.website-shell.design-reference.design-zeta .detail-summary,
+body.website-shell.design-reference.design-zeta .detail-claim-card,
+body.website-shell.design-reference.design-zeta .pickup-card,
+body.website-shell.design-reference.design-zeta .auth-card,
+body.website-shell.design-reference.design-zeta .claim-modal-card,
+body.website-shell.design-reference.design-zeta .pickup-hours,
+body.website-shell.design-reference.design-zeta .edit-current-image,
+body.website-shell.design-reference.design-zeta .report-photo-upload,
+body.website-shell.design-reference.design-zeta .feed-more-filters,
+body.website-shell.design-reference.design-zeta .verification-stepper,
+body.website-shell.design-reference.design-zeta .claim-pass-card {
+    border-color: rgb(71 166 215 / 0.28);
+    background-color: #232c5f;
+    color: #fff;
+    box-shadow: 0 8px 24px rgb(2 4 15 / 0.24);
+}
+
+body.website-shell.design-reference.design-zeta .auth-intro-panel,
+body.website-shell.design-reference.design-zeta .report-found-hero {
+    background: linear-gradient(135deg, #232c5f, #372d97);
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .auth-intro-mark,
+body.website-shell.design-reference.design-zeta .brand-mark {
+    background: #7c44f4;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .report-hero-icon,
+body.website-shell.design-reference.design-zeta .report-step-heading > span,
+body.website-shell.design-reference.design-zeta .verification-stepper li div {
+    background: #372d97;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .report-found-hero .eyebrow,
+body.website-shell.design-reference.design-zeta .report-step-heading small,
+body.website-shell.design-reference.design-zeta .auth-intro-panel .eyebrow {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta .category-chip,
+body.website-shell.design-reference.design-zeta .feed-category-list a,
+body.website-shell.design-reference.design-zeta .feed-filter-chips > a,
+body.website-shell.design-reference.design-zeta .feed-more-filters > summary,
+body.website-shell.design-reference.design-zeta .proof-chips span,
+body.website-shell.design-reference.design-zeta .desk-open-label,
+body.website-shell.design-reference.design-zeta .pickup-contact,
+body.website-shell.design-reference.design-zeta .detail-meta .meta-pill {
+    border-color: rgb(71 166 215 / 0.35);
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .category-chip:has(input:checked),
+body.website-shell.design-reference.design-zeta .feed-filter-chips > a.is-selected {
+    border-color: #47a6d7;
+    background: #372d97;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .status-open,
+body.website-shell.design-reference.design-zeta .status-pending,
+body.website-shell.design-reference.design-zeta .status-approved,
+body.website-shell.design-reference.design-zeta .status-returned,
+body.website-shell.design-reference.design-zeta .status-rejected {
+    border: 1px solid rgb(71 166 215 / 0.4);
+    background: #372d97;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta input:not([type="checkbox"]):not([type="hidden"]),
+body.website-shell.design-reference.design-zeta select,
+body.website-shell.design-reference.design-zeta textarea,
+body.website-shell.design-reference.design-zeta .report-photo-upload input[type="file"] {
+    border-color: rgb(71 166 215 / 0.55);
+    background: #02040f;
+    color: #fff;
+    color-scheme: dark;
+}
+
+body.website-shell.design-reference.design-zeta input::placeholder,
+body.website-shell.design-reference.design-zeta textarea::placeholder {
+    color: rgb(255 255 255 / 0.55);
+}
+
+body.website-shell.design-reference.design-zeta input[type="checkbox"],
+body.website-shell.design-reference.design-zeta input[type="radio"] {
+    accent-color: #7c44f4;
+}
+
+body.website-shell.design-reference.design-zeta button,
+body.website-shell.design-reference.design-zeta [class~="bg-blue-800"],
+body.website-shell.design-reference.design-zeta [class~="bg-green-800"],
+body.website-shell.design-reference.design-zeta [class~="bg-red-800"] {
+    border-color: transparent;
+    background: #7c44f4;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta button:hover,
+body.website-shell.design-reference.design-zeta [class~="bg-blue-800"]:hover,
+body.website-shell.design-reference.design-zeta [class~="bg-green-800"]:hover,
+body.website-shell.design-reference.design-zeta [class~="bg-red-800"]:hover,
+body.website-shell.design-reference.design-zeta .primary-button:hover {
+    background: #372d97;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .primary-button,
+body.website-shell.design-reference.design-zeta .secondary-button,
+body.website-shell.design-reference.design-zeta .ghost-button,
+body.website-shell.design-reference.design-zeta .icon-button,
+body.website-shell.design-reference.design-zeta .feed-card-link,
+body.website-shell.design-reference.design-zeta .report-manage-link {
+    border-color: rgb(71 166 215 / 0.45);
+    background: #372d97;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .feed-claimed-state {
+    border-color: rgb(71 166 215 / 0.4);
+    background: #232c5f;
+    color: #8be0b2;
+}
+
+body.website-shell.design-reference.design-zeta .feed-own-item {
+    border-color: rgb(124 68 244 / 0.5);
+    background: #232c5f;
+    color: #c4b5fd;
+}
+
+body.website-shell.design-reference.design-zeta .primary-button {
+    border-color: transparent;
+    background: #7c44f4;
+}
+
+body.website-shell.design-reference.design-zeta .secondary-button:hover,
+body.website-shell.design-reference.design-zeta .ghost-button:hover,
+body.website-shell.design-reference.design-zeta .icon-button:hover,
+body.website-shell.design-reference.design-zeta .feed-card-link:hover {
+    background: #7c44f4;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main [class~="bg-white"],
+body.website-shell.design-reference.design-zeta main [class~="bg-slate-50"],
+body.website-shell.design-reference.design-zeta main [class~="bg-slate-100"],
+body.website-shell.design-reference.design-zeta main [class~="bg-blue-50"],
+body.website-shell.design-reference.design-zeta main [class~="bg-blue-900"],
+body.website-shell.design-reference.design-zeta main [class~="bg-amber-50"],
+body.website-shell.design-reference.design-zeta main [class~="bg-green-50"],
+body.website-shell.design-reference.design-zeta main [class~="bg-red-50"] {
+    background-color: #232c5f;
+}
+
+body.website-shell.design-reference.design-zeta [class~="text-slate-600"],
+body.website-shell.design-reference.design-zeta [class~="text-slate-700"],
+body.website-shell.design-reference.design-zeta [class~="text-slate-800"],
+body.website-shell.design-reference.design-zeta [class~="text-slate-900"],
+body.website-shell.design-reference.design-zeta [class~="text-amber-950"],
+body.website-shell.design-reference.design-zeta [class~="text-red-900"],
+body.website-shell.design-reference.design-zeta [class~="text-green-900"] {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main [class~="text-blue-800"],
+body.website-shell.design-reference.design-zeta main [class~="text-blue-900"] {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main details {
+    border-color: rgb(71 166 215 / 0.35);
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .stat-card {
+    background: #232c5f;
+}
+
+body.website-shell.design-reference.design-zeta main .stat-card dt,
+body.website-shell.design-reference.design-zeta main .stat-card strong {
+    color: rgb(255 255 255 / 0.72);
+}
+
+body.website-shell.design-reference.design-zeta main .stat-card dd {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main .feed-search {
+    border: 1px solid rgb(71 166 215 / 0.35);
+    background: #232c5f;
+}
+
+body.website-shell.design-reference.design-zeta main .feed-search > span {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main .feed-search input[type="search"] {
+    background: transparent;
+    box-shadow: none;
+}
+
+body.website-shell.design-reference.design-zeta main .feed-search button {
+    background: #7c44f4;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .feed-sort-label {
+    border-color: rgb(71 166 215 / 0.35);
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-info-row {
+    border: 1px solid rgb(71 166 215 / 0.28);
+    background: #372d97;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-info-row small,
+body.website-shell.design-reference.design-zeta main .detail-public-description small {
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-info-row strong {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-info-row div span,
+body.website-shell.design-reference.design-zeta main .detail-public-description p {
+    color: rgb(255 255 255 / 0.76);
+}
+
+body.website-shell.design-reference.design-zeta main .detail-info-icon {
+    background: #232c5f;
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-security {
+    border: 1px solid rgb(71 166 215 / 0.35);
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-security h2 {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta main .detail-security p {
+    color: rgb(255 255 255 / 0.76);
+}
+
+body.website-shell.design-reference.design-zeta main .detail-security .security-icon {
+    background: #372d97;
+    color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta .error-box,
+body.website-shell.design-reference.design-zeta [role="alert"],
+body.website-shell.design-reference.design-zeta [role="status"] {
+    border-color: #47a6d7;
+    background: #232c5f;
+    color: #fff;
+}
+
+.site-app .flash-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid;
+    border-radius: 0.9rem;
+    font-weight: 700;
+}
+
+.site-app .flash-message-icon {
+    flex: 0 0 auto;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.site-app .flash-message-success {
+    border-color: #86efac;
+    background: #f0fdf4;
+    color: #14532d;
+}
+
+body.website-shell.design-reference.design-zeta .flash-message-success {
+    border-color: #34d399;
+    background: #12352f;
+    color: #ecfdf5;
+    box-shadow: 0 8px 24px rgb(2 4 15 / 0.2);
+}
+
+body.website-shell.design-reference.design-zeta table,
+body.website-shell.design-reference.design-zeta th,
+body.website-shell.design-reference.design-zeta td,
+body.website-shell.design-reference.design-zeta hr,
+body.website-shell.design-reference.design-zeta fieldset {
+    border-color: rgb(71 166 215 / 0.3);
+}
+
+body.website-shell.design-reference.design-zeta .design-account-menu > summary {
+    border-color: rgb(71 166 215 / 0.4);
+    background: #232c5f;
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel {
+    border-color: rgb(71 166 215 / 0.4);
+    background: #232c5f;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel p,
+body.website-shell.design-reference.design-zeta .account-menu-panel a,
+body.website-shell.design-reference.design-zeta .account-menu-panel button {
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel a:hover,
+body.website-shell.design-reference.design-zeta .account-menu-panel button:hover {
+    background: #372d97;
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation form button,
+body.website-shell.design-reference.design-zeta .account-menu-panel form button {
+    border-color: transparent;
+    background: transparent;
+    color: rgb(255 255 255 / 0.82);
+    box-shadow: none;
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation form button:hover,
+body.website-shell.design-reference.design-zeta .account-menu-panel form button:hover {
+    background: rgb(124 68 244 / 0.22);
+    color: #fff;
+}
+
+body.website-shell.design-reference.design-zeta a:focus-visible,
+body.website-shell.design-reference.design-zeta button:focus-visible,
+body.website-shell.design-reference.design-zeta input:focus-visible,
+body.website-shell.design-reference.design-zeta select:focus-visible,
+body.website-shell.design-reference.design-zeta textarea:focus-visible,
+body.website-shell.design-reference.design-zeta summary:focus-visible {
+    outline-color: #47a6d7;
+}
+
+body.website-shell.design-reference.design-zeta .skip-link {
+    background: #fff;
+    color: #02040f;
+}
+
+body.website-shell.design-reference.design-zeta .primary-navigation {
+    display: block;
+}
+
+body.website-shell.design-reference.design-zeta .design-account-menu {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: 0;
+}
+
+body.website-shell.design-reference.design-zeta .design-account-menu > summary {
+    display: flex;
+    width: auto;
+    min-width: 5.5rem;
+    height: 2.65rem;
+    padding: 0 0.9rem;
+    gap: 0.5rem;
+    border: 1px solid rgb(71 166 215 / 0.4);
+    border-radius: 999px;
+    background: #232c5f;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+body.website-shell.design-reference.design-zeta .design-account-menu > summary:hover {
+    border-color: #47a6d7;
+    background: #372d97;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel {
+    width: 16rem;
+    padding: 0.65rem;
+    border-radius: 1rem;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel p {
+    padding: 0.65rem;
+    border-bottom: 1px solid rgb(71 166 215 / 0.25);
+    font-size: 0.8rem;
+}
+
+body.website-shell.design-reference.design-zeta .account-menu-panel a,
+body.website-shell.design-reference.design-zeta .account-menu-panel form button {
+    min-height: 2.6rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 0.65rem;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+    body.website-shell.design-reference.design-zeta header > div {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    body.website-shell.design-reference.design-zeta .primary-navigation {
+        display: none;
+    }
+
+    body.website-shell.design-reference.design-zeta .design-account-menu {
+        margin-left: auto;
+    }
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar {
+    display: inline-block;
+    flex: 0 0 auto;
+    object-fit: cover;
+    border: 2px solid #47a6d7;
+    border-radius: 50%;
+    background: #232c5f;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-menu {
+    width: 2rem;
+    height: 2rem;
+}
+
+.website-shell.design-reference.design-zeta .account-menu-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-page > section {
+    margin-top: 1rem;
+    padding: 1.1rem;
+    border-color: rgb(71 166 215 / 0.4);
+    border-radius: 0.85rem;
+    background: #232c5f;
+}
+
+.website-shell.design-reference.design-zeta .profile-photo-panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-large {
+    width: 5rem;
+    height: 5rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-placeholder {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.website-shell.design-reference.design-zeta .profile-photo-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-trigger {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-trigger > .profile-avatar-large {
+    width: 100%;
+    height: 100%;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-camera {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    width: 1.8rem;
+    height: 1.8rem;
+    place-items: center;
+    border: 2px solid #02040f;
+    border-radius: 50%;
+    background: #7c44f4;
+    color: #fff;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-camera svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-trigger:hover > .profile-avatar,
+.website-shell.design-reference.design-zeta .profile-avatar-trigger:focus-within > .profile-avatar {
+    outline: 3px solid #7c44f4;
+    outline-offset: 3px;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-file {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.website-shell.design-reference.design-zeta .profile-photo-controls {
+    display: grid;
+    justify-items: start;
+    gap: 0.35rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-subject {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-subject > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-icon {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 1rem;
+    color: #47a6d7;
+}
+
+.website-shell.design-reference.design-zeta .profile-photo-form button,
+.website-shell.design-reference.design-zeta .profile-page button {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 0.55rem;
+    font-size: 0.82rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page > div:first-child {
+    margin-bottom: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-heading {
+    max-width: none;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid rgb(71 166 215 / 0.3);
+    border-radius: 1rem;
+    background: linear-gradient(120deg, #172447, #232c5f);
+}
+
+.website-shell.design-reference.design-zeta .support-chat-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-mark {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 3rem;
+    place-items: center;
+    border: 1px solid rgb(125 220 244 / 0.3);
+    border-radius: 0.9rem;
+    background: rgb(71 166 215 / 0.12);
+    color: #7ddcf4;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-mark svg {
+    width: 1.55rem;
+    height: 1.55rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-eyebrow {
+    margin: 0 0 0.2rem;
+    color: #7ddcf4;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-title-row h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.website-shell.design-reference.design-zeta .support-chat-private {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-left: auto;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgb(125 220 244 / 0.25);
+    border-radius: 999px;
+    color: #d7efff;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-private > span {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: #54d6ad;
+    box-shadow: 0 0 0 0.2rem rgb(84 214 173 / 0.12);
+}
+
+.website-shell.design-reference.design-zeta .support-chat-intro {
+    max-width: 48rem;
+    margin: 0.8rem 0 0;
+    color: #d5deef;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-layout {
+    display: grid;
+    min-width: 0;
+    gap: 1.25rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-main-column {
+    display: grid;
+    min-width: 0;
+    align-content: start;
+    gap: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside,
+.website-shell.design-reference.design-zeta .support-chat-page section {
+    border-color: rgb(71 166 215 / 0.38);
+    border-radius: 0.85rem;
+    background: #232c5f;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside {
+    min-width: 0;
+    padding: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-help-card {
+    margin-top: 1rem;
+    padding: 0.85rem;
+    border: 1px solid rgb(125 220 244 / 0.16);
+    border-radius: 0.75rem;
+    background: rgb(13 23 48 / 0.7);
+}
+
+.website-shell.design-reference.design-zeta .chat-help-card strong {
+    color: #d8f4ff;
+    font-size: 0.82rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-help-card p {
+    margin: 0.35rem 0 0;
+    color: #b7c5df;
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-panel {
+    border: 1px solid rgb(71 166 215 / 0.25);
+    background: #172447;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-heading-icon {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 2.5rem;
+    place-items: center;
+    border-radius: 0.75rem;
+    background: #372d97;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-heading p {
+    margin: 0.2rem 0 0;
+    color: #b7c5df;
+    font-size: 0.8rem;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-panel label {
+    color: #e8edfb;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-panel input,
+.website-shell.design-reference.design-zeta .new-chat-panel textarea {
+    border-color: rgb(125 220 244 / 0.28);
+    border-radius: 0.7rem;
+    background: #0d1730;
+    color: #fff;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-panel input::placeholder,
+.website-shell.design-reference.design-zeta .new-chat-panel textarea::placeholder {
+    color: #8292b1;
+}
+
+.website-shell.design-reference.design-zeta .chat-form-note {
+    margin: 0;
+    color: #aebbd3;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.website-shell.design-reference.design-zeta .new-chat-panel form button {
+    width: fit-content;
+    border-radius: 0.7rem;
+    background: #7547ef;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-heading {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgb(71 166 215 / 0.28);
+    border-radius: 0.9rem;
+    background: linear-gradient(120deg, #172447, #232c5f);
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-heading h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.7rem;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-heading > p:last-child {
+    margin: 0.35rem 0 0;
+    color: #d5deef;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-page > form select {
+    border-color: rgb(71 166 215 / 0.4);
+    border-radius: 0.65rem;
+    background: #172447;
+    color: #fff;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-heading h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-history-heading a {
+    flex: 0 0 auto;
+    color: #47a6d7;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside ul {
+    display: grid;
+    grid-auto-rows: minmax(6rem, auto);
+    gap: 0.55rem;
+    max-height: 20rem;
+    margin: 1rem 0 0;
+    overflow-y: auto;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside li a,
+.website-shell.design-reference.design-zeta .support-chat-page article {
+    padding: 1rem 1.1rem;
+    border-color: rgb(71 166 215 / 0.35);
+    border-radius: 0.7rem;
+    background: #232c5f;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside li a {
+    display: block;
+    width: 100%;
+    min-height: 6rem;
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside li a > span:first-child {
+    font-size: 1.05rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside li a > span + span {
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside,
+.website-shell.design-reference.design-zeta .support-inbox-layout aside {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page aside ul,
+.website-shell.design-reference.design-zeta .support-inbox-layout aside ul {
+    scrollbar-color: #47a6d7 #02040f;
+    scrollbar-width: thin;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-layout aside ul {
+    display: grid;
+    grid-auto-rows: minmax(6rem, auto);
+    gap: 0.55rem;
+    max-height: 20rem;
+    margin: 1rem 0 0;
+    overflow-y: auto;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-layout aside li a {
+    display: block;
+    width: 100%;
+    min-height: 6rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(71 166 215 / 0.35);
+    border-radius: 0.7rem;
+    background: #232c5f;
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-layout aside li a > span:first-child {
+    font-size: 1.05rem;
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-layout aside li a > span:nth-child(2) {
+    margin-top: 0.4rem;
+    color: rgb(255 255 255 / 0.8);
+}
+
+.website-shell.design-reference.design-zeta .support-inbox-layout aside li a > span:nth-child(3),
+.website-shell.design-reference.design-zeta .support-inbox-layout aside li a > span:nth-child(4) {
+    color: rgb(255 255 255 / 0.64);
+}
+
+.website-shell.design-reference.design-zeta .closed-chat-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.9rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid rgb(71 166 215 / 0.4);
+    border-radius: 999px;
+    background: #232c5f;
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page section > div:first-child,
+.website-shell.design-reference.design-zeta .support-chat-page section > form,
+.website-shell.design-reference.design-zeta .support-chat-page section > ol {
+    padding: 0.7rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page section > ol {
+    gap: 0.5rem;
+    max-height: 22rem;
+    scrollbar-color: #47a6d7 #02040f;
+    scrollbar-width: thin;
+    background: #02040f;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .chat-main-column > section {
+    min-width: 0;
+    margin: 0;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-row {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    gap: 0.45rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-row.is-user {
+    flex-direction: row-reverse;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-avatar {
+    width: 1.65rem;
+    height: 1.65rem;
+    flex: 0 0 1.65rem;
+    border: 1px solid #47a6d7;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-avatar-fallback {
+    display: grid;
+    place-items: center;
+    background: #232c5f;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble {
+    max-width: min(78%, 38rem);
+    padding: 0.7rem 0.85rem;
+    border: 0;
+    border-radius: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-outgoing {
+    border-bottom-right-radius: 0.3rem;
+    background: #7c44f4;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming {
+    border-bottom-left-radius: 0.3rem;
+    background: #47a6d7;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble .chat-message-identity {
+    margin: 0;
+    color: rgb(255 255 255 / 0.78);
+    font-size: 0.68rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming .chat-message-identity {
+    color: rgb(2 4 15 / 0.72);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble > p:last-child {
+    margin: 0.3rem 0 0;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming > p:last-child {
+    color: #02040f;
+}
+
+.website-shell.design-reference.design-zeta .chat-messages {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-row {
+    padding-inline: 0.15rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-avatar {
+    flex-shrink: 0;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 0.16);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-outgoing {
+    background: linear-gradient(145deg, #7547ef, #5e36d6);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming {
+    border: 1px solid rgb(71 166 215 / 0.34);
+    background: #172447;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming .chat-message-identity {
+    color: #7ddcf4;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming > p:last-child {
+    color: #f4f7ff;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-outgoing .chat-message-identity {
+    color: rgb(255 255 255 / 0.78);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble > p:last-child {
+    line-height: 1.55;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer {
+    display: flex;
+    align-items: end;
+    gap: 0.65rem;
+    border-top-color: rgb(71 166 215 / 0.25);
+    background: #232c5f;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer textarea {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 2.75rem;
+    max-height: 7rem;
+    resize: vertical;
+    border-color: rgb(71 166 215 / 0.45);
+    border-radius: 1rem;
+    background: #02040f;
+    color: #fff;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer button {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 2.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: #7c44f4;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer textarea {
+    padding: 0.8rem 1rem;
+    line-height: 1.5;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .chat-main-column > section:has(.chat-messages),
+.website-shell.design-reference.design-zeta .support-inbox-layout .chat-main-column > section:has(.chat-messages) {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .chat-messages,
+.website-shell.design-reference.design-zeta .support-inbox-layout .chat-messages {
+    display: flex;
+    min-height: 12rem;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: none;
+    overflow-y: auto;
+    padding: 1rem;
+    background: transparent;
+}
+
+.website-shell.design-reference.design-zeta .chat-main-column {
+    min-height: 0;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .new-chat-panel {
+    padding: 0.9rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .new-chat-panel form {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 0.7rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page article p {
+    margin-top: 0.3rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #47a6d7;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-chat {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page textarea {
+    min-height: 4rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .chat-main-column > section:has(.chat-messages),
+.website-shell.design-reference.design-zeta .support-inbox-layout .chat-main-column > section:has(.chat-messages) {
+    overflow: hidden;
+    border: 1px solid rgb(71 166 215 / 0.22);
+    border-radius: 1.1rem;
+    background: #101a35;
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.18);
+}
+
+.website-shell.design-reference.design-zeta .conversation-header {
+    min-height: 4.8rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgb(148 163 184 / 0.12);
+    background: #121e3b;
+}
+
+.website-shell.design-reference.design-zeta .conversation-header-copy h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+.website-shell.design-reference.design-zeta .conversation-header-copy > p {
+    margin-top: 0.3rem;
+    color: rgb(226 232 240 / 0.65);
+    font-size: 0.75rem;
+}
+
+.website-shell.design-reference.design-zeta .support-chat-page .chat-messages,
+.website-shell.design-reference.design-zeta .support-inbox-layout .chat-messages {
+    gap: 0.9rem;
+    padding: 1.2rem;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgb(71 166 215 / 0.06), transparent 55%),
+        #0d1730;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-row {
+    gap: 0.55rem;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-row.is-user .chat-message-avatar {
+    display: none;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-avatar {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex-basis: 1.8rem;
+    border: 1px solid rgb(125 220 244 / 0.35);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble {
+    max-width: min(76%, 34rem);
+    padding: 0.65rem 0.95rem 0.7rem;
+    border: 0;
+    border-radius: 1.15rem;
+    box-shadow: none;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-incoming {
+    border: 1px solid rgb(148 163 184 / 0.1);
+    border-bottom-left-radius: 0.35rem;
+    background: #26334f;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-outgoing {
+    border-bottom-right-radius: 0.35rem;
+    background: linear-gradient(135deg, #7547ef, #5941d6);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble .chat-message-identity {
+    color: #8bdcf1;
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble.is-outgoing .chat-message-identity {
+    color: rgb(255 255 255 / 0.72);
+}
+
+.website-shell.design-reference.design-zeta .chat-message-bubble > p:last-child {
+    margin-top: 0.22rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer {
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgb(148 163 184 / 0.12);
+    background: #121e3b;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer textarea {
+    min-height: 2.75rem;
+    max-height: 8rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgb(148 163 184 / 0.18);
+    border-radius: 1.4rem;
+    background: #0d1730;
+    line-height: 1.4;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer .chat-send-button {
+    display: grid;
+    flex: 0 0 2.75rem;
+    place-items: center;
+    width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #6d4bea;
+    box-shadow: 0 0.35rem 1rem rgb(109 75 234 / 0.22);
+    color: #fff;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer .chat-send-button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.website-shell.design-reference.design-zeta .chat-composer .chat-send-button:hover {
+    background: #805ff2;
+}
+
+@media (min-width: 800px) {
+    .website-shell.design-reference.design-zeta .support-chat-layout {
+        grid-template-columns: minmax(19rem, 1.05fr) minmax(0, 1.55fr);
+        align-items: start;
+        gap: 1.5rem;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat {
+        height: clamp(34rem, calc(100vh - 19rem), 48rem);
+        align-items: stretch;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat > aside,
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat > .chat-main-column,
+    .website-shell.design-reference.design-zeta .support-inbox-layout.has-selected-chat > aside,
+    .website-shell.design-reference.design-zeta .support-inbox-layout.has-selected-chat > .chat-main-column {
+        height: 100%;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat aside ul,
+    .website-shell.design-reference.design-zeta .support-inbox-layout.has-selected-chat aside ul {
+        max-height: 20rem;
+        flex: 0 1 auto;
+        min-height: 0;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat > aside,
+    .website-shell.design-reference.design-zeta .support-inbox-layout.has-selected-chat > aside {
+        height: auto;
+        align-self: start;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-layout.has-selected-chat .chat-main-column > section:has(.chat-messages),
+    .website-shell.design-reference.design-zeta .support-inbox-layout.has-selected-chat .chat-main-column > section:has(.chat-messages) {
+        height: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .website-shell.design-reference.design-zeta .support-chat-title-row {
+        flex-wrap: wrap;
+    }
+
+    .website-shell.design-reference.design-zeta .support-chat-private {
+        margin-left: 3.9rem;
+    }
+}
+
+.website-shell.design-reference.design-zeta .user-management-panel {
+    padding: 1rem;
+}
+
+.website-shell.design-reference.design-zeta .user-management-page h1 {
+    margin-bottom: 0.35rem;
+}
+
+.website-shell.design-reference.design-zeta .user-management-page form.mt-5 {
+    margin-top: 1rem;
+    gap: 0.65rem;
+    padding: 0.75rem;
+    border-color: rgb(71 166 215 / 0.35);
+}
+
+.website-shell.design-reference.design-zeta .user-management-page td,
+.website-shell.design-reference.design-zeta .user-management-page th {
+    padding: 0.6rem;
+}
+
+.website-shell.design-reference.design-zeta .user-management-page .overflow-x-auto {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    border-color: rgb(71 166 215 / 0.35);
+}
+
+.website-shell.design-reference.design-zeta .user-management-page table {
+    width: 100%;
+    min-width: 900px;
+}
+
+.website-shell.design-reference.design-zeta .user-management-page details > div {
+    gap: 0.4rem;
+}
+
+.website-shell.design-reference.design-zeta .user-management-page details button,
+.website-shell.design-reference.design-zeta .user-management-page details summary {
+    min-height: 2rem;
+    font-size: 0.78rem;
+}
+
+.website-shell.design-reference.design-zeta .user-management-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.website-shell.design-reference.design-zeta .profile-avatar-list {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+@media (max-width: 640px) {
+    .website-shell.design-reference.design-zeta .profile-photo-panel {
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .website-shell.design-reference.design-zeta .profile-photo-form {
+        align-items: flex-start;
+    }
+
+    .website-shell.design-reference.design-zeta .user-management-panel {
+        padding: 0.7rem;
+    }
+
+    .website-shell.design-reference.design-zeta .chat-message-bubble {
+        max-width: calc(100% - 2.1rem);
+    }
+
+    .website-shell.design-reference.design-zeta .chat-composer {
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.65rem;
+    }
+
+    .website-shell.design-reference.design-zeta .chat-composer .chat-send-button {
+        position: static;
+        flex: 0 0 2.75rem;
+        align-self: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .website-shell.design-reference.design-zeta .chat-composer textarea {
+        flex: 1 1 0;
+        width: 0;
+        min-width: 0;
+        min-height: 2.75rem;
+        max-height: 6rem;
+        padding: 0.7rem 0.85rem;
+    }
+
+    .website-shell.design-reference.design-zeta .conversation-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.65rem;
+        text-align: left;
+    }
+
+    .website-shell.design-reference.design-zeta .conversation-header-copy {
+        align-self: flex-start;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+        text-align: left;
+    }
+
+    .website-shell.design-reference.design-zeta .conversation-header-copy h2,
+    .website-shell.design-reference.design-zeta .conversation-header-copy > p {
+        text-align: left;
+    }
+
+    .website-shell.design-reference.design-zeta .closed-chat-status {
+        max-width: 100%;
+        white-space: normal;
+        border-radius: 0.65rem;
+    }
+}
+
+.site-app .confirmation-dialog {
+        width: min(100% - 2rem, 34rem);
+        max-width: 34rem;
+        padding: 0;
+        border: 1px solid var(--palette-border, #cbd5e1);
+        border-radius: 1.25rem;
+        background: var(--palette-card, #fff);
+        color: var(--palette-text, #0f172a);
+        box-shadow: 0 24px 64px rgb(2 6 23 / 0.3);
+    }
+
+.site-app .confirmation-dialog::backdrop {
+        background: rgb(2 6 23 / 0.62);
+        backdrop-filter: blur(3px);
+    }
+
+.site-app .confirmation-dialog-form {
+        display: grid;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+.site-app .confirmation-dialog-form h2,
+.site-app .confirmation-dialog-form p {
+        margin: 0;
+    }
+
+.site-app .confirmation-dialog-form p {
+        color: var(--palette-muted, #475569);
+    }
+
+.site-app .confirmation-dialog-form .action-row {
+        justify-content: flex-end;
+    }
+
+.site-app .danger-button {
+        border: 1px solid #b91c1c;
+        border-radius: 0.9rem;
+        background: #b91c1c;
+        color: #fff;
+        padding: 0.75rem 1rem;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+.site-app .danger-button:hover {
+        background: #991b1b;
+        color: #fff;
+    }
+
+.site-app .danger-button:focus-visible {
+        outline: 3px solid #b91c1c;
+        outline-offset: 3px;
+    }
+}
+
+@layer utilities {
+    body.website-shell.design-reference.design-zeta .support-chat-page aside li a:hover,
+    body.website-shell.design-reference.design-zeta .support-inbox-layout aside li a:hover {
+        border-color: #47a6d7;
+        background-color: #372d97;
+        color: #fff;
+    }
+
+    .support-chat-widget {
+        position: fixed;
+        z-index: 80;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        display: grid;
+        justify-items: end;
+        gap: 0.75rem;
+    }
+
+    .support-chat-widget-panel {
+        position: fixed;
+        inset: auto 1.25rem 5.5rem auto;
+        display: flex;
+        width: min(22rem, calc(100vw - 2rem));
+        height: min(37rem, calc(100dvh - 7rem));
+        max-width: none;
+        max-height: none;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid rgb(71 166 215 / 0.55);
+        border-radius: 0.9rem;
+        margin: 0;
+        padding: 0;
+        background: #02040f;
+        box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 0.45);
+        color: #fff;
+    }
+
+    .support-chat-widget-panel:not([open]) {
+        display: none;
+    }
+
+    .support-chat-widget-panel::backdrop {
+        background: rgb(0 0 0 / 0.58);
+    }
+
+    .support-chat-widget-header {
+        display: flex;
+        min-height: 3.5rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.55rem 0.8rem 0.55rem 1rem;
+        background: #087fc0;
+        color: #fff;
+    }
+
+    .support-chat-widget-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .support-chat-widget-brand svg {
+        width: 1.35rem;
+        height: 1.35rem;
+        flex: 0 0 auto;
+    }
+
+    .support-chat-widget-brand strong {
+        font-size: 0.95rem;
+    }
+
+    .support-chat-widget-close {
+        display: grid;
+        width: 2.2rem;
+        height: 2.2rem;
+        place-items: center;
+        border: 1px solid rgb(255 255 255 / 0.8);
+        border-radius: 50%;
+        background: rgb(255 255 255 / 0.12);
+        color: #fff;
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .support-chat-widget-close:hover {
+        background: rgb(255 255 255 / 0.25);
+    }
+
+    .support-chat-widget-panel iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        flex: 1;
+        border: 0;
+        background: #02040f;
+    }
+
+    .support-chat-widget-launcher {
+        display: inline-flex;
+        min-height: 3.5rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.75rem 1.1rem;
+        border: 1px solid #087fc0;
+        border-radius: 0.55rem;
+        background: #087fc0;
+        box-shadow: 0 0.5rem 1.5rem rgb(2 4 15 / 0.35);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: width 180ms ease, padding 180ms ease, background-color 180ms ease;
+    }
+
+    .support-chat-widget-launcher:hover {
+        background: #066ba3;
+    }
+
+    .support-chat-widget-launcher span {
+        max-width: 10rem;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: max-width 180ms ease, opacity 180ms ease;
+    }
+
+    .support-chat-widget.is-scrolled .support-chat-widget-launcher {
+        width: 3.25rem;
+        min-height: 3.25rem;
+        gap: 0;
+        padding: 0.8rem;
+        border-radius: 0.7rem;
+    }
+
+    .support-chat-widget.is-scrolled .support-chat-widget-launcher span {
+        max-width: 0;
+        opacity: 0;
+    }
+
+    .support-chat-widget-launcher svg {
+        width: 1.35rem;
+        height: 1.35rem;
+    }
+
+    .support-chat-widget-launcher:focus-visible,
+    .support-chat-widget-close:focus-visible {
+        outline: 3px solid #7ddcf4;
+        outline-offset: 3px;
+    }
+
+    .design-support-chat-widget {
+        width: 100%;
+        height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+        background: #02040f;
+    }
+
+    .design-support-chat-widget > .chat-widget-main {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 0.75rem;
+    }
+
+    .design-support-chat-widget .support-chat-page {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .design-support-chat-widget .support-chat-layout,
+    .design-support-chat-widget .chat-main-column {
+        min-height: 0;
+    }
+
+    .design-support-chat-widget .support-chat-heading {
+        display: none;
+    }
+
+    .design-support-chat-widget .support-chat-layout {
+        display: block;
+        height: 100%;
+    }
+
+    .design-support-chat-widget .support-chat-layout:not(.has-conversations) > aside {
+        display: none;
+    }
+
+    .design-support-chat-widget .support-chat-layout > aside {
+        max-height: 100%;
+    }
+
+    .design-support-chat-widget .support-chat-layout.has-selected-chat > aside {
+        display: none;
+    }
+
+    .design-support-chat-widget .chat-main-column,
+    .design-support-chat-widget .chat-main-column > section {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+    }
+
+    .design-support-chat-widget .support-chat-layout.has-conversations:not(.has-selected-chat) {
+        overflow-y: auto;
+    }
+
+    .design-support-chat-widget .support-chat-layout.has-conversations:not(.has-selected-chat) > aside {
+        max-height: 10rem;
+    }
+
+    .design-support-chat-widget .support-chat-layout.has-conversations:not(.has-selected-chat) .chat-main-column,
+    .design-support-chat-widget .support-chat-layout.has-conversations:not(.has-selected-chat) .new-chat-panel {
+        height: auto;
+    }
+
+    .design-support-chat-widget .new-chat-panel {
+        overflow-y: auto;
+        padding: 0.65rem;
+    }
+
+    .design-support-chat-widget .new-chat-panel form {
+        gap: 0.55rem;
+    }
+
+    .design-support-chat-widget .new-chat-panel form > * + * {
+        margin-top: 0;
+    }
+
+    .design-support-chat-widget .new-chat-heading p {
+        line-height: 1.4;
+    }
+
+    .design-support-chat-widget .chat-new-conversation {
+        display: flex;
+        height: 100%;
+        min-height: 0;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: #3a3a3a;
+    }
+
+    .design-support-chat-widget .chat-agent-header {
+        display: flex;
+        min-height: 4.25rem;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.6rem 0.85rem;
+        border-bottom: 1px solid #e1e4e8;
+        background: #fff;
+        color: #172033;
+    }
+
+    .design-support-chat-widget .chat-agent-avatar {
+        display: grid;
+        width: 2.45rem;
+        height: 2.45rem;
+        flex: 0 0 2.45rem;
+        place-items: center;
+        border-radius: 50%;
+        background: #1584c8;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    .design-support-chat-widget .chat-agent-header h2,
+    .design-support-chat-widget .conversation-header-copy h2 {
+        margin: 0;
+        color: #172033;
+        font-size: 0.98rem;
+        font-weight: 750;
+        line-height: 1.25;
+    }
+
+    .design-support-chat-widget .chat-agent-header p,
+    .design-support-chat-widget .conversation-header-copy > p {
+        margin: 0.18rem 0 0;
+        color: #687386;
+        font-size: 0.73rem;
+        line-height: 1.3;
+    }
+
+    .design-support-chat-widget .chat-agent-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-left: auto;
+        color: #4b5a6d;
+        font-size: 0.68rem;
+        white-space: nowrap;
+    }
+
+    .design-support-chat-widget .chat-agent-status > span {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: #19a974;
+    }
+
+    .design-support-chat-widget .chat-new-thread {
+        display: flex;
+        min-height: 0;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: 0.75rem;
+        overflow-y: auto;
+        padding: 1rem 0.8rem;
+        background-color: #3b3b3b;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgb(255 255 255 / 0.055) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 75% 65%, rgb(0 0 0 / 0.12) 0 1px, transparent 1.5px),
+            repeating-linear-gradient(35deg, transparent 0 26px, rgb(255 255 255 / 0.018) 27px 28px, transparent 29px 52px);
+        scrollbar-color: #777 #3b3b3b;
+    }
+
+    .design-support-chat-widget .chat-new-thread .chat-message-row {
+        align-items: flex-end;
+    }
+
+    .design-support-chat-widget .chat-message-avatar-fallback {
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: #1584c8;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 800;
+    }
+
+    .design-support-chat-widget .chat-new-thread .chat-message-bubble.is-incoming,
+    .design-support-chat-widget .chat-messages .chat-message-bubble.is-incoming {
+        border: 0;
+        border-radius: 0.15rem 0.8rem 0.8rem 0.8rem;
+        background: #686868;
+        color: #fff;
+    }
+
+    .design-support-chat-widget .chat-new-thread .chat-message-bubble.is-incoming > p:last-child,
+    .design-support-chat-widget .chat-messages .chat-message-bubble.is-incoming > p:last-child {
+        color: #fff;
+    }
+
+    .design-support-chat-widget .chat-new-thread .chat-message-identity,
+    .design-support-chat-widget .chat-messages .chat-message-identity {
+        color: rgb(255 255 255 / 0.7);
+        font-size: 0.62rem;
+    }
+
+    .design-support-chat-widget .chat-privacy-note {
+        margin: 0.45rem 0 0;
+        color: rgb(255 255 255 / 0.78);
+        font-size: 0.65rem;
+        line-height: 1.4;
+    }
+
+    .design-support-chat-widget .chat-new-composer {
+        display: grid;
+        flex: 0 0 auto;
+        gap: 0.4rem;
+        padding: 0.55rem 0.7rem 0.65rem;
+        border: 0;
+        border-top: 1px solid #e2e5e9;
+        background: #f7f8fa;
+    }
+
+    .design-support-chat-widget .chat-new-composer .chat-subject-input {
+        width: 100%;
+        min-height: 1.8rem;
+        padding: 0.2rem 0.7rem;
+        border: 0;
+        border-radius: 0.5rem;
+        background: #fff;
+        color: #172033;
+        font: inherit;
+        font-size: 0.75rem;
+    }
+
+    .design-support-chat-widget .chat-composer-row {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.3rem 0.35rem 0.3rem 0.85rem;
+        border: 1px solid #d5dbe3;
+        border-radius: 999px;
+        background: #fff;
+    }
+
+    .design-support-chat-widget .chat-composer-row textarea {
+        width: 100%;
+        min-width: 0;
+        min-height: 2rem;
+        max-height: 5rem;
+        flex: 1 1 auto;
+        resize: vertical;
+        padding: 0.45rem 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #172033;
+        font: inherit;
+        font-size: 0.84rem;
+        line-height: 1.35;
+    }
+
+    .design-support-chat-widget .chat-composer-row textarea::placeholder,
+    .design-support-chat-widget .chat-subject-input::placeholder {
+        color: #778295;
+        opacity: 1;
+    }
+
+    .design-support-chat-widget .chat-composer-row .chat-send-button {
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        flex: 0 0 2rem;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #087fc0;
+        color: #fff;
+    }
+
+    .design-support-chat-widget .chat-composer-row .chat-send-button svg {
+        width: 1.05rem;
+        height: 1.05rem;
+        fill: currentColor;
+        stroke: none;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) {
+        border: 0;
+        border-radius: 0;
+        background: #3b3b3b;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .conversation-header {
+        min-height: 4.25rem;
+        flex-wrap: nowrap;
+        gap: 0.65rem;
+        padding: 0.6rem 0.85rem;
+        border: 0;
+        border-bottom: 1px solid #e1e4e8;
+        background: #fff;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .conversation-header-copy {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .chat-widget-history-link {
+        color: #087fc0;
+    }
+
+    .design-support-chat-widget .chat-messages {
+        background-color: #3b3b3b;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgb(255 255 255 / 0.055) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 75% 65%, rgb(0 0 0 / 0.12) 0 1px, transparent 1.5px),
+            repeating-linear-gradient(35deg, transparent 0 26px, rgb(255 255 255 / 0.018) 27px 28px, transparent 29px 52px);
+        scrollbar-color: #777 #3b3b3b;
+    }
+
+    .design-support-chat-widget .chat-messages .chat-message-row.is-user {
+        flex-direction: row-reverse;
+    }
+
+    .design-support-chat-widget .chat-messages .chat-message-bubble.is-outgoing {
+        border-radius: 0.8rem 0.15rem 0.8rem 0.8rem;
+        background: #1687ce;
+    }
+
+    .design-support-chat-widget .chat-messages .chat-message-bubble.is-outgoing > p:last-child {
+        color: #fff;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .chat-composer {
+        flex-wrap: nowrap;
+        padding: 0.55rem 0.7rem 0.65rem;
+        border-top: 1px solid #e2e5e9;
+        background: #f7f8fa;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .chat-composer textarea {
+        min-height: 2.4rem;
+        padding: 0.5rem 0.85rem;
+        border: 1px solid #d5dbe3;
+        border-radius: 999px;
+        background: #fff;
+        color: #172033;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) .chat-send-button {
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex: 0 0 2.5rem;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #087fc0;
+    }
+
+    .design-support-chat-widget .chat-main-column > section:has(.chat-messages) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .design-support-chat-widget .chat-messages {
+        min-height: 0;
+        max-height: none;
+        flex: 1;
+    }
+
+    .design-support-chat-widget .chat-widget-history-link {
+        flex: 0 0 auto;
+        color: #47a6d7;
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+
+    .design-support-chat-widget .conversation-header {
+        padding: 0.75rem;
+    }
+
+    .design-support-chat-widget .conversation-header-copy h2 {
+        font-size: 1rem;
+    }
+
+    .design-support-chat-widget .chat-composer {
+        padding: 0.65rem;
+    }
+
+    .design-support-chat-widget .chat-composer textarea {
+        min-height: 2.5rem;
+    }
+
+    .design-support-chat-widget .new-chat-panel {
+        padding: 0.85rem;
+    }
+
+    .design-support-chat-widget .new-chat-panel h2 {
+        font-size: 1.1rem;
+    }
+
+    .design-support-chat-widget .support-chat-page aside ul {
+        max-height: 10rem;
+    }
+
+    @media (max-width: 480px) {
+        .support-chat-widget {
+            right: 0.75rem;
+            bottom: 0.75rem;
+        }
+
+        .support-chat-widget-panel {
+            inset: auto 0.75rem 5rem auto;
+            width: calc(100vw - 1.5rem);
+            height: min(37rem, calc(100dvh - 6rem));
+        }
+    }
+
+    .site-app .password-input-wrapper {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    .site-app .password-input-wrapper input[type="password"],
+    .site-app .password-input-wrapper input[type="text"] {
+        padding-right: 3.25rem;
+    }
+
+    .site-app .password-visibility-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0.45rem;
+        display: inline-grid;
+        width: 2.35rem;
+        height: 2.35rem;
+        place-items: center;
+        padding: 0.45rem;
+        transform: translateY(-50%);
+        border: 0;
+        border-radius: 0.6rem;
+        background: transparent;
+        color: var(--palette-muted, #475569);
+        cursor: pointer;
+    }
+
+    .site-app .password-visibility-toggle:hover {
+        background: var(--palette-panel, #f1f5f9);
+        color: var(--palette-text, #0f172a);
+    }
+
+    .site-app .password-visibility-toggle:focus-visible {
+        outline: 3px solid #1d4ed8;
+        outline-offset: 2px;
+    }
+
+    .site-app .password-visibility-toggle svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .site-app .password-visibility-toggle svg[hidden] {
+        display: none;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="bg-white"],
+    body.website-shell.design-reference.design-zeta [class~="bg-green-50"],
+    body.website-shell.design-reference.design-zeta [class~="bg-red-50"],
+    body.website-shell.design-reference.design-zeta [class~="bg-amber-50"] {
+        background-color: #232c5f;
+        color: #fff;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="bg-slate-50"] {
+        background-color: #02040f;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="bg-slate-100"],
+    body.website-shell.design-reference.design-zeta [class~="bg-blue-50"],
+    body.website-shell.design-reference.design-zeta [class~="bg-green-100"] {
+        background-color: #372d97;
+        color: #fff;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="text-slate-500"],
+    body.website-shell.design-reference.design-zeta [class~="text-slate-600"] {
+        color: rgb(255 255 255 / 0.72);
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="text-slate-700"],
+    body.website-shell.design-reference.design-zeta [class~="text-slate-800"],
+    body.website-shell.design-reference.design-zeta [class~="text-slate-900"] {
+        color: #fff;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="text-green-900"] {
+        color: #bbf7d0;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="text-red-900"] {
+        color: #fecaca;
+    }
+
+    body.website-shell.design-reference.design-zeta [class~="border-slate-200"],
+    body.website-shell.design-reference.design-zeta [class~="border-slate-300"] {
+        border-color: rgb(71 166 215 / 0.35);
+    }
+}
+
+.my-activity-section {
+    margin-top: 2rem;
+    scroll-margin-top: 1.5rem;
+}
+
+#claims {
+    scroll-margin-top: 1.5rem;
+}
+
+.website-shell.design-reference.design-support-chat-widget {
+    min-height: 0;
+}
+
+.website-shell.design-reference.design-support-chat-widget > .chat-widget-main {
+    width: 100%;
+    margin: 0;
+    padding: 0.75rem;
+}
+
+.site-app input[type="password"]::-ms-reveal,
+.site-app input[type="password"]::-ms-clear,
+.site-app input[type="text"]::-ms-clear {
+    display: none !important;
+}

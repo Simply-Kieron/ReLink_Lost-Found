@@ -1,0 +1,25 @@
+/includes/config.php
+/node_modules/
+/npm-debug.log*
+/uploads/*
+!/uploads/.htaccess
+!/uploads/.gitkeep
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Local database backups
+*.sql.gz
+*.bak
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.log
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db

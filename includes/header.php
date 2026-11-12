@@ -20,7 +20,7 @@ $currentPage = basename((string) ($_SERVER['SCRIPT_NAME'] ?? ''));
     <meta name="theme-color" content="#02040f">
     <title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?>ReLink · Classroom Lost &amp; Found Management System</title>
     <link rel="stylesheet" href="../assets/tailwind.generated.css?v=20261023-1">
-    <link rel="stylesheet" href="../assets/site.css?v=20261111-6">
+    <link rel="stylesheet" href="../assets/site.css?v=20261112-17">
 </head>
 <body class="site-app website-shell min-h-screen antialiased design-reference design-zeta design-<?= e($pageDesign) ?>">
     <a class="skip-link sr-only z-50 rounded-md bg-white p-3 text-blue-800 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-700" href="#main-content">Skip to main content</a>
@@ -53,8 +53,8 @@ $currentPage = basename((string) ($_SERVER['SCRIPT_NAME'] ?? ''));
                                 <a href="../pages/review-claims.php">Review claims</a>
                                 <a href="../pages/user-management.php">User management</a>
                             <?php else: ?>
-                                <a href="../pages/support-chat.php" data-open-support-chat>Customer support</a>
-                                <a href="../pages/report-lost.php">Report lost item</a>
+                                <a href="../pages/support-chat.php">Chat with staff</a>
+                                <a href="../pages/report-lost.php">Report a lost item</a>
                                 <a href="../pages/upload-found.php">Report found item</a>
                                 <a href="../pages/my-claims.php#claims">My activity</a>
                             <?php endif; ?>

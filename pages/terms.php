@@ -13,7 +13,7 @@ require_once __DIR__ . '/../includes/header.php';
     </section>
     <section class="mt-8" aria-labelledby="visibility-title">
         <h2 id="visibility-title" class="text-xl font-bold">Information visible in listings</h2>
-        <p class="mt-3 text-slate-700">Item listing details can be viewed publicly. Images attached to listings may be displayed publicly; found-item images in the ID, phone, and wallet categories are hidden from public item pages. Keep personal or identifying details out of public descriptions and images.</p>
+        <p class="mt-3 text-slate-700">Item listing details can be viewed publicly. Images attached to listings may be displayed publicly; found-item images in the Personal items category are hidden from public item pages. Keep personal or identifying details out of public descriptions and images.</p>
         <p class="mt-3 text-slate-700">Claim proof and staff-entered verification details are used in staff claim review and are not displayed on public item pages.</p>
     </section>
     <section class="mt-8" aria-labelledby="claims-title">

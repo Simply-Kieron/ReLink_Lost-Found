@@ -17,25 +17,14 @@
     </dialog>
     <?php if ($currentUser !== null && $currentUser['role'] === 'student' && $currentPage !== 'support-chat.php'): ?>
         <div class="support-chat-widget">
-            <dialog class="support-chat-widget-panel" id="support-chat-widget-panel" aria-labelledby="support-chat-widget-title">
-                <div class="support-chat-widget-header">
-                    <span class="support-chat-widget-brand">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 18.5 3.5 20l1.2-3.7A8 8 0 1 1 8 19.2"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5"></path>
-                        </svg>
-                        <strong id="support-chat-widget-title">Chat with us</strong>
-                    </span>
-                    <button class="support-chat-widget-close" type="button" aria-label="Close chat window">×</button>
-                </div>
+            <dialog class="support-chat-widget-panel" id="support-chat-widget-panel" aria-label="Customer support chat">
                 <iframe src="../pages/support-chat.php?widget=1" title="Customer support" loading="lazy"></iframe>
             </dialog>
             <button class="support-chat-widget-launcher" id="support-chat-widget-launcher" type="button" aria-label="Chat with customer support" aria-controls="support-chat-widget-panel" aria-expanded="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 18.5 3.5 20l1.2-3.7A8 8 0 1 1 8 19.2"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.5h3l1.5 4-2 1.5a15 15 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.3 16.3 0 0 1 5.5 5.7a2 2 0 0 1 2-2.2Z"></path>
                 </svg>
-                <span>Chat with us</span>
+                <span>Customer Support</span>
             </button>
         </div>
     <?php endif; ?>
@@ -177,19 +166,39 @@
 
         const chatPanel = document.getElementById('support-chat-widget-panel');
         const chatLauncher = document.getElementById('support-chat-widget-launcher');
-        const chatClose = document.querySelector('.support-chat-widget-close');
+        const chatFrame = chatPanel instanceof HTMLDialogElement ? chatPanel.querySelector('iframe') : null;
         const chatWidget = document.querySelector('.support-chat-widget');
+
+        function closeSupportChat() {
+            if (chatPanel instanceof HTMLDialogElement && chatLauncher instanceof HTMLButtonElement && chatPanel.open) {
+                chatPanel.close();
+                chatLauncher.setAttribute('aria-expanded', 'false');
+            }
+        }
 
         function setSupportChatOpen(isOpen) {
             if (chatPanel instanceof HTMLDialogElement && chatLauncher instanceof HTMLButtonElement) {
                 if (isOpen && !chatPanel.open) {
-                    chatPanel.showModal();
+                    chatPanel.classList.remove('is-minimized');
+                    if (chatFrame instanceof HTMLIFrameElement && chatFrame.contentDocument !== null) {
+                        const widgetWindow = chatFrame.contentDocument.querySelector('.widget-chat-window, .chat-new-conversation');
+                        const minimizeButton = chatFrame.contentDocument.querySelector('.chat-widget-minimize');
+                        if (widgetWindow !== null) {
+                            widgetWindow.classList.remove('is-minimized');
+                        }
+                        if (minimizeButton !== null) {
+                            minimizeButton.textContent = '−';
+                            minimizeButton.setAttribute('aria-label', 'Minimize chat');
+                            minimizeButton.title = 'Minimize chat';
+                        }
+                    }
+                    chatPanel.show();
                     chatLauncher.setAttribute('aria-expanded', 'true');
-                    if (chatClose instanceof HTMLButtonElement) {
-                        chatClose.focus();
+                    if (chatFrame instanceof HTMLIFrameElement) {
+                        chatFrame.focus();
                     }
                 } else if (!isOpen && chatPanel.open) {
-                    chatPanel.close();
+                    closeSupportChat();
                 }
             }
         }
@@ -200,33 +209,24 @@
             });
         }
 
-        if (chatClose instanceof HTMLButtonElement) {
-            chatClose.addEventListener('click', function () {
-                setSupportChatOpen(false);
-            });
-        }
-
         if (chatPanel instanceof HTMLDialogElement && chatLauncher instanceof HTMLButtonElement) {
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape' && chatPanel.open) {
                     event.preventDefault();
-                    chatPanel.close();
+                    closeSupportChat();
                 }
             });
             chatPanel.addEventListener('cancel', function (event) {
                 event.preventDefault();
-                chatPanel.close();
+                closeSupportChat();
             });
             chatPanel.addEventListener('close', function () {
                 chatLauncher.setAttribute('aria-expanded', 'false');
                 chatLauncher.focus();
             });
-            chatPanel.addEventListener('click', function (event) {
-                if (event.target === chatPanel) {
-                    const bounds = chatPanel.getBoundingClientRect();
-                    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
-                        chatPanel.close();
-                    }
+            document.addEventListener('pointerdown', function (event) {
+                if (chatPanel.open && !chatPanel.contains(event.target) && !chatLauncher.contains(event.target)) {
+                    closeSupportChat();
                 }
             });
         }

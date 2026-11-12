@@ -21,6 +21,11 @@ function e($value): string
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function generate_support_chat_reference_code(): string
+{
+    return strtoupper(bin2hex(random_bytes(8)));
+}
+
 function item_image_alt(?string $alt, string $fallback): string
 {
     return $alt !== null && trim($alt) !== '' ? $alt : $fallback;

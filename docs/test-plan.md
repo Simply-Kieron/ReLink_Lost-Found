@@ -4,6 +4,8 @@
 
 Run these tests against a disposable database created from `sql/schema.sql` and `sql/seed.sql`; do not use a database containing real records. Create one staff test account and register two student test accounts. The seeded found USB (item 4) is used for claim tests. Reset the disposable database between runs if needed.
 
+For an existing database, apply `sql/verification-code-recovery-migration.sql` after the student verification migrations. Set `verification_code_encryption_key` in `includes/config.php` to a stable 64-character hexadecimal key generated with PHP's `bin2hex(random_bytes(32))`; keep it secret and backed up, since changing it makes active codes unreadable.
+
 The results below were recorded on 2026-10-19 using the isolated `lost_found_phase7_test` database before student verification was added. Application requests were exercised over HTTP, database state was checked directly, the responsive/keyboard checks used a browser, and the upload execution check used the local Apache server. Run the verification checks below on a fresh or migrated database; the legacy PASS results do not validate the new verification flow.
 
 ## Test cases
@@ -63,7 +65,7 @@ Run these checks on a disposable database with the verification schema. Create s
 |---|---|---|---|
 | VERIFY-01 | As a student with no verification record, open lost reporting and submit a claim POST directly. | Both actions are blocked and direct the student to Profile. | NOT RUN |
 | VERIFY-02 | Submit an invalid file or a file larger than 15 MB as the school ID photo. | Submission is rejected and no verification record or public file is created. | NOT RUN |
-| VERIFY-03 | In Student Verification, enter a school email and request a code. As staff, issue and manually deliver the code. Enter the code, school ID number, and photo, then submit together. | The code request is saved before ID details; valid submission confirms the email but remains unverified until staff approves the ID. | NOT RUN |
+| VERIFY-03 | In Student Verification, enter a school email and request a code. As staff, issue and manually deliver the code, sign out and back in, then retrieve the current code from User Management. Enter it with the school ID number and photo, then submit together. | Staff can retrieve the same active code without issuing a replacement; a valid submission confirms the email but remains unverified until staff approves the ID. | NOT RUN |
 | VERIFY-04 | As a student, request the private photo URL; then request it as staff. | Student receives HTTP 403; staff can view the image through the protected document route; direct access to the stored file is denied. | NOT RUN |
 | VERIFY-05 | Reject an ID submission as staff, then request a new code from the student profile. | Rejected request can be restarted; prior private image is deleted and staff receives a new code request. | NOT RUN |
 | VERIFY-06 | Issue a code, enter a wrong code five times, then request a replacement and submit the correct code with ID details. | Wrong codes are rejected; replacement invalidates the old code; correct code and ID are submitted for staff review, not immediately verified. | NOT RUN |

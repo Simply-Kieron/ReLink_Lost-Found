@@ -140,7 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && request_body_exceeds_post_limit()) 
                         ? $pdo->prepare(
                             "UPDATE student_verifications
                             SET school_email = :school_email, school_id_number = NULL, id_image_path = NULL,
-                                status = 'code_requested', code_hash = NULL, code_expires_at = NULL, code_attempts = 0,
+                                status = 'code_requested', code_hash = NULL, code_ciphertext = NULL,
+                                code_expires_at = NULL, code_attempts = 0,
                                 reviewed_by = NULL, submitted_at = CURRENT_TIMESTAMP, reviewed_at = NULL, verified_at = NULL
                             WHERE user_id = :user_id"
                         )
@@ -222,7 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && request_body_exceeds_post_limit()) 
                     $complete = $pdo->prepare(
                         "UPDATE student_verifications
                         SET school_id_number = :school_id_number, id_image_path = :id_image_path,
-                            status = 'code_verified', code_hash = NULL, code_expires_at = NULL,
+                            status = 'code_verified', code_hash = NULL, code_ciphertext = NULL,
+                            code_expires_at = NULL,
                             code_attempts = 0, reviewed_by = NULL, reviewed_at = NULL
                         WHERE user_id = :user_id AND status = 'code_sent'"
                     );

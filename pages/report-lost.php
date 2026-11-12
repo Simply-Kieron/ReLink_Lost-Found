@@ -8,7 +8,7 @@ $user = require_verified_student();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/item_uploads.php';
 
-$categoryStatement = $pdo->prepare('SELECT id, name FROM categories ORDER BY name');
+$categoryStatement = $pdo->prepare("SELECT id, name FROM categories ORDER BY CASE WHEN LOWER(name) = 'other' THEN 1 ELSE 0 END, name");
 $categoryStatement->execute();
 $categories = $categoryStatement->fetchAll();
 $values = [
@@ -104,29 +104,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && request_body_exceeds_post_limit()) 
 }
 
 $pageTitle = 'Report a Lost Item';
+$pageDesign = 'report-found';
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell">
-    <div class="surface-card" style="max-width: 46rem; margin: 0 auto; padding: 1.6rem;">
-        <div class="stack">
-            <div>
-                <p class="eyebrow">Lost item</p>
-                <h1 id="report-title">Report a lost item</h1>
-                <p>Share enough information to help staff identify your report. Do not include passwords or other sensitive personal information.</p>
-            </div>
+<section class="page-shell report-found-page" aria-labelledby="report-title">
+    <div class="report-found-hero report-lost-hero">
+        <div>
+            <span class="eyebrow">Personal belongings</span>
+            <h1 id="report-title">Report a lost item</h1>
+            <p>Share enough information to help staff identify your report. Do not include passwords or other sensitive personal information.</p>
+        </div>
+        <a class="report-manage-link" href="my-claims.php#reports">My reports</a>
+    </div>
 
-            <?php if ($errors !== []): ?>
-                <div class="error-box" role="alert">
-                    <p style="margin: 0; font-weight: 700;">Please review the following:</p>
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li><?= e($error) ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
+    <?php if ($errors !== []): ?>
+        <div class="error-box report-errors" role="alert">
+            <strong>Please review the following:</strong>
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?= e($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-            <form class="form-panel" method="post" action="report-lost.php" enctype="multipart/form-data">
+            <form class="surface-card form-panel" method="post" action="report-lost.php" enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
                 <div class="field">
@@ -178,7 +180,5 @@ require_once __DIR__ . '/../includes/header.php';
 
                 <button class="primary-button w-full" type="submit">Submit lost item report</button>
             </form>
-        </div>
-    </div>
 </section>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

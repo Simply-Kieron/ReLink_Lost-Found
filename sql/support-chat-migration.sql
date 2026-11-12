@@ -1,5 +1,6 @@
 CREATE TABLE support_conversations (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    reference_code CHAR(16) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
     student_id INT UNSIGNED NOT NULL,
     subject VARCHAR(150) NOT NULL,
     status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
@@ -8,6 +9,7 @@ CREATE TABLE support_conversations (
     closed_at DATETIME NULL,
     closed_by INT UNSIGNED NULL,
     PRIMARY KEY (id),
+    UNIQUE KEY uq_support_conversations_reference_code (reference_code),
     KEY idx_support_conversations_student (student_id, updated_at),
     KEY idx_support_conversations_status (status, updated_at),
     CONSTRAINT fk_support_conversations_student

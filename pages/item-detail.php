@@ -136,7 +136,8 @@ require_once __DIR__ . '/../includes/header.php';
         <div class="detail-media">
             <?php
             $normalizedCategory = strtolower(trim($item['category_name']));
-            $sensitiveCategory = in_array($normalizedCategory, ['id', 'ids', 'phone', 'phones', 'wallet', 'wallets'], true);
+            $sensitiveCategory = $normalizedCategory === 'personal items'
+                || in_array($normalizedCategory, ['id', 'ids', 'phone', 'phones', 'wallet', 'wallets'], true);
             ?>
             <div class="media-frame">
                 <?php if ($sensitiveCategory): ?>

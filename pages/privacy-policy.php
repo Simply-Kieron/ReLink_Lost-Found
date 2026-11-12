@@ -20,7 +20,7 @@ require_once __DIR__ . '/../includes/header.php';
     <section class="mt-8" aria-labelledby="use-title">
         <h2 id="use-title" class="text-xl font-bold">How information is used and shown</h2>
         <p class="mt-3 text-slate-700">The application uses account details to provide sign-in and role-based pages, reports to let people browse and search for items, and claim details to let staff review a request.</p>
-        <p class="mt-3 text-slate-700">Lost-item reports are shown on public item pages. Found-item reports remain private until staff approve them; approved listing details are then shown publicly. Images may also be shown; images for found items in the ID, phone, and wallet categories are replaced with a privacy placeholder on public pages. Claim proof, private found-item verification details, and student ID photos are intended for staff review and are not shown on public item pages.</p>
+        <p class="mt-3 text-slate-700">Lost-item reports are shown on public item pages. Found-item reports remain private until staff approve them; approved listing details are then shown publicly. Images may also be shown; images for found items in the Personal items category are replaced with a privacy placeholder on public pages. Claim proof, private found-item verification details, and student ID photos are intended for staff review and are not shown on public item pages.</p>
     </section>
     <section class="mt-8" aria-labelledby="sharing-title">
         <h2 id="sharing-title" class="text-xl font-bold">Who can see the information</h2>

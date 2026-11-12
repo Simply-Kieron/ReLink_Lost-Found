@@ -1,5 +1,81 @@
 <?php
 
+function student_verification_code_encryption_key(array $config): string
+{
+    $encodedKey = $config['verification_code_encryption_key'] ?? null;
+    if (!is_string($encodedKey) || preg_match('/\A[a-f0-9]{64}\z/i', $encodedKey) !== 1) {
+        throw new RuntimeException('Set a 64-character verification_code_encryption_key in includes/config.php before issuing or viewing codes.');
+    }
+
+    $key = hex2bin($encodedKey);
+    if (!is_string($key)) {
+        throw new RuntimeException('The verification code encryption key is invalid.');
+    }
+
+    return $key;
+}
+
+function encrypt_student_verification_code(string $code, string $key, int $userId): string
+{
+    if (preg_match('/\A[0-9]{8}\z/', $code) !== 1 || strlen($key) !== 32) {
+        throw new InvalidArgumentException('A valid verification code and encryption key are required.');
+    }
+    if (!function_exists('openssl_encrypt')) {
+        throw new RuntimeException('The OpenSSL extension is required to store verification codes securely.');
+    }
+
+    $nonce = random_bytes(12);
+    $tag = '';
+    $ciphertext = openssl_encrypt(
+        $code,
+        'aes-256-gcm',
+        $key,
+        OPENSSL_RAW_DATA,
+        $nonce,
+        $tag,
+        'relink-student-verification:' . $userId
+    );
+    if (!is_string($ciphertext) || strlen($tag) !== 16) {
+        throw new RuntimeException('The verification code could not be stored securely.');
+    }
+
+    return 'v1:' . base64_encode($nonce . $tag . $ciphertext);
+}
+
+function decrypt_student_verification_code(string $encryptedCode, string $key, int $userId): string
+{
+    if (strlen($key) !== 32 || !function_exists('openssl_decrypt')) {
+        throw new RuntimeException('Verification code decryption is unavailable. Check the OpenSSL extension and encryption key.');
+    }
+
+    if (preg_match('/\Av1:([A-Za-z0-9+\/=]+)\z/', $encryptedCode, $matches) !== 1) {
+        throw new RuntimeException('The stored verification code is invalid or uses an unsupported format.');
+    }
+
+    $payload = base64_decode($matches[1], true);
+    if (!is_string($payload) || strlen($payload) < 29) {
+        throw new RuntimeException('The stored verification code is invalid or incomplete.');
+    }
+
+    $nonce = substr($payload, 0, 12);
+    $tag = substr($payload, 12, 16);
+    $ciphertext = substr($payload, 28);
+    $code = openssl_decrypt(
+        $ciphertext,
+        'aes-256-gcm',
+        $key,
+        OPENSSL_RAW_DATA,
+        $nonce,
+        $tag,
+        'relink-student-verification:' . $userId
+    );
+    if (!is_string($code) || preg_match('/\A[0-9]{8}\z/', $code) !== 1) {
+        throw new RuntimeException('The verification code could not be decrypted. Confirm the configured encryption key has not changed.');
+    }
+
+    return $code;
+}
+
 function validate_student_id_upload(array $upload): array
 {
     $maxBytes = 15 * 1024 * 1024;

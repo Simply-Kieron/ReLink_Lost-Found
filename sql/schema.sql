@@ -22,6 +22,7 @@ CREATE TABLE student_verifications (
     id_image_path VARCHAR(500) NULL,
     status ENUM('pending', 'code_requested', 'code_sent', 'code_verified', 'verified', 'rejected') NOT NULL DEFAULT 'pending',
     code_hash VARCHAR(255) NULL,
+    code_ciphertext TEXT NULL,
     code_expires_at DATETIME NULL,
     code_attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
     reviewed_by INT UNSIGNED NULL,
@@ -42,6 +43,7 @@ CREATE TABLE student_verifications (
 
 CREATE TABLE support_conversations (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    reference_code CHAR(16) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
     student_id INT UNSIGNED NOT NULL,
     subject VARCHAR(150) NOT NULL,
     status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
@@ -50,6 +52,7 @@ CREATE TABLE support_conversations (
     closed_at DATETIME NULL,
     closed_by INT UNSIGNED NULL,
     PRIMARY KEY (id),
+    UNIQUE KEY uq_support_conversations_reference_code (reference_code),
     KEY idx_support_conversations_student (student_id, updated_at),
     KEY idx_support_conversations_status (status, updated_at),
     CONSTRAINT fk_support_conversations_student

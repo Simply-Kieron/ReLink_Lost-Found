@@ -13,6 +13,7 @@ require_once __DIR__ . '/../includes/db.php';
 $errors = [];
 $notice = null;
 $generatedCode = null;
+$codeRetrieved = false;
 $temporaryPassword = null;
 $codeSchoolEmail = null;
 $query = $_GET['q'] ?? '';
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $targetId === false
         || $targetId === null
         || !is_string($action)
-        || !in_array($action, ['approve', 'reject', 'suspend', 'activate', 'revoke', 'reset_password', 'delete'], true)
+        || !in_array($action, ['approve', 'reject', 'view_code', 'suspend', 'activate', 'revoke', 'reset_password', 'delete'], true)
         || !is_string($returnQuery)
         || !is_string($returnRole)
         || !is_string($returnVerification)
@@ -98,32 +99,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $update->execute(['reviewed_by' => $staff['id'], 'id' => $verification['id']]);
                     $notice = 'The school ID was approved and the student account is verified.';
                 } else {
+                    $encryptionKey = student_verification_code_encryption_key($config);
                     $generatedCode = str_pad((string) random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
                     $codeSchoolEmail = $verification['school_email'];
+                    $codeCiphertext = encrypt_student_verification_code($generatedCode, $encryptionKey, (int) $targetId);
                     $update = $pdo->prepare(
                         "UPDATE student_verifications
-                        SET status = 'code_sent', code_hash = :code_hash, code_expires_at = :expires_at,
+                        SET status = 'code_sent', code_hash = :code_hash, code_ciphertext = :code_ciphertext,
+                            code_expires_at = :expires_at,
                             code_attempts = 0, reviewed_by = :reviewed_by, reviewed_at = CURRENT_TIMESTAMP
                         WHERE id = :id"
                     );
                     $update->execute([
                         'code_hash' => password_hash($generatedCode, PASSWORD_DEFAULT),
+                        'code_ciphertext' => $codeCiphertext,
                         'expires_at' => date('Y-m-d H:i:s', time() + 86400),
                         'reviewed_by' => $staff['id'],
                         'id' => $verification['id'],
                     ]);
-                    $notice = 'The code was issued. Send it manually to the school email shown below.';
+                    $notice = 'The code was issued. Send it manually to the school email shown below; you can retrieve this same active code later.';
                 }
             } else {
                 $update = $pdo->prepare(
                     "UPDATE student_verifications
-                    SET status = 'rejected', code_hash = NULL, code_expires_at = NULL, code_attempts = 0,
+                    SET status = 'rejected', code_hash = NULL, code_ciphertext = NULL,
+                        code_expires_at = NULL, code_attempts = 0,
                         reviewed_by = :reviewed_by, reviewed_at = CURRENT_TIMESTAMP
                     WHERE id = :id"
                 );
                 $update->execute(['reviewed_by' => $staff['id'], 'id' => $verification['id']]);
                 $notice = 'The student verification request was rejected.';
             }
+        } elseif ($action === 'view_code') {
+            $verificationStatement = $pdo->prepare(
+                'SELECT school_email, status, code_ciphertext, code_expires_at, code_attempts
+                FROM student_verifications WHERE user_id = :user_id FOR UPDATE'
+            );
+            $verificationStatement->execute(['user_id' => $targetId]);
+            $verification = $verificationStatement->fetch();
+            if (
+                !is_array($verification)
+                || $verification['status'] !== 'code_sent'
+                || !is_string($verification['code_ciphertext'])
+                || !is_string($verification['code_expires_at'])
+                || strtotime($verification['code_expires_at']) < time()
+                || (int) $verification['code_attempts'] >= 5
+            ) {
+                throw new RuntimeException('There is no active code to retrieve. Issue a replacement only if the student needs a new code.');
+            }
+
+            $generatedCode = decrypt_student_verification_code(
+                $verification['code_ciphertext'],
+                student_verification_code_encryption_key($config),
+                (int) $targetId
+            );
+            $codeSchoolEmail = $verification['school_email'];
+            $codeRetrieved = true;
+            $notice = 'The current active code was retrieved. No replacement was issued.';
         } elseif ($action === 'suspend' || $action === 'activate') {
             $newStatus = $action === 'suspend' ? 'suspended' : 'active';
             $update = $pdo->prepare('UPDATE users SET account_status = :status WHERE id = :id');
@@ -132,7 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($action === 'revoke') {
             $update = $pdo->prepare(
                 "UPDATE student_verifications
-                SET status = 'rejected', code_hash = NULL, code_expires_at = NULL, code_attempts = 0,
+                SET status = 'rejected', code_hash = NULL, code_ciphertext = NULL,
+                    code_expires_at = NULL, code_attempts = 0,
                     reviewed_by = :reviewed_by, reviewed_at = CURRENT_TIMESTAMP, verified_at = NULL
                 WHERE user_id = :user_id AND status = 'verified'"
             );
@@ -242,7 +275,8 @@ $offset = ($page - 1) * $perPage;
 $listStatement = $pdo->prepare(
     "SELECT users.id AS user_id, users.name, users.email, users.role, users.account_status,
         users.must_change_password, users.avatar_path, verifications.id AS verification_id, verifications.school_email,
-        verifications.school_id_number, verifications.id_image_path,
+        verifications.school_id_number, verifications.id_image_path, verifications.code_attempts,
+        verifications.code_ciphertext IS NOT NULL AS has_recoverable_code,
         CASE WHEN users.role = 'student' THEN COALESCE(verifications.status, 'not_submitted') ELSE 'not_applicable' END AS verification_status,
         verifications.submitted_at, verifications.code_expires_at
     FROM users
@@ -274,9 +308,9 @@ require_once __DIR__ . '/../includes/header.php';
         <?php endif; ?>
         <?php if ($generatedCode !== null): ?>
             <div class="mt-4 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-950" role="status">
-                <strong>Verification code for <?= e($codeSchoolEmail) ?>:</strong>
+                <strong><?= $codeRetrieved ? 'Current verification code for ' : 'Verification code for ' ?><?= e($codeSchoolEmail) ?>:</strong>
                 <p class="my-2 font-mono text-2xl font-bold tracking-widest"><?= e($generatedCode) ?></p>
-                <p>Send this code manually to the school email. It expires in 24 hours and is displayed only once.</p>
+                <p><?= $codeRetrieved ? 'This is the existing active code. Viewing it does not replace it.' : 'Send this code manually to the school email. It expires in 24 hours; you can retrieve this same code later from User Management.' ?></p>
             </div>
         <?php endif; ?>
         <?php if ($temporaryPassword !== null): ?>
@@ -306,7 +340,7 @@ require_once __DIR__ . '/../includes/header.php';
             <div>
                 <label for="verification">Verification</label>
                 <select class="min-h-11 w-full rounded-md border border-slate-400 px-3" id="verification" name="verification">
-                    <?php foreach (['all' => 'All statuses', 'not_submitted' => 'Not submitted', 'pending' => 'Pending ID review', 'code_requested' => 'Code requested', 'code_sent' => 'Code sent', 'code_verified' => 'Code submitted — ID review', 'verified' => 'Verified', 'rejected' => 'Rejected'] as $value => $label): ?>
+                    <?php foreach (['all' => 'All statuses', 'not_submitted' => 'Not submitted', 'pending' => 'Pending ID review', 'code_requested' => 'Code requested', 'code_sent' => 'Code sent — awaiting student', 'code_verified' => 'Code matched — ID review', 'verified' => 'Verified', 'rejected' => 'Rejected'] as $value => $label): ?>
                         <option value="<?= e($value) ?>" <?= $verificationFilter === $value ? 'selected' : '' ?>><?= e($label) ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -340,6 +374,16 @@ require_once __DIR__ . '/../includes/header.php';
                     <tbody class="divide-y divide-slate-200">
                         <?php foreach ($users as $listedUser): ?>
                             <?php $verificationStatus = $listedUser['verification_status']; ?>
+                            <?php $verificationStatusLabel = [
+                                'not_submitted' => 'Not submitted',
+                                'pending' => 'Pending ID review',
+                                'code_requested' => 'Code requested',
+                                'code_sent' => 'Code sent — awaiting student',
+                                'code_verified' => 'Code matched — ID review pending',
+                                'verified' => 'Verified',
+                                'rejected' => 'Rejected',
+                                'not_applicable' => 'Not applicable',
+                            ][$verificationStatus] ?? str_replace('_', ' ', $verificationStatus); ?>
                             <tr>
                                 <td class="p-3 align-top">
                                     <div class="user-management-identity">
@@ -352,7 +396,32 @@ require_once __DIR__ . '/../includes/header.php';
                                 </td>
                                 <td class="p-3 align-top capitalize"><?= e($listedUser['role']) ?></td>
                                 <td class="p-3 align-top">
-                                    <span class="status-pill <?= $verificationStatus === 'verified' ? 'status-approved' : ($verificationStatus === 'rejected' || $verificationStatus === 'not_submitted' ? 'status-rejected' : ($verificationStatus === 'not_applicable' ? 'status-open' : 'status-pending')) ?>"><?= e(str_replace('_', ' ', $verificationStatus)) ?></span>
+                                    <span class="status-pill <?= $verificationStatus === 'verified' ? 'status-approved' : ($verificationStatus === 'rejected' || $verificationStatus === 'not_submitted' ? 'status-rejected' : ($verificationStatus === 'not_applicable' ? 'status-open' : 'status-pending')) ?>"><?= e($verificationStatusLabel) ?></span>
+                                    <?php if ($verificationStatus === 'code_sent'): ?>
+                                        <div class="mt-1 text-slate-600">Waiting for the student to submit the code with their school ID.</div>
+                                    <?php elseif ($verificationStatus === 'code_verified'): ?>
+                                        <div class="mt-1 text-slate-600">The student entered the issued code correctly. Review their school ID to complete verification.</div>
+                                    <?php endif; ?>
+                                    <?php if ($verificationStatus === 'code_sent'): ?>
+                                        <?php
+                                        $codeIsActive = is_string($listedUser['code_expires_at'])
+                                            && strtotime($listedUser['code_expires_at']) >= time()
+                                            && (int) $listedUser['code_attempts'] < 5;
+                                        ?>
+                                        <?php if ($codeIsActive && (int) $listedUser['has_recoverable_code'] === 1): ?>
+                                            <form class="mt-2" method="post" action="user-management.php">
+                                                <?= csrf_field() ?>
+                                                <input type="hidden" name="user_id" value="<?= e($listedUser['user_id']) ?>">
+                                                <input type="hidden" name="action" value="view_code">
+                                                <input type="hidden" name="return_query" value="<?= e($query) ?>"><input type="hidden" name="return_role" value="<?= e($roleFilter) ?>"><input type="hidden" name="return_verification" value="<?= e($verificationFilter) ?>"><input type="hidden" name="return_account" value="<?= e($accountFilter) ?>"><input type="hidden" name="return_page" value="<?= e($page) ?>">
+                                                <button class="secondary-button" type="submit">View current code</button>
+                                            </form>
+                                        <?php elseif ($codeIsActive): ?>
+                                            <div class="mt-1 text-amber-800">This code was issued before code recovery was enabled and cannot be retrieved. It remains valid; issue a replacement only if the student needs one.</div>
+                                        <?php else: ?>
+                                            <div class="mt-1 text-amber-800">This code has expired or reached its attempt limit. Issue a replacement only if the student needs one.</div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                     <?php if ($listedUser['school_id_number'] !== null): ?><div class="mt-1">ID: <?= e($listedUser['school_id_number']) ?></div><?php endif; ?>
                                     <?php if ($listedUser['verification_id'] !== null && $listedUser['id_image_path'] !== null): ?>
                                         <a class="mt-2 inline-flex items-center gap-1 rounded-md border border-blue-300 px-2 py-1 text-sm font-medium text-blue-800 hover:bg-blue-50 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-700" href="verification-document.php?id=<?= e($listedUser['verification_id']) ?>" target="_blank" rel="noopener" aria-label="View <?= e($listedUser['name']) ?>'s school ID photo">

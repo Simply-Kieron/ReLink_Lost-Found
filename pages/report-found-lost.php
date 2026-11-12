@@ -94,11 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         . 'Date reported lost: ' . $lockedItem['date_event'] . "\n\n"
                         . "Finder's details:\n" . $findingDetails;
 
+                $referenceCode = generate_support_chat_reference_code();
                 $conversation = $pdo->prepare(
-                    "INSERT INTO support_conversations (student_id, subject, status)
-                    VALUES (:student_id, :subject, 'open')"
+                    "INSERT INTO support_conversations (reference_code, student_id, subject, status)
+                    VALUES (:reference_code, :student_id, :subject, 'open')"
                 );
                 $conversation->execute([
+                    'reference_code' => $referenceCode,
                     'student_id' => $isStaffFinder ? (int) $lockedItem['reported_by'] : $reporter['id'],
                     'subject' => $subject,
                 ]);

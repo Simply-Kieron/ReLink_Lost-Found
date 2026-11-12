@@ -25,7 +25,7 @@ if ($item === false) {
     exit('Found item not found.');
 }
 
-$categoryStatement = $pdo->prepare('SELECT id, name FROM categories ORDER BY name');
+$categoryStatement = $pdo->prepare("SELECT id, name FROM categories ORDER BY CASE WHEN LOWER(name) = 'other' THEN 1 ELSE 0 END, name");
 $categoryStatement->execute();
 $categories = $categoryStatement->fetchAll();
 $values = [

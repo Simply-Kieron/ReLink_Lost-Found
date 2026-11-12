@@ -24,7 +24,7 @@ foreach (array_keys($filter) as $field) {
     $filter[$field] = is_string($value) ? trim($value) : '';
 }
 
-$categoryStatement = $pdo->prepare('SELECT id, name FROM categories ORDER BY name');
+$categoryStatement = $pdo->prepare("SELECT id, name FROM categories ORDER BY CASE WHEN LOWER(name) = 'other' THEN 1 ELSE 0 END, name");
 $categoryStatement->execute();
 $categories = $categoryStatement->fetchAll();
 $categoryIds = array_map(static function (array $category): string {
@@ -173,7 +173,10 @@ require __DIR__ . '/../includes/header.php';
     <?php else: ?>
         <div class="surface-card" style="padding: 1.6rem;">
             <div class="stack">
-                <div><p class="eyebrow">Lost items</p><h1 id="browse-title"><?= e($heading) ?></h1><p>Browse lost item reports shared by students.</p></div>
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div><p class="eyebrow">Lost items</p><h1 id="browse-title"><?= e($heading) ?></h1><p>Browse lost item reports shared by students.</p></div>
+                    <a class="primary-button" href="report-lost.php">Report a lost item</a>
+                </div>
                 <?php if ($errors !== []): ?><div class="error-box" role="status"><ul><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
                 <form class="form-panel" method="get" action="<?= e($basePath) ?>" style="margin: 0;">
                     <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
@@ -195,7 +198,8 @@ require __DIR__ . '/../includes/header.php';
                     <?php foreach ($items as $item): ?>
                         <?php
                         $normalizedCategory = strtolower(trim($item['category_name']));
-                        $sensitiveCategory = in_array($normalizedCategory, ['id', 'ids', 'phone', 'phones', 'wallet', 'wallets'], true);
+                        $sensitiveCategory = $normalizedCategory === 'personal items'
+                            || in_array($normalizedCategory, ['id', 'ids', 'phone', 'phones', 'wallet', 'wallets'], true);
                         ?>
                         <li>
                             <article class="claim-card browse-card<?= $browseType === 'found' ? ' feed-card' : '' ?>">

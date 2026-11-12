@@ -11,7 +11,7 @@ $user = $sessionUser !== null && $sessionUser['role'] === 'staff'
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/item_uploads.php';
 
-$categoryStatement = $pdo->prepare('SELECT id, name FROM categories ORDER BY name');
+$categoryStatement = $pdo->prepare("SELECT id, name FROM categories ORDER BY CASE WHEN LOWER(name) = 'other' THEN 1 ELSE 0 END, name");
 $categoryStatement->execute();
 $categories = $categoryStatement->fetchAll();
 $values = [

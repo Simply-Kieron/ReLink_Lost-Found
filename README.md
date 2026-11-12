@@ -33,7 +33,7 @@ Use a fresh development database. Do not import the seed into a database contain
    ```
 
    If a database named `lost_and_found` already exists, create a different empty database name and use that name in `includes/config.php` in the next step.
-5. Select the empty database in phpMyAdmin. Use its **Import** tab to import `sql/schema.sql` first, then import `sql/seed.sql`. Confirm both imports complete without errors. The seed creates the categories, two demonstration accounts, and six records explicitly labelled as sample data.
+5. Select the empty database in phpMyAdmin. Use its **Import** tab to import `sql/schema.sql` first, then import `sql/seed.sql`. Confirm both imports complete without errors. The seed creates item categories, two demonstration accounts, and six records explicitly labelled as sample data.
 6. In the project directory, copy `includes/config.example.php` to `includes/config.php`. For example, from PowerShell opened in the project directory:
 
    ```powershell
@@ -56,17 +56,17 @@ npm run build:css
 
 Use `npm run watch:css` during development to rebuild the stylesheet as PHP templates change. The Tailwind content configuration scans the shared includes, page templates, and public entry point.
 
-For an existing installation, back up the database and import `sql/verification-migration.sql` once to create the student verification table, followed by `sql/verification-code-request-migration.sql` and `sql/verification-delayed-submission-migration.sql`. If the table already exists, do not re-import its create-table migration; apply any missing upgrade migrations in order. Import `sql/found-item-review-migration.sql` once to enable staff review of student found-item reports; existing found listings remain approved. Ensure Apache honors `uploads/student-verification/.htaccess`; that folder stores private ID photos and must not be directly web-accessible.
+For an existing installation, back up the database and import `sql/verification-migration.sql` once to create the student verification table, followed by `sql/verification-code-request-migration.sql` and `sql/verification-delayed-submission-migration.sql`. If the table already exists, do not re-import its create-table migration; apply any missing upgrade migrations in order. Import `sql/found-item-review-migration.sql` once to enable staff review of student found-item reports; existing found listings remain approved. Import `sql/item-category-groups-migration.sql` once to consolidate existing categories into the grouped list, including "Other". Ensure Apache honors `uploads/student-verification/.htaccess`; that folder stores private ID photos and must not be directly web-accessible.
 
 ### Image upload limits
 
 Item photos, school ID photos, and profile photos are limited to 15 MB. Item photos also require alternative text before they are saved. PHP's `upload_max_filesize` must be larger than the app's largest image limit, and `post_max_size` must also allow for the multipart form fields. The supplied WAMP PHP configuration uses 16 MB and 32 MB respectively. Restart Apache after changing PHP upload settings.
 
-Import `sql/user-management-migration.sql` once on existing installations to add account suspension and forced password-change fields. Import `sql/support-chat-migration.sql` once to add student support sessions and message history. Import `sql/profile-avatar-migration.sql` once to add public profile-photo support. Keep `uploads/profile-avatars/.htaccess` in place; profile photos are public, while student ID photos remain private.
+Import `sql/user-management-migration.sql` once on existing installations to add account suspension and forced password-change fields. Import `sql/support-chat-migration.sql` once to add student support sessions and message history. If support chat is already installed, import `sql/support-chat-reference-code-migration.sql` once to add reference codes to existing sessions. Import `sql/profile-avatar-migration.sql` once to add public profile-photo support. Keep `uploads/profile-avatars/.htaccess` in place; profile photos are public, while student ID photos remain private.
 
 ### Support chat
 
-Students open **Chat with Staff** from the navigation to start a private support session and review previous chats. Staff use **Support Inbox** to read and reply to open sessions, then close each conversation when resolved. When staff use **I found this item** on a lost-item listing, the owner receives a private message in Chat with Staff; the lost report stays open until the item is actually returned. Student finder reports continue to appear in the staff inbox. Closed conversations remain available as read-only history to students; staff can review them in the inbox. The chat is page-refresh based; it does not send email or provide real-time notifications. Students should not send passwords or verification codes in chat.
+Students open **Chat with Staff** from the account menu to continue an open session, review previous chats, or start a new one. Each session has a private reference code shown to both students and staff; it identifies the conversation but does not grant access to it. Staff use **Support Inbox** to read and reply to open sessions, then close each conversation when resolved. When staff use **I found this item** on a lost-item listing, the owner receives a private message in Chat with Staff; the lost report stays open until the item is actually returned. Student finder reports continue to appear in the staff inbox. Closed conversations remain available as read-only history to students; staff can review them in the inbox. The chat is page-refresh based; it does not send email or provide real-time notifications. Students should not send passwords or verification codes in chat.
 
 ### Found-item reporting and review
 

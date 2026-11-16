@@ -80,8 +80,8 @@ try {
 $pageTitle = 'Manage Lost Reports';
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell" aria-labelledby="manage-lost-title">
-    <div class="surface-card" style="padding: 1.6rem;">
+<section class="page-shell staff-item-management" aria-labelledby="manage-lost-title">
+    <div class="surface-card staff-management-surface">
         <div class="section-header" style="margin-bottom: 1rem;">
             <div>
                 <p class="eyebrow">Staff tools</p>
@@ -97,7 +97,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php if ($reports === []): ?>
             <p class="empty-state">There are no lost item reports yet.</p>
         <?php else: ?>
-            <ul class="claim-list" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <ul class="claim-list browse-grid feed-item-list staff-management-list">
                 <?php foreach ($reports as $report): ?>
                     <?php
                     $isRejected = $report['review_status'] === 'rejected';
@@ -106,18 +106,26 @@ require_once __DIR__ . '/../includes/header.php';
                         : ($report['review_status'] === 'pending' ? 'Pending review' : 'Approved · public');
                     ?>
                     <li>
-                        <article class="claim-card" style="height: 100%;">
+                        <article class="claim-card browse-card feed-card" style="height: 100%;">
+                            <div class="relink-item-media">
+                            <?php if ($report['image_path'] !== null): ?>
+                                <img class="relink-item-image" src="../<?= e($report['image_path']) ?>" alt="<?= e(item_image_alt($report['image_alt'], 'Lost item: ' . $report['title'])) ?>">
+                            <?php else: ?>
+                                <div class="media-placeholder">No image provided</div>
+                            <?php endif; ?>
+                            </div>
+                            <div class="relink-item-copy">
                             <div class="claim-card-head">
                                 <h2 style="margin: 0;"><?= e($report['title']) ?></h2>
                                 <span class="status-pill <?= $isRejected ? 'status-rejected' : ($report['review_status'] === 'pending' ? 'status-pending' : 'status-approved') ?>"><?= e($reviewLabel) ?></span>
                             </div>
                             <p class="field-note" style="margin: 0;">Reported by <?= e($report['reporter_name']) ?> · <?= e(ucfirst($report['status'])) ?></p>
                             <p class="field-note" style="margin: 0;"><?= e($report['category_name']) ?> · Lost <?= e($report['date_event']) ?></p>
-                            <p style="margin: 0; white-space: pre-line; color: var(--palette-muted);"><?= e($report['description']) ?></p>
                             <p class="field-note" style="margin: 0;"><strong style="color: var(--palette-text);">Last seen at:</strong> <?= e($report['location']) ?></p>
-                            <?php if ($report['image_path'] !== null): ?>
-                                <img style="display:block; width:100%; max-height: 14rem; object-fit: contain; border-radius: 1rem; background: #eef4ff; border: 1px solid var(--palette-border);" src="../<?= e($report['image_path']) ?>" alt="<?= e(item_image_alt($report['image_alt'], 'Lost item: ' . $report['title'])) ?>">
-                            <?php endif; ?>
+                            </div>
+                            <p class="browse-card-copy relink-item-description"><span class="relink-description-label">Description</span><span class="relink-description-text"><?= e($report['description']) ?></span></p>
+                            <div class="staff-card-controls">
+
                             <p class="field-note">Submitted <?= e($report['created_at']) ?></p>
                             <form method="post" action="manage-lost.php" class="action-row">
                                 <?= csrf_field() ?>
@@ -128,6 +136,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     <button class="secondary-button" type="submit" name="decision" value="rejected">Reject and hide</button>
                                 <?php endif; ?>
                             </form>
+                            </div>
                         </article>
                     </li>
                 <?php endforeach; ?>

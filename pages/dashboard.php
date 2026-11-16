@@ -13,7 +13,9 @@ if ($user['role'] === 'student') {
             (SELECT COUNT(*) FROM items WHERE reported_by = :reported_by AND type = 'lost') AS lost_reports,
             (SELECT COUNT(*) FROM items WHERE reported_by = :found_reporter_id AND type = 'found') AS found_reports,
             (SELECT COUNT(*) FROM claims WHERE claimant_id = :claimant_id) AS claims_count,
-            (SELECT COUNT(*) FROM claims WHERE claimant_id = :approved_claimant_id AND status = 'approved') AS returned_items"
+            (SELECT COUNT(*) FROM claims WHERE claimant_id = :approved_claimant_id AND status = 'approved') AS returned_items,
+            (SELECT COUNT(*) FROM items WHERE type = 'found' AND review_status = 'approved') AS visible_found,
+            (SELECT COUNT(*) FROM items WHERE type = 'lost' AND review_status = 'approved') AS visible_lost"
     );
     $countsStatement->execute([
         'reported_by' => $user['id'],
@@ -47,32 +49,12 @@ require_once __DIR__ . '/../includes/header.php';
                 <p>Report, find, and reclaim your lost and found items in the classroom.</p>
             </div>
             <div class="stack">
-                <p>Here is a summary of your lost reports, found reports, and claims.</p>
+                <p>Campus listings and your personal activity, at a glance.</p>
                 <dl class="stat-grid">
-                    <div class="stat-card">
-                        <span class="student-stat-icon" aria-hidden="true">⌕</span>
-                        <dt>My Lost Reports</dt>
-                        <dd><?= e($counts['lost_reports']) ?></dd>
-                        <a href="my-claims.php#reports">View reports</a>
-                    </div>
-                    <div class="stat-card">
-                        <span class="student-stat-icon" aria-hidden="true">◇</span>
-                        <dt>My Found Reports</dt>
-                        <dd><?= e($counts['found_reports']) ?></dd>
-                        <a href="my-claims.php#reports">View review status</a>
-                    </div>
-                    <div class="stat-card">
-                        <span class="student-stat-icon" aria-hidden="true">✓</span>
-                        <dt>My claims</dt>
-                        <dd><?= e($counts['claims_count']) ?></dd>
-                        <a href="my-claims.php#claims">View claims</a>
-                    </div>
-                    <div class="stat-card">
-                        <span class="student-stat-icon" aria-hidden="true">♧</span>
-                        <dt>Items returned to me</dt>
-                        <dd><?= e($counts['returned_items']) ?></dd>
-                        <a href="my-claims.php#claims">View approved claims</a>
-                    </div>
+                    <div class="stat-card"><span class="student-stat-icon" aria-hidden="true">&#9633;</span><dt>Found Items</dt><dd><?= e($counts['visible_found']) ?></dd><a href="found-items.php">Approved campus items</a></div>
+                    <div class="stat-card"><span class="student-stat-icon" aria-hidden="true">&#9671;</span><dt>Lost Items</dt><dd><?= e($counts['visible_lost']) ?></dd><a href="lost-items.php">Approved campus reports</a></div>
+                    <div class="stat-card"><span class="student-stat-icon" aria-hidden="true">&#10003;</span><dt>Claims Verified</dt><dd><?= e($counts['returned_items']) ?></dd><a href="my-claims.php#claims">My approved claims</a></div>
+                    <div class="stat-card"><span class="student-stat-icon" aria-hidden="true">&#9776;</span><dt>My Reports</dt><dd><?= e((int) $counts['lost_reports'] + (int) $counts['found_reports']) ?></dd><a href="my-claims.php#reports">My lost and found reports</a></div>
                 </dl>
 
                 <section class="student-dashboard-modules" aria-labelledby="student-modules-title">
@@ -88,7 +70,7 @@ require_once __DIR__ . '/../includes/header.php';
                             <span><strong>Lost Items</strong><small>Report an item you lost.</small></span>
                             <span class="student-module-arrow" aria-hidden="true">›</span>
                         </a>
-                        <a href="my-claims.php#activity">
+                        <a href="my-claims.php#reports">
                             <span class="student-module-icon" aria-hidden="true">✓</span>
                             <span><strong>My Reports</strong><small>Track your reports and claims.</small></span>
                             <span class="student-module-arrow" aria-hidden="true">›</span>

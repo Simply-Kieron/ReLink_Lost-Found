@@ -152,15 +152,26 @@ See [docs/test-plan.md](docs/test-plan.md) for the recorded manual security and 
 
 ## Main local working copy
 
-The main local project is `C:\wamp64\www\relink`, connected to
+The main project is `C:\wamp64\www\relink`, connected to
 `https://github.com/Simply-Kieron/ReLink_Lost-Found.git`.
-Make changes and run Git commands from that folder.
+This copy contains the interface previously served from
+`C:\wamp64\www\relink_TEST\_extracted\LostFound` on port 8085.
+Make changes and run Git commands from the main project folder.
 
-Open `http://localhost/relink/` or `http://localhost/relink/pages/login.php`.
-On this machine, Apache runs from `C:\wamp`. A directory junction at
-`C:\wamp\www\relink` serves the main `C:\wamp64\www\relink` folder. Keep the original `LostFound` folder as a
-backup; it is no longer the main working copy.
+1. Start WAMP so the local database server is running.
+2. Double-click `Start-ReLink.cmd` in the main project folder.
+3. Open `http://localhost:8085/pages/login.php`.
+4. Use `Stop-ReLink.cmd` to stop this local web server.
 
-The local database configuration and uploaded files are copied for local use
-and stay excluded from Git. The existing database is shared with the original
-copy; this move does not create or import a database.
+The launcher starts a separate localhost-only Apache instance on port 8085.
+Starting WAMP alone does not start this instance. The supplied Apache template
+uses this machine's WAMP/PHP installation paths; adjust them for another machine.
+Runtime logs and sessions are stored in the ignored `.relink-runtime` directory.
+
+The local database configuration and uploads were copied from the confirmed
+8085 version. It uses the existing `relink_test` database on port 3308; no
+new database is created or imported. Local credentials and uploads stay out
+of Git. The original and test folders remain as backups.
+
+The existing `C:\wamp\www\relink` directory junction also serves this same
+main folder at `http://localhost/relink/` through WAMP's standard web server.

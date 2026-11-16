@@ -127,6 +127,7 @@ $pageTitle = 'Upload Found Item';
 $pageDesign = 'report-found';
 require_once __DIR__ . '/../includes/header.php';
 ?>
+<a class="relink-report-back" href="found-items.php" aria-label="Back to found items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5-7 7 7 7M5 12h14"/></svg><span>Back</span></a>
 <section class="page-shell report-found-page">
     <div class="report-found-hero">
         <span class="report-hero-icon" aria-hidden="true">♡</span>

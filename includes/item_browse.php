@@ -139,58 +139,24 @@ $statusClasses = [
 $pageDesign = 'zeta';
 require __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell<?= $browseType === 'found' ? ' feed-page' : '' ?>">
-    <?php if ($browseType === 'found'): ?>
-        <?php
-        ?>
-        <div class="feed-content">
-            <form class="feed-search" method="get" action="<?= e($basePath) ?>" role="search">
-                <label class="sr-only" for="keyword">Search found items</label>
-                <span aria-hidden="true">⌕</span>
-                <input id="keyword" name="keyword" type="search" maxlength="100" value="<?= e($filter['keyword']) ?>" placeholder="Search items, colors, location...">
-                <button type="submit">Search</button>
-            </form>
-            <details class="feed-more-filters">
-                <summary>More filters</summary>
-                <form method="get" action="<?= e($basePath) ?>">
-                    <div class="field"><label for="feed-status">Status</label><select id="feed-status" name="status"><option value="">All statuses</option><?php foreach (['open' => 'Open', 'claimed' => 'Claimed', 'returned' => 'Returned'] as $statusValue => $statusLabel): ?><option value="<?= e($statusValue) ?>" <?= $filter['status'] === $statusValue ? 'selected' : '' ?>><?= e($statusLabel) ?></option><?php endforeach; ?></select></div>
-                    <input type="hidden" name="keyword" value="<?= e($filter['keyword']) ?>">
-                    <div class="field"><label for="feed-date-from">From</label><input id="feed-date-from" name="date_from" type="date" value="<?= e($filter['date_from']) ?>"></div>
-                    <div class="field"><label for="feed-date-to">To</label><input id="feed-date-to" name="date_to" type="date" value="<?= e($filter['date_to']) ?>"></div>
-                    <button class="primary-button" type="submit">Apply filters</button>
-                </form>
-            </details>
-            <div class="feed-recent-banner"><span class="recent-icon" aria-hidden="true">⌕</span><p><strong>Recently found on campus</strong><span><?= e($totalItems) ?> item<?= $totalItems === 1 ? '' : 's' ?> in the activity feed</span></p><span class="recent-dot" aria-hidden="true"></span></div>
-            <div class="feed-section-heading">
-                <div class="feed-heading-copy"><h1 id="browse-title">Found Items</h1><p>Staff-approved found items · Latest first</p></div>
-                <div class="feed-heading-actions">
-                    <a class="secondary-button" href="upload-found.php">Report a found item</a>
-                    <span class="feed-sort-label">Newest first</span>
-                </div>
-            </div>
-            <?php if ($errors !== []): ?><div class="error-box" role="status"><ul><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
-        </div>
-    <?php else: ?>
-        <div class="surface-card" style="padding: 1.6rem;">
-            <div class="stack">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div><p class="eyebrow">Lost items</p><h1 id="browse-title"><?= e($heading) ?></h1><p>Browse lost item reports shared by students.</p></div>
-                    <a class="primary-button" href="report-lost.php">Report a lost item</a>
-                </div>
-                <?php if ($errors !== []): ?><div class="error-box" role="status"><ul><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
-                <form class="form-panel" method="get" action="<?= e($basePath) ?>" style="margin: 0;">
-                    <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                        <div class="field"><label for="keyword">Search</label><input id="keyword" name="keyword" type="search" maxlength="100" value="<?= e($filter['keyword']) ?>" placeholder="Title, description, or location"></div>
-                        <div class="field"><label for="category_id">Category</label><select id="category_id" name="category_id"><option value="">All categories</option><?php foreach ($categories as $category): ?><option value="<?= e($category['id']) ?>" <?= $filter['category_id'] === (string) $category['id'] ? 'selected' : '' ?>><?= e($category['name']) ?></option><?php endforeach; ?></select></div>
-                        <div class="field"><label for="status">Status</label><select id="status" name="status"><option value="">All statuses</option><?php foreach (['open' => 'Open', 'claimed' => 'Claimed', 'returned' => 'Returned'] as $statusValue => $statusLabel): ?><option value="<?= e($statusValue) ?>" <?= $filter['status'] === $statusValue ? 'selected' : '' ?>><?= e($statusLabel) ?></option><?php endforeach; ?></select></div>
-                        <div class="field"><label for="date_from">From date</label><input id="date_from" name="date_from" type="date" value="<?= e($filter['date_from']) ?>"></div>
-                        <div class="field"><label for="date_to">To date</label><input id="date_to" name="date_to" type="date" value="<?= e($filter['date_to']) ?>"></div>
-                    </div>
-                    <div class="flex flex-wrap items-end gap-3"><button class="primary-button" type="submit">Apply filters</button><a class="secondary-button" href="<?= e($basePath) ?>">Clear</a></div>
-                </form>
-                <p class="field-note" style="margin: 0; font-size: 0.8rem;"><?= e($totalItems) ?> item<?= $totalItems === 1 ? '' : 's' ?> found.</p>
-            </div>
-    <?php endif; ?>
+<section class="page-shell feed-page">
+    <div class="relink-page-banner relink-browse-banner"><span class="relink-banner-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $navigationItems[$browseType][2] ?></svg></span><div><h1 id="browse-title"><?= e(ucwords($heading)) ?></h1><p><?= $browseType === 'found' ? 'Browse and claim items turned in on campus.' : 'Browse lost reports and help items find their owners.' ?></p></div></div>
+    <div class="feed-content"><div class="relink-list-tools">
+        <form class="feed-search" method="get" action="<?= e($basePath) ?>" role="search">
+            <label class="sr-only" for="keyword">Search <?= e($heading) ?></label><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></span>
+            <input id="keyword" name="keyword" type="search" maxlength="100" value="<?= e($filter['keyword']) ?>" placeholder="Search items or locations…">
+            <?php foreach ($filter as $name => $value): if ($name === 'keyword' || $value === '') continue; ?><input type="hidden" name="<?= e($name) ?>" value="<?= e($value) ?>"><?php endforeach; ?>
+            <button type="submit">Search</button>
+        </form>
+        <details class="feed-more-filters" <?= $errors !== [] ? 'open' : '' ?>><summary aria-label="Filter items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v7l-4 2v-9Z"/></svg><span class="relink-filter-label">Filter items</span></summary><form method="get" action="<?= e($basePath) ?>">
+            <input type="hidden" name="keyword" value="<?= e($filter['keyword']) ?>"><input type="hidden" name="category_id" value="<?= e($filter['category_id']) ?>">
+            <div class="field"><label for="feed-status">Status</label><select id="feed-status" name="status"><option value="">All statuses</option><?php foreach (['open' => $browseType === 'lost' ? 'Reported (open)' : 'Available (open)', 'claimed' => 'Claimed', 'returned' => 'Returned'] as $value => $label): ?><option value="<?= e($value) ?>" <?= $filter['status'] === $value ? 'selected' : '' ?>><?= e($label) ?></option><?php endforeach; ?></select></div>
+            <div class="field"><label for="feed-from">From date</label><input id="feed-from" name="date_from" type="date" value="<?= e($filter['date_from']) ?>"></div><div class="field"><label for="feed-to">To date</label><input id="feed-to" name="date_to" type="date" value="<?= e($filter['date_to']) ?>"></div>
+            <button class="primary-button" type="submit">Apply filters</button><a class="secondary-button" href="<?= e($basePath) ?>">Clear filters</a>
+        </form></details></div>
+        <div class="feed-section-heading"><div class="feed-heading-copy"><h2><?= e(ucwords($heading)) ?> (<?= e($totalItems) ?>)</h2><p>Staff-approved reports · Latest first</p></div><div class="feed-heading-actions"><a class="secondary-button" href="<?= $browseType === 'found' ? 'upload-found.php' : 'report-lost.php' ?>">Report <?= $browseType === 'found' ? 'found' : 'lost' ?> item</a></div></div>
+        <?php if ($errors !== []): ?><div class="error-box" role="alert"><ul><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
+    </div>
             <?php
             $categoryParameters = array_filter($filter, static function (string $value): bool {
                 return $value !== '';
@@ -207,7 +173,7 @@ require __DIR__ . '/../includes/header.php';
             <?php if ($items === []): ?>
                 <p class="empty-state">No items match your filters. Try changing or clearing your search.</p>
             <?php else: ?>
-                <ul class="claim-list browse-grid<?= $browseType === 'found' ? ' feed-item-list' : '' ?>">
+                <ul class="claim-list browse-grid feed-item-list">
                     <?php foreach ($items as $item): ?>
                         <?php
                         $normalizedCategory = strtolower(trim($item['category_name']));
@@ -215,18 +181,22 @@ require __DIR__ . '/../includes/header.php';
                             || in_array($normalizedCategory, ['id', 'ids', 'phone', 'phones', 'wallet', 'wallets'], true);
                         ?>
                         <li>
-                            <article class="claim-card browse-card<?= $browseType === 'found' ? ' feed-card' : '' ?>">
+                            <article class="claim-card browse-card feed-card"><div class="relink-item-media">
                                 <?php if ($browseType === 'found' && $sensitiveCategory): ?>
                                     <div class="media-placeholder" style="min-height: 12.5rem;">Image not displayed for privacy</div>
                                 <?php elseif ($item['image_path'] !== null): ?>
-                                    <img class="browse-card-image" src="../<?= e($item['image_path']) ?>" alt="<?= e(item_image_alt($item['image_alt'], ucfirst($browseType) . ' item: ' . $item['title'])) ?>">
+                                    <img class="relink-item-image" src="../<?= e($item['image_path']) ?>" alt="<?= e(item_image_alt($item['image_alt'], ucfirst($browseType) . ' item: ' . $item['title'])) ?>">
                                 <?php else: ?>
                                     <div class="media-placeholder" style="min-height: 12.5rem;">No image provided</div>
                                 <?php endif; ?>
+                                </div>
+                                <div class="relink-item-copy">
                                 <div class="claim-card-head"><h2 style="margin: 0;"><?= e($item['title']) ?></h2><span class="status-pill <?= e($statusClasses[$item['status']] ?? 'status-open') ?>"><?= e($browseType === 'found' && $item['status'] === 'claimed' ? 'Claimed' : ucfirst($item['status'])) ?></span></div>
                                 <p class="field-note" style="margin: 0;"><?= e($item['category_name']) ?> · <?= $browseType === 'lost' ? 'Lost' : 'Found' ?> <?= e($item['date_event']) ?></p>
-                                <p class="browse-card-copy"><?= e($item['description']) ?></p>
+
                                 <p class="field-note browse-card-location"><strong><?= $browseType === 'lost' ? 'Last seen at:' : 'Found at:' ?></strong> <?= e($item['location']) ?></p>
+                                </div>
+                                <p class="browse-card-copy relink-item-description"><span class="relink-description-label">Description</span><span class="relink-description-text"><?= e($item['description']) ?></span></p>
                                 <?php if ($browseType === 'found'): ?>
                                     <div class="feed-card-actions">
                                     <?php if ($browseUser !== null && $browseUser['role'] === 'student' && (int) $item['reported_by'] === $browseUser['id']): ?>
@@ -269,14 +239,23 @@ require __DIR__ . '/../includes/header.php';
                                             <span>View item details</span>
                                         </a>
                                     </div>
-                                <?php elseif ($item['status'] === 'open'): ?>
-                                    <div class="browse-card-actions">
+                                <?php else: ?>
+                                    <div class="feed-card-actions">
+                                    <?php if ($item['status'] === 'open'): ?>
                                         <a class="primary-button browse-card-action" href="report-found-lost.php?id=<?= e($item['id']) ?>">
                                             <svg class="feed-action-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                 <path d="m12 3 8 4v10l-8 4-8-4V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                                                 <path d="m4.5 7.3 7.5 4 7.5-4M12 11.3V21M9 15l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                             <span>I found this item</span>
+                                        </a>
+                                    <?php endif; ?>
+                                        <a class="feed-card-link browse-card-action" href="lost-item-detail.php?id=<?= e($item['id']) ?>">
+                                            <svg class="feed-action-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path d="M2.8 12s3.2-5 9.2-5 9.2 5 9.2 5-3.2 5-9.2 5-9.2-5-9.2-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                                                <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.7"/>
+                                            </svg>
+                                            <span>View item details</span>
                                         </a>
                                     </div>
                                 <?php endif; ?>
@@ -293,6 +272,5 @@ require __DIR__ . '/../includes/header.php';
                     </nav>
                 <?php endif; ?>
             <?php endif; ?>
-    <?php if ($browseType !== 'found'): ?></div><?php endif; ?>
 </section>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

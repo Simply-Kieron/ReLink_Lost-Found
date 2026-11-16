@@ -263,10 +263,11 @@ require_once __DIR__ . '/../includes/header.php';
                     <?php foreach ($messages as $message): ?>
                         <?php
                         $messageIsStaff = $message['sender_role'] === 'staff';
+                        $messageIsOwn = (int) $message['sender_id'] === (int) $staff['id'];
                         $messageTimestamp = strtotime($message['created_at']);
                         ?>
-                        <li class="support-chat-center-message<?= $messageIsStaff ? ' is-customer' : ' is-agent' ?>">
-                            <span class="support-chat-center-who"><?= $messageIsStaff ? 'You' : e($message['sender_name']) ?></span>
+                        <li class="support-chat-center-message<?= $messageIsStaff ? ' is-agent' : ' is-customer' ?>" data-message-role="<?= $messageIsStaff ? 'staff' : 'user' ?>" data-message-own="<?= $messageIsOwn ? 'true' : 'false' ?>">
+                            <span class="support-chat-center-who"><?= $messageIsOwn ? 'You (Staff)' : e($message['sender_name']) ?></span>
                             <article>
                                 <p><?= e($message['message']) ?></p>
                             </article>

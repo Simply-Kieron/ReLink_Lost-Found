@@ -113,8 +113,8 @@ $items = $statement->fetchAll();
 $pageTitle = 'Manage Found Items';
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell">
-    <div class="surface-card" style="padding: 1.6rem;">
+<section class="page-shell staff-item-management">
+    <div class="surface-card staff-management-surface">
         <div class="section-header" style="margin-bottom: 1rem;">
             <div>
                 <p class="eyebrow">Staff tools</p>
@@ -130,10 +130,18 @@ require_once __DIR__ . '/../includes/header.php';
         <?php if ($items === []): ?>
             <p class="empty-state">There are no found item listings yet.</p>
         <?php else: ?>
-            <ul class="claim-list" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <ul class="claim-list browse-grid feed-item-list staff-management-list">
                 <?php foreach ($items as $item): ?>
                     <li>
-                        <article class="claim-card" style="height: 100%;">
+                        <article class="claim-card browse-card feed-card" style="height: 100%;">
+                            <div class="relink-item-media">
+                            <?php if ($item['image_path'] !== null): ?>
+                                <img class="relink-item-image" src="../<?= e($item['image_path']) ?>" alt="<?= e(item_image_alt($item['image_alt'], 'Found item: ' . $item['title'])) ?>">
+                            <?php else: ?>
+                                <div class="media-placeholder">No image provided</div>
+                            <?php endif; ?>
+                            </div>
+                            <div class="relink-item-copy">
                             <div class="claim-card-head">
                                 <h2 style="margin: 0;"><?= e($item['title']) ?></h2>
                                 <span class="status-pill <?= e(['pending' => 'status-pending', 'approved' => 'status-approved', 'rejected' => 'status-rejected'][$item['review_status']] ?? 'status-open') ?>"><?= e(ucfirst($item['review_status'])) ?> review</span>
@@ -142,11 +150,11 @@ require_once __DIR__ . '/../includes/header.php';
                             <p class="field-note" style="margin: 0;">
                                 <?= e($item['category_name']) ?> · Found <?= e($item['date_event']) ?>
                             </p>
-                            <p style="margin: 0; white-space: pre-line; color: var(--palette-muted);"><?= e($item['description']) ?></p>
                             <p class="field-note" style="margin: 0;"><strong style="color: var(--palette-text);">Location:</strong> <?= e($item['location']) ?></p>
-                            <?php if ($item['image_path'] !== null): ?>
-                                <img style="display:block; width:100%; max-height: 14rem; object-fit: contain; border-radius: 1rem; background: #eef4ff; border: 1px solid var(--palette-border);" src="../<?= e($item['image_path']) ?>" alt="<?= e(item_image_alt($item['image_alt'], 'Found item: ' . $item['title'])) ?>">
-                            <?php endif; ?>
+                            </div>
+                            <p class="browse-card-copy relink-item-description"><span class="relink-description-label">Description</span><span class="relink-description-text"><?= e($item['description']) ?></span></p>
+                            <div class="staff-card-controls">
+
                             <details class="proof-box" style="margin-top: 0;">
                                 <summary style="cursor:pointer; font-weight:700;">Private verification details</summary>
                                 <p style="margin: 0.75rem 0 0; white-space: pre-line; color: var(--palette-muted);"><?= e($item['verification_detail']) ?></p>
@@ -187,6 +195,7 @@ require_once __DIR__ . '/../includes/header.php';
                                     data-confirm-message="This will permanently delete “<?= e($item['title']) ?>”. Any claims linked to the item will also be deleted."
                                     data-confirm-button="Delete item"
                                     data-confirm-tone="danger">Delete</a>
+                            </div>
                             </div>
                         </article>
                     </li>

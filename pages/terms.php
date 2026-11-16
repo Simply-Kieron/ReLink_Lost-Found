@@ -1,11 +1,14 @@
 <?php
 
-$pageTitle = 'Terms';
+$pageTitle = 'Terms of Service';
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<article class="mx-auto max-w-3xl rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-    <h1 class="text-3xl font-bold tracking-tight">Terms of Use</h1>
+<article class="relink-policy" aria-labelledby="policy-title">
+    <div class="relink-policy-heading"><p class="relink-policy-brand">ReLink · Classroom Lost &amp; Found</p>
+    <h1 id="policy-title">Terms of Service</h1>
     <p class="mt-3 text-slate-700">These plain-language terms describe how to use the Classroom Lost &amp; Found application. The school should review them and complete the contact details in the <a class="font-medium text-blue-800 underline underline-offset-2 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-700" href="privacy-policy.php">Privacy Policy</a> before using the application with real users.</p>
+    </div>
+    <nav class="relink-policy-toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#use-app-title">Using the application</a></li><li><a href="#visibility-title">Information visible in listings</a></li><li><a href="#claims-title">Claims and item return</a></li><li><a href="#questions-title">Questions</a></li></ul></nav>
     <section class="mt-8" aria-labelledby="use-app-title">
         <h2 id="use-app-title" class="text-xl font-bold">Using the application</h2>
         <p class="mt-3 text-slate-700">Students can create lost-item reports, browse listings, and submit claims. Staff accounts can add and manage found-item listings and review claims. Use the account and role assigned to you.</p>

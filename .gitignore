@@ -25,3 +25,9 @@
 Thumbs.db
 # Local project archive
 /LostFound.zip
+
+# Local Apache runtime and configuration backups
+/.relink-runtime/
+*.bak_*
+/_config_backup_*/
+/_phase5_backup_*/

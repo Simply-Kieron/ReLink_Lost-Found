@@ -144,6 +144,7 @@ require_once __DIR__ . '/../includes/header.php';
             <button class="zeta-submit-button" type="submit">Sign In</button>
         </form>
 
+        <details class="relink-recovery"><summary>Forgot password?</summary><p>Contact a ReLink staff member to request an account password reset. You will be required to change the temporary password in Profile after signing in.</p></details>
         <p class="zeta-auth-switch">
             Need an account?
             <a href="register.php">Register as a student</a>

@@ -1,0 +1,366 @@
+/* Approved Phase 5 identity. Loaded after the legacy stylesheet intentionally. */
+body.website-shell.design-reference.design-zeta.relink-phase5 {
+    --relink-navy: #191333;
+    --relink-purple: #7024bd;
+    --relink-gradient: linear-gradient(135deg, #ac46ed, #651aba);
+    --relink-ink: #21183f;
+    --relink-muted: #635a79;
+    --relink-line: #e0d6ef;
+    --relink-nav-height: 76px;
+    background: radial-gradient(ellipse at top right, #513079 0, transparent 55%), #191333;
+    color: #f4eeff;
+    min-height: 100dvh;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 *, body.website-shell.design-reference.design-zeta.relink-phase5 *::before, body.website-shell.design-reference.design-zeta.relink-phase5 *::after { box-sizing: border-box; }
+body.website-shell.design-reference.design-zeta.relink-phase5 [hidden] { display: none !important; }
+body.website-shell.design-reference.design-zeta.relink-phase5 :is(a, button, input, textarea, select):focus-visible { outline: 3px solid #00a9c2; outline-offset: 3px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 :is(input, textarea, select) { font: inherit; min-width: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 :is(button, a) { -webkit-tap-highlight-color: transparent; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > header { position: relative; z-index: 90; background: #20163f; border-bottom: 1px solid #ffffff1f; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > header > div { width: min(100%, 1440px); max-width: 1440px; padding: 18px 32px; align-items: center; justify-content: space-between; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .brand-copy { display: grid; gap: 2px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .brand-name { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .brand-tagline { color: #ded0f4; font-size: 10px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation ul { gap: 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation a { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 14px; border-radius: 12px; color: #e4d9f4; text-decoration: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation svg { width: 19px; height: 19px; flex-shrink: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation a[aria-current="page"] { background: var(--relink-gradient); color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .design-account-menu > summary { color: white; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > main { width: 100%; max-width: 1440px; min-width: 0; padding: 32px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > main > .page-shell { width: 100%; max-width: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .design-bottom-nav { display: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > footer { background: #17102c; color: #ded0ef; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > footer > div { width: 100%; max-width: 1440px; color: #ded0ef; }
+body.website-shell.design-reference.design-zeta.relink-phase5 > footer a { color: #e5cbff; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner { display: flex; align-items: center; gap: 16px; padding: 26px; border-radius: 22px; background: linear-gradient(115deg, #5921a0, #8d37d4); color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner :is(h1, p) { color: white; margin: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner h1 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.2; margin-bottom: 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner p { line-height: 1.5; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-banner-icon { display: grid; place-items: center; flex: 0 0 54px; height: 54px; border-radius: 16px; background: #ffffff24; border: 1px solid #ffffff3d; font-size: 30px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 5px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 :is(.primary-button, .zeta-submit-button, .support-chat-primary) { min-height: 44px; border: 0; border-radius: 12px; background: var(--relink-gradient); color: white; box-shadow: 0 4px 12px #6224a324; font-weight: 700; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .secondary-button { background: white; color: #5b248f; min-height: 44px; border: 1px solid var(--relink-line); border-radius: 12px; }
+/* Dashboard uses real counts and the existing staff dashboard remains intact. */
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard { background: #fbf9ff; color: var(--relink-ink); border-radius: 24px; padding: 0; overflow: hidden; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard-hero { padding: 28px; background: linear-gradient(120deg, #6725b0, #a243df); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard-hero :is(h1, p) { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard > .stack { padding: 24px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card { min-width: 0; padding: 20px; border: 1px solid #e4d6fa; border-radius: 16px; background: linear-gradient(145deg, #fbf9ff, #ece1fd); color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card :is(dt, dd) { color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card a { color: #61249c; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-stat-icon { color: #812ad0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list > a { display: flex; gap: 12px; align-items: center; padding: 18px; min-width: 0; background: #fff; border: 1px solid var(--relink-line); border-radius: 14px; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list > a span { min-width: 0; }
+/* Identical structure for Found and Lost, including preserved GET filters. */
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-browse-banner { margin-bottom: 18px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-page { background: #fbf9ff; border-radius: 24px; color: var(--relink-ink); padding: 22px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-content { width: 100%; max-width: none; padding: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-search { width: 100%; max-width: none; min-height: 48px; margin: 0; border: 1px solid var(--relink-line); border-radius: 12px; background: white; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-search input { color: var(--relink-ink); background: transparent; min-width: 0; min-height: 44px; font-size: 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-search button { background: var(--relink-gradient); color: white; min-height: 44px; padding: 8px 15px; border-radius: 10px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters { display: block; margin: 10px 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters summary { min-height: 44px; cursor: pointer; color: #64249f; display: flex; align-items: center; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 16px; border: 1px solid var(--relink-line); border-radius: 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters input, body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters select { width: 100%; min-height: 44px; background: white; color: var(--relink-ink); border: 1px solid var(--relink-line); border-radius: 8px; padding: 8px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-category-list { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0 16px; margin: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-category-list a { flex: 0 0 auto; min-height: 44px; display: flex; align-items: center; padding: 8px 16px; border: 1px solid var(--relink-line); border-radius: 12px; background: white; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-category-list a.is-selected { background: var(--relink-gradient); border-color: transparent; color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-section-heading { padding: 10px 0 16px; margin: 0; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-heading-copy :is(h1, h2) { color: var(--relink-ink); font-size: 20px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-heading-copy p, body.website-shell.design-reference.design-zeta.relink-phase5 .feed-sort-label { color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-item-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 16px; min-width: 0; border: 1px solid var(--relink-line); border-radius: 16px; background: white; color: var(--relink-ink); box-shadow: 0 3px 8px #30184f09; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > :is(.browse-card-image, .media-placeholder) { width: 100%; height: 180px; min-height: 180px; max-height: 180px; object-fit: contain; grid-area: auto; border-radius: 12px; background: #f0edf4; color: var(--relink-muted); text-align: center; font-size: 12px; padding: 4px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card .claim-card-head { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card h2 { color: var(--relink-ink); font-size: 17px; overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card :is(.field-note, .browse-card-copy) { color: var(--relink-muted); overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card .browse-card-copy { display: block; font-size: 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card :is(.feed-card-actions, .browse-card-actions) { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card .browse-card-action { min-height: 44px; font-size: 13px; color: #62229e; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card .primary-button { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .feed-action-icon { width: 18px; height: 18px; }
+/* Support page and embedded dialog render the same view and POST workflow. */
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support { max-width: 1300px; margin: auto; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-banner { border-radius: 20px 20px 0 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-tabs { display: none; padding: 8px; background: #eee6fc; gap: 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-tabs button { flex: 1; min-height: 44px; border: 0; border-radius: 11px; background: transparent; color: #3f285f; font: inherit; font-weight: 700; cursor: pointer; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-tabs button[aria-selected="true"] { background: var(--relink-gradient); color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-layout { display: grid; grid-template-columns: minmax(250px, .75fr) minmax(0, 1.6fr); border: 1px solid var(--relink-line); border-top: 0; background: #fbf9ff; border-radius: 0 0 20px 20px; overflow: hidden; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-panel { min-width: 0; padding: 20px; border-right: 1px solid var(--relink-line); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-panel-heading { display: flex; gap: 10px; justify-content: space-between; align-items: center; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-panel-heading h2 { font-size: 18px; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-panel-heading a { color: #64249f; padding: 10px 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-search { width: 100%; min-height: 44px; border: 1px solid var(--relink-line); border-radius: 10px; padding: 10px; background: white; color: var(--relink-ink); margin: 12px 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-filters { display: flex; gap: 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-filters button { min-height: 44px; flex: 1; padding: 8px; border: 1px solid var(--relink-line); border-radius: 10px; color: #5e298b; background: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-filters button[aria-pressed="true"] { background: #ebe0fc; border-color: #b38ad5; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-list { list-style: none; padding: 0; margin: 14px 0 0; max-height: 540px; overflow-y: auto; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-list a { display: grid; gap: 6px; padding: 14px; border: 1px solid var(--relink-line); border-radius: 12px; margin-bottom: 8px; color: var(--relink-ink); text-decoration: none; background: white; overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-list a[aria-current="page"] { border-color: #9255cb; background: #f0e8fc; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-list p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 0; color: var(--relink-muted); font-size: 13px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-ref { font-size: 12px; color: #6b4089; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-meta { display: flex; gap: 10px; align-items: center; justify-content: space-between; font-size: 11px; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-status { display: inline-flex; padding: 4px 10px; border-radius: 20px; background: #e8ddf8; color: #59238a; font-size: 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-panel { display: flex; flex-direction: column; min-width: 0; min-height: 540px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-agent-heading { display: flex; align-items: center; gap: 12px; padding: 18px 20px; background: white; border-bottom: 1px solid var(--relink-line); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-agent-heading .brand-mark { display: grid; place-items: center; flex: 0 0 40px; height: 40px; border-radius: 12px; background: var(--relink-gradient); color: white; font-size: 25px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-agent-heading p { margin: 2px 0 0; font-size: 12px; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-agent-heading > .relink-status { margin-left: auto; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-subject { padding: 14px 20px 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-subject h2 { font-size: 17px; margin: 0; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-subject span { font-size: 11px; color: var(--relink-muted); overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-messages { display: flex; flex-direction: column; gap: 14px; flex: 1; list-style: none; padding: 20px; margin: 0; min-height: 180px; height: 360px; max-height: 55dvh; overflow-y: auto; overscroll-behavior: contain; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message-date { text-align: center; font-size: 11px; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message { max-width: 85%; width: fit-content; display: grid; gap: 4px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message.is-user { align-self: flex-end; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message > span { font-size: 11px; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message p { padding: 12px 16px; margin: 0; border-radius: 16px 16px 16px 4px; background: #eae1fa; color: #2b1d43; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.55; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message.is-user p { background: var(--relink-gradient); color: white; border-radius: 16px 16px 4px 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message time { color: var(--relink-muted); font-size: 11px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-message.is-user :is(span, time) { text-align: right; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer { margin-top: auto; padding: 14px 20px; border-top: 1px solid var(--relink-line); background: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer > div { display: flex; align-items: flex-end; gap: 8px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer textarea, body.website-shell.design-reference.design-zeta.relink-phase5 .relink-new-chat :is(input, textarea) { min-height: 44px; width: 100%; padding: 12px; border: 1px solid var(--relink-line); border-radius: 12px; background: #fcfaff; color: var(--relink-ink); font-size: 16px; resize: vertical; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer textarea { max-height: 150px; flex: 1; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer button { flex-shrink: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-send-status { font-size: 11px; margin: 8px 0 0; border: 0; background: transparent; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 button:disabled { opacity: .65; cursor: wait; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-empty { text-align: center; padding: 28px 24px 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-empty > span { font-size: 34px; color: #8a39c8; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-empty h2 { font-size: 22px; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-empty p { max-width: 420px; margin: 8px auto; font-size: 14px; color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-new-chat { display: grid; gap: 10px; padding: 16px 24px 24px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-new-chat label { font-size: 13px; font-weight: 600; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-closed-note { padding: 20px; margin-top: auto; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help { padding: 20px 0 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help h2 { font-size: 18px; color: #f6ecff; margin: 0 0 10px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help a { display: grid; place-items: center; min-height: 64px; padding: 12px 6px; border: 1px solid #d4b8f0; border-radius: 14px; background: #f6f0ff; color: #58218b; text-align: center; font-size: 13px; font-weight: 650; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-faq { padding: 14px 18px; border-radius: 14px; background: #f9f5ff; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-faq summary { min-height: 28px; cursor: pointer; font-weight: 650; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-faq dt { font-weight: 700; margin: 16px 0 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-faq dd { margin: 0; color: var(--relink-muted); font-size: 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-empty-note { padding: 20px 0; color: var(--relink-muted); font-size: 14px; }
+/* A genuine modal, with one full-screen embedded support view on phones. */
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-panel { position: fixed; inset: 0; width: min(960px, calc(100vw - 64px)); height: min(820px, calc(100dvh - 64px)); max-width: none; max-height: none; margin: auto; padding: 0; border: 1px solid #ab78d3; border-radius: 22px; background: #21163d; overflow: hidden; box-shadow: 0 25px 90px #0008; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-panel:not([open]) { display: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-panel::backdrop { background: #100b29b8; backdrop-filter: blur(5px); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-panel iframe { width: 100%; height: 100%; display: block; border: 0; background: #21163d; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget { z-index: 95; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-launcher { min-width: 48px; min-height: 48px; background: var(--relink-gradient); color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5.relink-support-document { background: #21163d; padding: 0; }
+.relink-phase5.relink-support-document > main { padding: 0 !important; min-height: 100dvh; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded { padding: 0 12px 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-support-banner { margin: 0 -12px; border-radius: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-icon-button { margin-left: auto; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #ffffff66; border-radius: 12px; background: #ffffff18; color: white; font-size: 28px; cursor: pointer; }
+/* Authentication keeps real email/password and post-registration ID verification. */
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-shell { width: 100%; max-width: 650px; margin: 30px auto; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-card { max-width: 560px; width: 100%; margin: auto; padding: 32px; border: 1px solid #d8c1ee; border-radius: 28px; background: linear-gradient(150deg, #fff, #f3edff); color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-header :is(h1, p), body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-field label { color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-form :is(input:not([type="checkbox"]), select) { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #d8cce8; border-radius: 12px; background: white; color: var(--relink-ink); font-size: 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-field-grid { display: grid; grid-template-columns: 1fr; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-switch { color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-switch a { color: #64249f; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-verification-note { padding: 14px; border: 1px solid var(--relink-line); border-radius: 12px; background: #eee6fa; color: #514161; font-size: 13px; line-height: 1.6; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-recovery { margin-top: 18px; color: #54218a; font-size: 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-recovery summary { min-height: 44px; cursor: pointer; display: flex; align-items: center; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-recovery p { color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .password-input-wrapper input { padding-right: 54px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .password-visibility-toggle { width: 44px; height: 44px; right: 3px; color: #64249f; }
+@media (max-width: 1100px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 .brand-tagline { max-width: 180px; white-space: normal; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation a { padding-inline: 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-item-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 { background: #f5f0fc; color: var(--relink-ink); }
+    body.website-shell.design-reference.design-zeta.relink-phase5 > header > div { padding: 14px 16px; width: 100%; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation { display: none; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .brand-tagline { max-width: 220px; font-size: 8px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 > main { padding: 16px 12px 24px; width: 100%; }
+    body.website-shell.design-reference.design-zeta.relink-phase5.has-mobile-bottom-nav { padding-bottom: calc(var(--relink-nav-height) + env(safe-area-inset-bottom)); }
+    body.website-shell.design-reference.design-zeta.relink-phase5.has-mobile-bottom-nav .design-bottom-nav { position: fixed; z-index: 100; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); inset: auto 0 0; width: 100%; max-width: none; min-height: calc(var(--relink-nav-height) + env(safe-area-inset-bottom)); padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); margin: 0; border: 1px solid #735194; border-bottom: 0; border-radius: 23px 23px 0 0; background: linear-gradient(110deg, #241744, #17132f); box-shadow: 0 -5px 24px #1c0f372b; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .design-bottom-nav a { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; min-width: 0; min-height: 52px; margin: 0 2px; padding: 6px 2px; border-radius: 15px; color: #ece2fb; text-decoration: none; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .design-bottom-nav a svg { width: 22px; height: 22px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .design-bottom-nav a span { font-size: 10px; line-height: 1.2; color: inherit; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .design-bottom-nav a[aria-current="page"] { background: var(--relink-gradient); color: white; box-shadow: inset 0 1px 0 #ffffff4d, 0 3px 10px #0003; }
+    body.website-shell.design-reference.design-zeta.relink-phase5.has-mobile-bottom-nav .support-chat-widget { bottom: calc(var(--relink-nav-height) + 12px + env(safe-area-inset-bottom)); right: 14px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-launcher span { display: none; }
+    body.website-shell.design-reference.design-zeta.relink-phase5.has-mobile-bottom-nav > footer { padding-bottom: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 > footer > div { padding: 20px 16px; width: 100%; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner { padding: 20px 16px; border-radius: 18px; gap: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-page-banner p { font-size: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-banner-icon { flex-basis: 44px; height: 44px; font-size: 24px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard-hero { padding: 22px 18px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard > .stack { padding: 16px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card { padding: 16px 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list { grid-template-columns: 1fr; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-page { padding: 12px; border-radius: 20px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-item-list { grid-template-columns: 1fr; gap: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card { display: grid; grid-template-columns: 80px minmax(0, 1fr); align-items: start; gap: 6px 12px; padding: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > :is(.browse-card-image, .media-placeholder) { grid-column: 1; grid-row: 1 / span 4; width: 80px; height: 80px; min-height: 80px; max-height: 80px; font-size: 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card > :not(.browse-card-image):not(.media-placeholder) { grid-column: 2; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card .claim-card-head { flex-direction: column; gap: 5px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card h2 { font-size: 15px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card :is(.field-note, .browse-card-copy) { font-size: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-card :is(.feed-card-actions, .browse-card-actions) { grid-column: 1 / -1; border-top: 1px solid #eee6f5; padding-top: 8px; margin-top: 6px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-more-filters form { grid-template-columns: 1fr; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .feed-heading-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-tabs { display: flex; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-banner { border-radius: 18px 18px 0 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-layout { display: block; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-request-panel { border: 0; padding: 16px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-chat-panel { min-height: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-agent-heading { padding: 14px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-messages { height: clamp(220px, 40dvh, 450px); max-height: none; padding: 16px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer { padding: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-composer button { padding-inline: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-new-chat { padding: 16px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help h2 { color: var(--relink-ink); }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-panel { inset: var(--relink-viewport-top, 0px) 0 auto; width: 100%; height: var(--relink-viewport-height, 100dvh); margin: 0; border-radius: 0; border: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5.relink-support-document { background: #f5f0fc; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-support-layout { min-height: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-support-banner { padding-top: max(14px, env(safe-area-inset-top)); }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded { height: var(--relink-viewport-height, 100dvh); overflow-y: auto; display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom); }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-support-layout { flex: 1; overflow: hidden; border-radius: 0 0 16px 16px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-chat-panel { height: 100%; overflow-y: auto; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-messages { min-height: 80px; height: 0; flex: 1; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-request-panel { max-height: 100%; overflow-y: auto; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-composer { position: sticky; bottom: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-quick-help { padding: 10px 0; flex-shrink: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-quick-help h2 { display: none; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-quick-help a { min-height: 44px; padding: 8px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-faq { flex-shrink: 0; max-height: 30dvh; overflow-y: auto; font-size: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-shell { margin: 24px auto; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .zeta-auth-card { padding: 28px 20px; }
+}
+@media (prefers-reduced-motion: reduce) { body.website-shell.design-reference.design-zeta.relink-phase5 *, body.website-shell.design-reference.design-zeta.relink-phase5 *::before, body.website-shell.design-reference.design-zeta.relink-phase5 *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+/* Scoped corrections for the inherited Zeta theme's explicit descendant colors. */
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(.student-dashboard, .feed-page, .relink-support, .zeta-auth-card) :where(h1, h2, h3, p, li, label, dt, dd, small, summary) { color: inherit; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation li a span { color: inherit; padding: 0; min-height: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation li a:hover { background: #ffffff18; color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation li a[aria-current="page"] { background: var(--relink-gradient); color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .student-dashboard .student-dashboard-hero :is(h1,p) { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .student-dashboard-hero { border-radius: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .student-dashboard > .stack > p { color: var(--relink-muted); display: block; margin: 0 0 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .student-dashboard .student-dashboard-modules h2 { color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-new-chat label { color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-new-chat :is(input, textarea),
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-request-search { background: white; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(.relink-new-chat, .relink-request-panel) input::placeholder,
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-new-chat textarea::placeholder { color: #71657d; opacity: 1; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-message.is-user p { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-message.is-support p { color: #2b1d43; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-support-banner :is(h1,p) { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-browse-banner :is(h1,p) { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main details.feed-more-filters { background: transparent; border: 0; padding: 0; box-shadow: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-more-filters > summary { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; background: #eee4fa; border: 1px solid #dbcaed; color: #522080; box-shadow: none; border-radius: 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-category-list a.is-selected { color: white !important; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card a.feed-card-link { background: #f5eeff; color: #59218e; border: 1px solid #dfceef; border-radius: 10px; padding: 10px 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .status-pill { color: #4b226c; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .status-open { color: #14532d; background: #dcfce7; border-color: #bbefcf; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .status-pending { color: #78350f; background: #fef3c7; border-color: #f5da91; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .status-approved { color: #164e63; background: #cffafe; border-color: #a5e4ee; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-search input[type="search"] { display: block; width: 100%; min-width: 0; flex: 1; color: var(--relink-ink); }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-search input[type="search"]::placeholder { color: #71657d; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main details.relink-recovery { background: transparent; border: 0; padding: 0; box-shadow: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main details.relink-recovery summary { color: #63249f; padding: 0; background: transparent; box-shadow: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main details.relink-recovery p { color: var(--relink-muted); }
+body.website-shell.design-reference.design-zeta.relink-phase5 main details.relink-faq { background: #f9f5ff; color: var(--relink-ink); padding: 14px 18px; border: 1px solid var(--relink-line); }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-chat-empty { padding-top: 16px; padding-bottom: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-chat-empty > span { font-size: 24px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-chat-empty h2 { margin: 6px 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-chat-empty p { margin: 4px auto; font-size: 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-new-chat { gap: 6px; padding: 10px 16px 14px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-new-chat textarea { min-height: 70px; }
+@media (max-width:760px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-embedded .relink-new-chat button { position: sticky; bottom: 0; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card dt { font-size: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .student-dashboard .stat-card a { font-size: 11px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-quick-help h2 { color: var(--relink-ink); }
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list a > span:nth-child(2) { display: grid; gap: 6px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .student-module-list a small { font-size: 12px; line-height: 1.5; font-weight: 400; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-header-help { margin-left: auto; flex-shrink: 0; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid #ffffff3a; border-radius: 50%; background: #ffffff14; color: white; cursor: pointer; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-header-help svg { width: 21px; height: 21px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget { position: static; display: flex; justify-content: flex-end; padding: 0 32px 20px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-launcher span { display: inline; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget.is-scrolled .support-chat-widget-launcher span { max-width: none; opacity: 1; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget-launcher { position: static; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card :is(.feed-own-item, .feed-claimed-state) { padding: 10px 12px; border-radius: 10px; border: 1px solid #dfceef; background: #eee5fa; color: #56228b; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-loading { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; background: #21163d; color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-loading button { position: absolute; top: 16px; right: 16px; }
+@media (min-width:761px) and (max-width:1100px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 > header > div { flex-wrap: wrap; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation { order: 4; flex-basis: 100%; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .primary-navigation ul { justify-content: center; }
+}
+@media (max-width:760px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 > header > div { gap: 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .brand-tagline { max-width: 180px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .support-chat-widget { padding: 0 16px 16px; }
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 { color-scheme: light; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support-loading p[role="status"] { color: white; background: transparent; border: 0; }
+@media (max-width:760px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support:not(.relink-support-embedded) .relink-chat-panel { height: max(380px, calc(100dvh - 400px)); overflow-y: auto; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support:not(.relink-support-embedded) .relink-messages { height: 0; flex: 1; min-height: 80px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 .relink-support:not(.relink-support-embedded) .relink-composer { position: sticky; bottom: 0; }
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail > .secondary-button { margin-bottom: 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: 12px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail-grid > img { width: 100%; max-height: 420px; object-fit: contain; background: #eee8f4; border-radius: 16px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail-grid dt { font-weight: 700; margin: 16px 0 4px; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail-grid dd { margin: 0; overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .relink-detail-description { white-space: pre-wrap; }
+@media (max-width:760px) { body.website-shell.design-reference.design-zeta.relink-phase5 .relink-lost-detail-grid { grid-template-columns: minmax(0, 1fr); padding: 0; } }
+/* Follow-up: light content surfaces for every role, with navy/purple branding. */
+body.website-shell.design-reference.design-zeta.relink-phase5 {
+    --palette-card: #fff;
+    --palette-panel: #f4edfc;
+    --palette-surface: #fff;
+    --palette-surface-strong: #f4edfc;
+    --palette-border: #dfd1ef;
+    --palette-text: #21183f;
+    --palette-muted: #655977;
+    --palette-primary: #7625be;
+    --palette-secondary: #087e99;
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(h1,h2,h3,h4,p,li,label,legend,dt,dd,th,td,summary,small) { color: inherit; }
+body.website-shell.design-reference.design-zeta.relink-phase5 :is(.surface-card,.section-card,.review-card,.confirmation-card,.stat-card,.activity-item,.info-box,.proof-box,.verification-box,.empty-state,.report-step,.form-panel,.detail-summary,.detail-claim-card,.pickup-card,.auth-card,.claim-modal-card,.pickup-hours,.edit-current-image,.report-photo-upload,.verification-stepper,.claim-pass-card,.support-inbox-layout > aside,.support-inbox-layout > section) {
+    background: #fff; color: #21183f; border-color: #dfd1ef; box-shadow: 0 5px 20px #28113e0d;
+}
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(input:not([type="checkbox"]):not([type="hidden"]):not([type="submit"]),select,textarea) { background: #fff; color: #21183f; border-color: #d9c9eb; color-scheme: light; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(input,textarea)::placeholder { color: #766a83; opacity: 1; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(.field-note,.claim-meta,.report-step-help,.report-privacy-note,.auth-alternate) { color: #655977; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(.category-chip,.proof-chips span,.desk-open-label,.pickup-contact,.detail-meta .meta-pill) { background: #f0e7fb; color: #562384; border-color: #dfd1ef; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main :is(.relink-page-banner,.student-dashboard-hero) :is(h1,h2,p) { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .relink-message.is-user p { color: white; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .student-dashboard :is(dt,dd) { color: #21183f; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .design-account-menu .account-menu-panel { background: #fff; color: #21183f; border-color: #dfd1ef; }
+body.website-shell.design-reference.design-zeta.relink-phase5 .design-account-menu .account-menu-panel :is(a,button,p) { color: #422061; }
+/* Two independent boxes replace the legacy image/description grid spans. */
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card { display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: auto; gap: 14px; align-content: start; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > :is(.relink-item-media,.relink-item-copy,.feed-card-actions,.browse-card-actions,.feed-card-link) { position: static; grid-area: auto; float: none; min-width: 0; width: auto; transform: none; margin: 0; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media { overflow: hidden; border-radius: 12px; background: #f1edf5; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media > :is(img,.media-placeholder) { display: block; position: static; float: none; width: 100%; height: 190px; min-height: 190px; max-height: 190px; object-fit: contain; margin: 0; padding: 6px; border-radius: 12px; transform: none; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media > .media-placeholder { display: grid; place-items: center; text-align: center; font-size: 12px; color: #655977; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-copy { display: grid; gap: 8px; align-content: start; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-copy > * { position: static; grid-area: auto; min-width: 0; width: auto; height: auto; float: none; transform: none; margin: 0; overflow-wrap: anywhere; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-copy .browse-card-copy { display: block; white-space: normal; line-height: 1.6; color: #655977; }
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card > :is(.feed-card-actions,.browse-card-actions,.feed-card-link) { align-self: end; }
+@media(max-width:760px) {
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card { grid-template-columns: 88px minmax(0,1fr); gap: 12px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > .relink-item-media { grid-column: 1; grid-row: 1; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > .relink-item-copy { grid-column: 2; grid-row: 1; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media > :is(img,.media-placeholder) { width: 88px; height: 88px; min-height: 88px; max-height: 88px; font-size: 10px; }
+    body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-item-list .feed-card > :is(.feed-card-actions,.browse-card-actions,.feed-card-link) { grid-column: 1 / -1; grid-row: auto; }
+}
+
+body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media { display:block; align-self:start; height:190px; min-height:0; }
+@media(max-width:760px) { body.website-shell.design-reference.design-zeta.relink-phase5 main .feed-card .relink-item-media { height:88px; max-height:88px; } }

@@ -107,10 +107,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <input id="name" name="name" type="text" maxlength="150" autocomplete="name" value="<?= e($name) ?>" placeholder="Enter your full name" required>
                 </div>
 
-                <div class="zeta-field">
-                    <label for="student_id">Student ID</label>
-                    <input id="student_id" name="student_id" type="text" placeholder="Enter your student ID" aria-label="Student ID">
-                </div>
+<p class="relink-verification-note"><strong>Student ID verification</strong><br>After creating your account, open Profile to verify your school email and submit your Student ID number and ID photo. Verification is required for protected student actions.</p>
             </div>
 
             <div class="zeta-field-grid">
@@ -119,16 +116,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <input id="email" name="email" type="email" maxlength="191" autocomplete="email" value="<?= e($email) ?>" placeholder="Enter your email" required>
                 </div>
 
-                <div class="zeta-field">
-                    <label for="program">Course / Program</label>
-                    <select id="program" name="program" aria-label="Course or program">
-                        <option value="" selected>Select your program</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Information Technology">Information Technology</option>
-                        <option value="Business Administration">Business Administration</option>
-                        <option value="Engineering">Engineering</option>
-                    </select>
-                </div>
+
             </div>
 
             <div class="zeta-field-grid">
@@ -139,7 +127,7 @@ require_once __DIR__ . '/../includes/header.php';
 
                 <div class="zeta-field">
                     <label for="password_confirm">Confirm Password</label>
-                    <input id="password_confirm" name="password_confirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" data-password-toggle="false" placeholder="Re-enter your password" required>
+                    <input id="password_confirm" name="password_confirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Re-enter your password" required>
                 </div>
             </div>
 

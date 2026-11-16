@@ -207,10 +207,6 @@ require_once __DIR__ . '/../includes/header.php';
                 <h2 id="reports-title">My reports</h2>
                 <p class="field-note">Lost and found reports you have submitted.</p>
             </div>
-            <div class="action-row">
-                <a class="primary-button" href="report-lost.php">Report a lost item</a>
-                <a class="secondary-button" href="upload-found.php">Report a found item</a>
-            </div>
         </div>
 
         <?php if (isset($deleteError)): ?>

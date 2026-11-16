@@ -15,42 +15,32 @@
             </div>
         </form>
     </dialog>
-    <?php if ($currentUser !== null && $currentUser['role'] === 'student' && $currentPage !== 'support-chat.php'): ?>
+    <?php if ($currentUser !== null && $currentUser['role'] === 'student' && in_array($currentPage, ['dashboard.php', 'my-claims.php', 'activity.php', 'item-detail.php', 'lost-item-detail.php'], true)): ?>
         <div class="support-chat-widget">
             <dialog class="support-chat-widget-panel" id="support-chat-widget-panel" aria-label="Customer support chat">
-                <iframe src="../pages/support-chat.php?widget=1" title="Customer support" loading="lazy"></iframe>
+                <div class="relink-support-loading" data-support-loading><button type="button" data-support-loading-close aria-label="Close customer service" class="relink-icon-button">&times;</button><p role="status">Loading customer service…</p></div><iframe hidden data-src="../pages/support-chat.php?widget=1" title="Customer support" loading="eager"></iframe>
             </dialog>
             <button class="support-chat-widget-launcher" id="support-chat-widget-launcher" type="button" aria-label="Chat with customer support" aria-controls="support-chat-widget-panel" aria-expanded="false">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.5h3l1.5 4-2 1.5a15 15 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.3 16.3 0 0 1 5.5 5.7a2 2 0 0 1 2-2.2Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="12" width="5" height="8" rx="2"/><rect x="17" y="12" width="5" height="8" rx="2"/><path d="M20 20c0 2-3 2-6 2"/></svg>
                 <span>Customer Support</span>
             </button>
         </div>
     <?php endif; ?>
     <?php if ($hasMobileBottomNav): ?>
         <?php
-        $homeHref = $currentUser !== null ? '../pages/dashboard.php' : '../public/index.php';
-        $isHomePage = in_array($currentPage, ['index.php', 'dashboard.php'], true);
-        $isAccountPage = in_array($currentPage, ['profile.php', 'my-claims.php', 'my-reports.php', 'my-found-reports.php'], true);
+        $activityHref = $currentUser['role'] === 'staff' ? '../pages/activity.php' : '../pages/my-claims.php#activity';
+        $bottomNavigationItems = [
+            'home' => $navigationItems['home'],
+            'found' => $navigationItems['found'],
+            'lost' => $navigationItems['lost'],
+            'activity' => ['Activity', $activityHref, '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'],
+            'account' => $navigationItems['account'],
+        ];
         ?>
-        <nav class="design-bottom-nav" aria-label="Main navigation">
-            <a href="<?= e($homeHref) ?>" <?= $isHomePage ? 'aria-current="page"' : '' ?>>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v10a1 1 0 0 1-1 1h-5.3v-6.2H9.8V21H4.5a1 1 0 0 1-1-1V10Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                <span>Home</span>
-            </a>
-            <a href="../pages/lost-items.php" <?= $currentPage === 'lost-items.php' ? 'aria-current="page"' : '' ?>>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 13.2 13.2 20 4 10.8V4h6.8L20 13.2Z" stroke-linejoin="round"></path><circle cx="8" cy="8" r="1.1"></circle></svg>
-                <span>Lost</span>
-            </a>
-            <a href="../pages/found-items.php" <?= $currentPage === 'found-items.php' ? 'aria-current="page"' : '' ?>>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9L12 3Z" stroke-linejoin="round"></path><path d="m3.8 7.7 8.2 4.4 8.2-4.4M12 12.1V21" stroke-linejoin="round"></path></svg>
-                <span>Found</span>
-            </a>
-            <a href="<?= $currentUser !== null ? '../pages/profile.php' : '../pages/login.php' ?>" <?= $isAccountPage ? 'aria-current="page"' : '' ?>>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"></path></svg>
-                <span>Account</span>
-            </a>
+        <nav class="design-bottom-nav" aria-label="Mobile main navigation">
+            <?php foreach ($bottomNavigationItems as $section => [$label, $href, $icon]): ?>
+                <a href="<?= e($href) ?>" <?= $navigationSection === $section ? 'aria-current="page"' : '' ?>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?= $icon ?></svg><span><?= e($label) ?></span></a>
+            <?php endforeach; ?>
         </nav>
     <?php endif; ?>
     <footer>
@@ -193,6 +183,7 @@
         const chatLauncher = document.getElementById('support-chat-widget-launcher');
         const chatFrame = chatPanel instanceof HTMLDialogElement ? chatPanel.querySelector('iframe') : null;
         const chatWidget = document.querySelector('.support-chat-widget');
+        let supportOpener = null;
 
         function closeSupportChat() {
             if (chatPanel instanceof HTMLDialogElement && chatLauncher instanceof HTMLButtonElement && chatPanel.open) {
@@ -201,9 +192,13 @@
             }
         }
 
-        function setSupportChatOpen(isOpen) {
+        function setSupportChatOpen(isOpen, opener) {
             if (chatPanel instanceof HTMLDialogElement && chatLauncher instanceof HTMLButtonElement) {
                 if (isOpen && !chatPanel.open) {
+                    supportOpener = opener instanceof HTMLElement ? opener : document.activeElement;
+                    if (chatFrame instanceof HTMLIFrameElement && !chatFrame.hasAttribute('src')) {
+                        chatFrame.src = chatFrame.dataset.src;
+                    }
                     chatPanel.classList.remove('is-minimized');
                     if (chatFrame instanceof HTMLIFrameElement && chatFrame.contentDocument !== null) {
                         const widgetWindow = chatFrame.contentDocument.querySelector('.widget-chat-window, .chat-new-conversation');
@@ -217,7 +212,8 @@
                             minimizeButton.title = 'Minimize chat';
                         }
                     }
-                    chatPanel.show();
+                    chatPanel.showModal();
+                    chatLauncher.hidden = true;
                     chatLauncher.setAttribute('aria-expanded', 'true');
                     if (chatFrame instanceof HTMLIFrameElement) {
                         chatFrame.focus();
@@ -230,7 +226,7 @@
 
         if (chatLauncher instanceof HTMLButtonElement) {
             chatLauncher.addEventListener('click', function () {
-                setSupportChatOpen(!(chatPanel instanceof HTMLDialogElement && chatPanel.open));
+                setSupportChatOpen(!(chatPanel instanceof HTMLDialogElement && chatPanel.open), chatLauncher);
             });
         }
 
@@ -246,8 +242,9 @@
                 closeSupportChat();
             });
             chatPanel.addEventListener('close', function () {
+                chatLauncher.hidden = false;
                 chatLauncher.setAttribute('aria-expanded', 'false');
-                chatLauncher.focus();
+                if (supportOpener instanceof HTMLElement) { supportOpener.focus(); } else { chatLauncher.focus(); }
             });
             document.addEventListener('pointerdown', function (event) {
                 if (chatPanel.open && !chatPanel.contains(event.target) && !chatLauncher.contains(event.target)) {
@@ -263,6 +260,7 @@
 
             updateSupportChatLauncher();
             window.addEventListener('scroll', updateSupportChatLauncher, { passive: true });
+            window.addEventListener('pageshow', updateSupportChatLauncher);
         }
 
         document.querySelectorAll('[data-open-support-chat]').forEach(function (link) {
@@ -272,7 +270,7 @@
                     if (accountMenu instanceof HTMLDetailsElement) {
                         accountMenu.open = false;
                     }
-                    setSupportChatOpen(true);
+                    setSupportChatOpen(true, link);
                 }
             });
         });
@@ -301,5 +299,6 @@
             });
         });
     </script>
+    <script src="../assets/phase5.js?v=<?= (int) filemtime(__DIR__ . '/../assets/phase5.js') ?>" defer></script>
 </body>
 </html>

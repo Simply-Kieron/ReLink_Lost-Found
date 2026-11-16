@@ -136,7 +136,7 @@ $statusClasses = [
     'claimed' => 'status-pending',
     'returned' => 'status-approved',
 ];
-$pageDesign = $browseType === 'found' ? 'feed' : '';
+$pageDesign = 'zeta';
 require __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-shell<?= $browseType === 'found' ? ' feed-page' : '' ?>">
@@ -162,7 +162,7 @@ require __DIR__ . '/../includes/header.php';
             </details>
             <div class="feed-recent-banner"><span class="recent-icon" aria-hidden="true">⌕</span><p><strong>Recently found on campus</strong><span><?= e($totalItems) ?> item<?= $totalItems === 1 ? '' : 's' ?> in the activity feed</span></p><span class="recent-dot" aria-hidden="true"></span></div>
             <div class="feed-section-heading">
-                <div class="feed-heading-copy"><h1 id="browse-title">Campus Activity Feed</h1><p>Staff-approved found items · Latest first</p></div>
+                <div class="feed-heading-copy"><h1 id="browse-title">Found Items</h1><p>Staff-approved found items · Latest first</p></div>
                 <div class="feed-heading-actions">
                     <a class="secondary-button" href="upload-found.php">Report a found item</a>
                     <span class="feed-sort-label">Newest first</span>
@@ -191,6 +191,19 @@ require __DIR__ . '/../includes/header.php';
                 <p class="field-note" style="margin: 0; font-size: 0.8rem;"><?= e($totalItems) ?> item<?= $totalItems === 1 ? '' : 's' ?> found.</p>
             </div>
     <?php endif; ?>
+            <?php
+            $categoryParameters = array_filter($filter, static function (string $value): bool {
+                return $value !== '';
+            });
+            unset($categoryParameters['category_id']);
+            ?>
+            <nav class="feed-category-list" aria-label="Filter by category">
+                <a class="<?= $filter['category_id'] === '' ? 'is-selected' : '' ?>" href="<?= e($basePath . ($categoryParameters === [] ? '' : '?' . http_build_query($categoryParameters))) ?>">All</a>
+                <?php foreach ($categories as $category): ?>
+                    <?php $categoryUrl = $basePath . '?' . http_build_query(array_merge($categoryParameters, ['category_id' => (string) $category['id']])); ?>
+                    <a class="<?= $filter['category_id'] === (string) $category['id'] ? 'is-selected' : '' ?>" href="<?= e($categoryUrl) ?>"><?= e($category['name']) ?></a>
+                <?php endforeach; ?>
+            </nav>
             <?php if ($items === []): ?>
                 <p class="empty-state">No items match your filters. Try changing or clearing your search.</p>
             <?php else: ?>

@@ -73,69 +73,87 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle = 'Register';
-$pageDesign = 'register';
+$pageDesign = 'zeta';
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell auth-page register-page">
-    <aside class="auth-intro-panel">
-        <span class="auth-intro-mark" aria-hidden="true">⌕</span>
-        <p class="eyebrow">Campus lost &amp; found</p>
-        <h2>Make it easier to find your things.</h2>
-        <p>Create a student account to report lost items and securely follow claim updates.</p>
-        <a href="found-items.php">Browse found items <span aria-hidden="true">→</span></a>
-    </aside>
-    <div class="surface-card auth-card">
-        <div class="stack">
-            <div>
-                <p class="eyebrow">New account</p>
-                <h1 id="register-title">Create a student account</h1>
-                <p>Choose the sign-up email you plan to keep. You will submit your school email and ID from Profile to unlock posting and claims.</p>
+<section class="page-shell zeta-auth-shell zeta-register-shell">
+    <div class="zeta-auth-card zeta-register-card">
+        <span class="zeta-auth-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"></path><path d="m8 12 8 0"></path></svg>
+        </span>
+        <div class="zeta-auth-header zeta-register-header">
+            <p class="zeta-eyebrow">Create account</p>
+            <h1 id="register-title">Create Account</h1>
+            <p>Create an account to report lost items, claim found items, and track updates.</p>
+        </div>
+
+        <?php if ($errors !== []): ?>
+            <div class="error-box" role="alert">
+                <p style="margin: 0; font-weight: 700;">Please review the following:</p>
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= e($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <form class="zeta-auth-form zeta-register-form" method="post" action="register.php">
+            <?= csrf_field() ?>
+
+            <div class="zeta-field-grid">
+                <div class="zeta-field">
+                    <label for="name">Full Name</label>
+                    <input id="name" name="name" type="text" maxlength="150" autocomplete="name" value="<?= e($name) ?>" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="zeta-field">
+                    <label for="student_id">Student ID</label>
+                    <input id="student_id" name="student_id" type="text" placeholder="Enter your student ID" aria-label="Student ID">
+                </div>
             </div>
 
-            <?php if ($errors !== []): ?>
-                <div class="error-box" role="alert">
-                    <p style="margin: 0; font-weight: 700;">Please review the following:</p>
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li><?= e($error) ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
-
-            <form class="form-panel" method="post" action="register.php">
-                <?= csrf_field() ?>
-
-                <div class="field">
-                    <label for="name">Name</label>
-                    <input id="name" name="name" type="text" maxlength="150" autocomplete="name" value="<?= e($name) ?>" required>
+            <div class="zeta-field-grid">
+                <div class="zeta-field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" maxlength="191" autocomplete="email" value="<?= e($email) ?>" placeholder="Enter your email" required>
                 </div>
 
-                <div class="field">
-                    <label for="email">Sign-up email</label>
-                    <input id="email" name="email" type="email" maxlength="191" autocomplete="email" value="<?= e($email) ?>" required>
-                    <span class="field-note">This email is fixed after you create your account. Your school email will be submitted separately for verification.</span>
+                <div class="zeta-field">
+                    <label for="program">Course / Program</label>
+                    <select id="program" name="program" aria-label="Course or program">
+                        <option value="" selected>Select your program</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Business Administration">Business Administration</option>
+                        <option value="Engineering">Engineering</option>
+                    </select>
                 </div>
+            </div>
 
-                <div class="field">
+            <div class="zeta-field-grid">
+                <div class="zeta-field">
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
-                    <span class="field-note">Use 8 to 72 characters.</span>
+                    <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Create a password" required>
                 </div>
 
-                <div class="field">
-                    <label for="password_confirm">Confirm password</label>
-                    <input id="password_confirm" name="password_confirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" data-password-toggle="false" required>
+                <div class="zeta-field">
+                    <label for="password_confirm">Confirm Password</label>
+                    <input id="password_confirm" name="password_confirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" data-password-toggle="false" placeholder="Re-enter your password" required>
                 </div>
+            </div>
 
-                <div class="checkbox-field">
-                    <input id="consent" name="consent" type="checkbox" value="1" required>
-                    <label for="consent">I agree to the <a href="privacy-policy.php">Privacy Policy</a> and <a href="terms.php">Terms</a>.</label>
-                </div>
+            <div class="checkbox-field zeta-consent-field">
+                <input id="consent" name="consent" type="checkbox" value="1" required>
+                <label for="consent">I agree to the <a href="privacy-policy.php">Privacy Policy</a> and <a href="terms.php">Terms</a>.</label>
+            </div>
 
-                <button class="primary-button w-full" type="submit">Create account</button>
-            </form>
-        </div>
+            <button class="zeta-submit-button" type="submit">Create Account</button>
+        </form>
+
+        <p class="zeta-auth-switch">
+            Already have an account? <a href="login.php">Log in</a>
+        </p>
     </div>
 </section>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

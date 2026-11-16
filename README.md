@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ReLink — Classroom Lost & Found Management System
 
 ReLink is a classroom lost and found management system for students to report lost and found items and claim found items after staff verify their student status. Staff review found-item reports before publication, review claims, and review student ID submissions. Student ID photos and claim verification details are restricted to staff.
@@ -150,7 +149,18 @@ The local Apache URL uses the project directory as its base because the current 
 ## Manual testing
 
 See [docs/test-plan.md](docs/test-plan.md) for the recorded manual security and accessibility checks. See [docs/demo-script.md](docs/demo-script.md) for a guided student-to-staff walkthrough.
-=======
-# ReLink_Lost-Found
-School Lost &amp; Found Management System
->>>>>>> origin/main
+
+## Main local working copy
+
+The main local project is `C:\wamp64\www\relink`, connected to
+`https://github.com/Simply-Kieron/ReLink_Lost-Found.git`.
+Make changes and run Git commands from that folder.
+
+Open `http://localhost/relink/` or `http://localhost/relink/pages/login.php`.
+On this machine, Apache runs from `C:\wamp`. A directory junction at
+`C:\wamp\www\relink` serves the main `C:\wamp64\www\relink` folder. Keep the original `LostFound` folder as a
+backup; it is no longer the main working copy.
+
+The local database configuration and uploaded files are copied for local use
+and stay excluded from Git. The existing database is shared with the original
+copy; this move does not create or import a database.

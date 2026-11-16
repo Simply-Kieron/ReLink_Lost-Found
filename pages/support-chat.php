@@ -188,7 +188,7 @@ if ($chatWidget) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Customer Support | ReLink</title>
         <link rel="stylesheet" href="../assets/tailwind.generated.css?v=20261023-1">
-        <link rel="stylesheet" href="../assets/site.css?v=20261112-17">
+        <link rel="stylesheet" href="../assets/site.css?v=20261115-5">
     </head>
     <body class="site-app website-shell design-reference design-support-chat-widget">
     <main class="chat-widget-main">

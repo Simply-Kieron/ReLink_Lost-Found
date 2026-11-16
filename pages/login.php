@@ -17,7 +17,7 @@ if (current_user() !== null) {
 }
 
 $pageTitle = 'Login';
-$pageDesign = 'login';
+$pageDesign = 'zeta';
 $errors = [];
 $email = '';
 $attemptLimit = 5;
@@ -109,51 +109,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-shell auth-page login-page">
-    <aside class="auth-intro-panel">
-        <span class="auth-intro-mark" aria-hidden="true">⌕</span>
-        <p class="eyebrow">Campus lost &amp; found</p>
-        <h2>Find what matters. Reunite what’s lost.</h2>
-        <p>Browse found items, report a lost belonging, and follow claim updates from one place.</p>
-        <a href="found-items.php">Browse found items <span aria-hidden="true">→</span></a>
-    </aside>
-    <div class="surface-card auth-card">
-        <div class="stack">
-            <div>
-                <p class="eyebrow">Welcome back</p>
-                <h1 id="login-title">Log in</h1>
-                <p>Log in to report items and manage your account.</p>
-            </div>
-
-            <?php if ($errors !== []): ?>
-                <div class="error-box" role="alert">
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li><?= e($error) ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
-
-            <form class="form-panel" method="post" action="login.php">
-                <?= csrf_field() ?>
-                <?php if ($continue !== ''): ?><input type="hidden" name="continue" value="<?= e($continue) ?>"><?php endif; ?>
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" maxlength="191" autocomplete="username" value="<?= e($email) ?>" required>
-                </div>
-                <div class="field">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" autocomplete="current-password" required>
-                </div>
-                <button class="primary-button w-full" type="submit">Log in</button>
-            </form>
-
-            <p class="auth-alternate">
-                Need an account?
-                <a href="register.php">Register as a student</a>
-            </p>
+<section class="page-shell zeta-auth-shell">
+    <div class="zeta-auth-card">
+        <span class="zeta-auth-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"></path><path d="m8 12 8 0"></path></svg>
+        </span>
+        <div class="zeta-auth-header">
+            <p class="zeta-eyebrow">Welcome back</p>
+            <h1 id="login-title">Sign In to ReLink</h1>
+            <p>Access your account to report, find, and manage items.</p>
         </div>
+
+        <?php if ($errors !== []): ?>
+            <div class="error-box" role="alert">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= e($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <form class="zeta-auth-form" method="post" action="login.php">
+            <?= csrf_field() ?>
+            <?php if ($continue !== ''): ?><input type="hidden" name="continue" value="<?= e($continue) ?>"><?php endif; ?>
+            <div class="zeta-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" maxlength="191" autocomplete="username" value="<?= e($email) ?>" placeholder="Enter your email" required>
+            </div>
+            <div class="zeta-field">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+            </div>
+            <button class="zeta-submit-button" type="submit">Sign In</button>
+        </form>
+
+        <p class="zeta-auth-switch">
+            Need an account?
+            <a href="register.php">Register as a student</a>
+        </p>
     </div>
 </section>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

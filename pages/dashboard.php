@@ -39,46 +39,71 @@ if ($user['role'] === 'student') {
 require_once __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-shell">
-    <div class="surface-card page-card">
-        <div class="stack">
-            <div>
-                <p class="eyebrow">Overview</p>
-                <h1 id="dashboard-title">Welcome, <?= e($user['name']) ?></h1>
+    <?php if ($user['role'] === 'student'): ?>
+        <div class="surface-card page-card student-dashboard">
+            <div class="student-dashboard-hero">
+                <p class="eyebrow">Your classroom lost &amp; found</p>
+                <h1 id="dashboard-title">Welcome, <?= e($user['name']) ?>! <span aria-hidden="true">👋</span></h1>
+                <p>Report, find, and reclaim your lost and found items in the classroom.</p>
             </div>
-
-            <?php if ($user['role'] === 'student'): ?>
+            <div class="stack">
                 <p>Here is a summary of your lost reports, found reports, and claims.</p>
                 <dl class="stat-grid">
                     <div class="stat-card">
-                        <dt>My lost reports</dt>
+                        <span class="student-stat-icon" aria-hidden="true">⌕</span>
+                        <dt>My Lost Reports</dt>
                         <dd><?= e($counts['lost_reports']) ?></dd>
                         <a href="my-claims.php#reports">View reports</a>
                     </div>
                     <div class="stat-card">
-                        <dt>My found reports</dt>
+                        <span class="student-stat-icon" aria-hidden="true">◇</span>
+                        <dt>My Found Reports</dt>
                         <dd><?= e($counts['found_reports']) ?></dd>
                         <a href="my-claims.php#reports">View review status</a>
                     </div>
                     <div class="stat-card">
+                        <span class="student-stat-icon" aria-hidden="true">✓</span>
                         <dt>My claims</dt>
                         <dd><?= e($counts['claims_count']) ?></dd>
                         <a href="my-claims.php#claims">View claims</a>
                     </div>
                     <div class="stat-card">
+                        <span class="student-stat-icon" aria-hidden="true">♧</span>
                         <dt>Items returned to me</dt>
                         <dd><?= e($counts['returned_items']) ?></dd>
                         <a href="my-claims.php#claims">View approved claims</a>
                     </div>
                 </dl>
 
-                <section aria-label="Student actions">
-                    <div class="mt-5 flex flex-wrap gap-3">
-                        <a class="secondary-button" href="my-claims.php#activity">View my activity</a>
-                        <a class="primary-button" href="report-lost.php">Report a lost item</a>
-                        <a class="secondary-button" href="found-items.php">Browse found items</a>
+                <section class="student-dashboard-modules" aria-labelledby="student-modules-title">
+                    <h2 id="student-modules-title">Main Modules</h2>
+                    <div class="student-module-list">
+                        <a href="found-items.php">
+                            <span class="student-module-icon" aria-hidden="true">◇</span>
+                            <span><strong>Found Items</strong><small>Browse items that were turned in.</small></span>
+                            <span class="student-module-arrow" aria-hidden="true">›</span>
+                        </a>
+                        <a href="report-lost.php">
+                            <span class="student-module-icon" aria-hidden="true">⌕</span>
+                            <span><strong>Lost Items</strong><small>Report an item you lost.</small></span>
+                            <span class="student-module-arrow" aria-hidden="true">›</span>
+                        </a>
+                        <a href="my-claims.php#activity">
+                            <span class="student-module-icon" aria-hidden="true">✓</span>
+                            <span><strong>My Reports</strong><small>Track your reports and claims.</small></span>
+                            <span class="student-module-arrow" aria-hidden="true">›</span>
+                        </a>
                     </div>
                 </section>
-            <?php else: ?>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="surface-card page-card">
+            <div class="stack">
+                <div>
+                    <p class="eyebrow">Overview</p>
+                    <h1 id="dashboard-title">Welcome, <?= e($user['name']) ?></h1>
+                </div>
                 <p>Review lost-item reports, found items, and claims.</p>
                 <dl class="stat-grid">
                     <div class="stat-card">
@@ -111,8 +136,8 @@ require_once __DIR__ . '/../includes/header.php';
                     <a class="primary-button" href="upload-found.php">Upload found item</a>
                     <a class="secondary-button" href="review-claims.php">Review pending claims</a>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 </section>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

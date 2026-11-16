@@ -11,18 +11,20 @@ $successFlash = get_flash('success');
 $errorFlash = get_flash('error');
 $pageDesign = isset($pageDesign) && is_string($pageDesign) && $pageDesign !== '' ? $pageDesign : 'site';
 $currentPage = basename((string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+$hasMobileBottomNav = ($currentUser === null || $currentUser['role'] === 'student')
+    && !in_array($currentPage, ['login.php', 'register.php'], true);
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#02040f">
+    <meta name="theme-color" content="#21164c">
     <title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?>ReLink · Classroom Lost &amp; Found Management System</title>
     <link rel="stylesheet" href="../assets/tailwind.generated.css?v=20261023-1">
-    <link rel="stylesheet" href="../assets/site.css?v=20261112-17">
+    <link rel="stylesheet" href="../assets/site.css?v=20261115-5">
 </head>
-<body class="site-app website-shell min-h-screen antialiased design-reference design-zeta design-<?= e($pageDesign) ?>">
+<body class="site-app website-shell min-h-screen antialiased design-reference design-zeta design-<?= e($pageDesign) ?><?= $hasMobileBottomNav ? ' has-mobile-bottom-nav' : '' ?>">
     <a class="skip-link sr-only z-50 rounded-md bg-white p-3 text-blue-800 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-700" href="#main-content">Skip to main content</a>
     <header>
         <div class="mx-auto flex max-w-6xl gap-4 px-4 py-4 sm:items-center sm:justify-between sm:px-6">

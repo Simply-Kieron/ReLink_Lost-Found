@@ -28,6 +28,31 @@
             </button>
         </div>
     <?php endif; ?>
+    <?php if ($hasMobileBottomNav): ?>
+        <?php
+        $homeHref = $currentUser !== null ? '../pages/dashboard.php' : '../public/index.php';
+        $isHomePage = in_array($currentPage, ['index.php', 'dashboard.php'], true);
+        $isAccountPage = in_array($currentPage, ['profile.php', 'my-claims.php', 'my-reports.php', 'my-found-reports.php'], true);
+        ?>
+        <nav class="design-bottom-nav" aria-label="Main navigation">
+            <a href="<?= e($homeHref) ?>" <?= $isHomePage ? 'aria-current="page"' : '' ?>>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v10a1 1 0 0 1-1 1h-5.3v-6.2H9.8V21H4.5a1 1 0 0 1-1-1V10Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Home</span>
+            </a>
+            <a href="../pages/lost-items.php" <?= $currentPage === 'lost-items.php' ? 'aria-current="page"' : '' ?>>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 13.2 13.2 20 4 10.8V4h6.8L20 13.2Z" stroke-linejoin="round"></path><circle cx="8" cy="8" r="1.1"></circle></svg>
+                <span>Lost</span>
+            </a>
+            <a href="../pages/found-items.php" <?= $currentPage === 'found-items.php' ? 'aria-current="page"' : '' ?>>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 8.5 4.5v9L12 21l-8.5-4.5v-9L12 3Z" stroke-linejoin="round"></path><path d="m3.8 7.7 8.2 4.4 8.2-4.4M12 12.1V21" stroke-linejoin="round"></path></svg>
+                <span>Found</span>
+            </a>
+            <a href="<?= $currentUser !== null ? '../pages/profile.php' : '../pages/login.php' ?>" <?= $isAccountPage ? 'aria-current="page"' : '' ?>>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"></path></svg>
+                <span>Account</span>
+            </a>
+        </nav>
+    <?php endif; ?>
     <footer>
         <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <p>&copy; <?= date('Y') ?> ReLink · Classroom Lost &amp; Found Management System</p>

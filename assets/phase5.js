@@ -1,5 +1,20 @@
 (() => {
     'use strict';
+    const itemFilters = Array.from(document.querySelectorAll('details.feed-more-filters'));
+    document.addEventListener('pointerdown', event => {
+        itemFilters.forEach(filter => {
+            if (filter.open && !filter.contains(event.target)) filter.open = false;
+        });
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        itemFilters.forEach(filter => {
+            if (!filter.open) return;
+            const restoreFocus = filter.contains(document.activeElement);
+            filter.open = false;
+            if (restoreFocus) filter.querySelector('summary').focus();
+        });
+    });
     const panel = document.getElementById('support-chat-widget-panel');
     const launcher = document.getElementById('support-chat-widget-launcher');
     if (panel && launcher) {

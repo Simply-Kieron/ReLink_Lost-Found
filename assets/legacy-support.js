@@ -1,7 +1,10 @@
 (() => {
     const root = document.querySelector('.legacy-support-view');
     if (!root) return;
-    const parentPanel = window.parent !== window ? window.parent.document.getElementById('support-chat-widget-panel') : null;
+    let parentPanel = null;
+    try {
+        if (window.parent !== window) parentPanel = window.parent.document.getElementById('support-chat-widget-panel');
+    } catch { /* Standalone form controls also work outside a same-origin parent. */ }
     if (parentPanel) parentPanel.addEventListener('close', () => root.classList.remove('is-minimized'));
     root.querySelector('#legacy-history').addEventListener('change', event => location.href = event.target.value);
     root.querySelectorAll('.chat-header-close').forEach(button => button.addEventListener('click', () => {
@@ -28,8 +31,10 @@
         if (!textarea || !button) return;
         function refresh() { button.disabled = textarea.value.trim() === ''; }
         refresh(); textarea.addEventListener('input', refresh);
+        textarea.addEventListener('change', refresh);
         const status = document.createElement('p'); status.className = 'legacy-send-status'; status.setAttribute('role','status'); status.setAttribute('aria-live','polite'); status.textContent = new URLSearchParams(location.search).has('sent') ? 'Message sent.' : ''; form.append(status);
         form.addEventListener('submit', event => {
+            if (!textarea.value.trim()) { event.preventDefault(); refresh(); textarea.focus(); return; }
             if (form.dataset.sending) { event.preventDefault(); return; }
             form.dataset.sending='true'; button.disabled=true; status.textContent='Sending…';
         });

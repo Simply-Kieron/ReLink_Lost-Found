@@ -121,7 +121,7 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
 
         <?php if ($errors !== []): ?>
-            <div class="error-box" role="alert">
+            <div class="error-box login-notice" role="alert">
                 <ul>
                     <?php foreach ($errors as $error): ?>
                         <li><?= e($error) ?></li>

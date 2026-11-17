@@ -90,5 +90,5 @@ require __DIR__ . '/navigation.php';
             </p>
         <?php endif; ?>
         <?php if ($errorFlash !== null): ?>
-            <p class="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-red-900" role="alert"><?= e($errorFlash) ?></p>
+            <p class="<?= $currentPage === 'login.php' ? 'login-notice ' : '' ?>mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-red-900" role="alert"><?= e($errorFlash) ?></p>
         <?php endif; ?>

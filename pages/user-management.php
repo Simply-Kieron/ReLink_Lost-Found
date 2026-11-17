@@ -7,8 +7,8 @@ require_once __DIR__ . '/../includes/student_verification.php';
 require_once __DIR__ . '/../includes/item_uploads.php';
 require_once __DIR__ . '/../includes/profile_avatar.php';
 
-$staff = require_role('staff');
 require_once __DIR__ . '/../includes/db.php';
+$staff = require_role('staff');
 
 $errors = [];
 $notice = null;
@@ -307,7 +307,7 @@ require_once __DIR__ . '/../includes/header.php';
             <p class="mt-4 rounded-lg border border-green-300 bg-green-50 p-4 text-green-900" role="status"><?= e($notice) ?></p>
         <?php endif; ?>
         <?php if ($generatedCode !== null): ?>
-            <div class="mt-4 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-950" role="status">
+            <div class="verification-code-notice mt-4 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-950" role="status">
                 <strong><?= $codeRetrieved ? 'Current verification code for ' : 'Verification code for ' ?><?= e($codeSchoolEmail) ?>:</strong>
                 <p class="my-2 font-mono text-2xl font-bold tracking-widest"><?= e($generatedCode) ?></p>
                 <p><?= $codeRetrieved ? 'This is the existing active code. Viewing it does not replace it.' : 'Send this code manually to the school email. It expires in 24 hours; you can retrieve this same code later from User Management.' ?></p>

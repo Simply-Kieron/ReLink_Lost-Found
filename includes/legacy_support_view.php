@@ -1,4 +1,4 @@
-<div class="legacy-support-view"><label class="legacy-history-label" for="legacy-history">Conversation history</label><select id="legacy-history" aria-label="Choose a conversation"><option value="<?= e($chatRoot) ?>">Start a new conversation</option><?php foreach ($conversations as $thread): ?><option value="<?= e($chatRoot . $chatQuerySeparator . 'id=' . $thread['id']) ?>" <?= $selectedConversation !== null && (int) $selectedConversation['id'] === (int) $thread['id'] ? 'selected' : '' ?>><?= e($thread['subject'] . ' · #' . $thread['reference_code']) ?></option><?php endforeach; ?></select><section class="support-chat-page mx-auto max-w-5xl" aria-labelledby="support-chat-title">
+<div class="legacy-support-view design-support-chat-widget"><label class="legacy-history-label" for="legacy-history">Conversation history</label><select id="legacy-history" aria-label="Choose a conversation"><option value="<?= e($chatRoot) ?>">Start a new conversation</option><?php foreach ($conversations as $thread): ?><option value="<?= e($chatRoot . $chatQuerySeparator . 'id=' . $thread['id']) ?>" <?= $selectedConversation !== null && (int) $selectedConversation['id'] === (int) $thread['id'] ? 'selected' : '' ?>><?= e($thread['subject'] . ' · #' . $thread['reference_code']) ?></option><?php endforeach; ?></select><section class="support-chat-page mx-auto max-w-5xl" aria-labelledby="support-chat-title">
     <div class="support-chat-heading">
         <div class="support-chat-title-row">
             <span class="support-chat-mark" aria-hidden="true">
@@ -143,7 +143,7 @@
                             <label class="sr-only" for="reply-message">Message to customer support</label>
                             <div class="chat-composer-row">
                                 <textarea id="reply-message" name="message" maxlength="4000" placeholder="Type a message..." required><?= e($messageInput) ?></textarea>
-                                <button class="chat-send-button" type="submit" aria-label="Send message" title="Send message" <?= $chatWidget ? 'disabled' : '' ?>>
+                                <button class="chat-send-button" type="submit" aria-label="Send message" title="Send message">
                                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 2.5 14 21.5l-4.2-8.3L1.5 9l20-6.5ZM9.8 13.2l5.1-5.1" /></svg>
                                 </button>
                             </div>
@@ -194,7 +194,7 @@
                             <div class="chat-composer-row">
                                 <label class="sr-only" for="first-message">Type a message</label>
                                 <textarea id="first-message" name="message" maxlength="4000" placeholder="Type a message..." required><?= e($messageInput) ?></textarea>
-                                <button class="chat-send-button" type="submit" aria-label="Send message" title="Send message" disabled>
+                                <button class="chat-send-button" type="submit" aria-label="Send message" title="Send message">
                                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 2.5 14 21.5l-4.2-8.3L1.5 9l20-6.5ZM9.8 13.2l5.1-5.1" /></svg>
                                 </button>
                             </div>

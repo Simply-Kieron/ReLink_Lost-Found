@@ -191,8 +191,12 @@ if ($chatWidget): ?>
 <!doctype html>
 <html lang="en" class="support-chat-widget-document"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Customer Service | ReLink</title><link rel="stylesheet" href="../assets/tailwind.generated.css?v=20261023-1"><link rel="stylesheet" href="../assets/style-base.php?v=20261116-4"><link rel="icon" href="../assets/relink-icon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/ui-consistency.css?v=<?= (int) filemtime(__DIR__ . '/../assets/ui-consistency.css') ?>"></head><body class="site-app website-shell design-reference design-zeta relink-phase5 relink-support-document design-support-chat-widget"><main>
 <?php else: require_once __DIR__ . '/../includes/header.php'; endif; ?>
-<?php $isEmbeddedSupport = $chatWidget; $chatWidget = true; require __DIR__ . '/../includes/legacy_support_view.php'; $chatWidget = $isEmbeddedSupport; ?>
+<?php if ($chatWidget): ?>
+<?php require __DIR__ . '/../includes/legacy_support_view.php'; ?>
 <script src="../assets/legacy-support.js?v=<?= (int) filemtime(__DIR__ . '/../assets/legacy-support.js') ?>" defer></script>
+<?php else: ?>
+<?php require __DIR__ . '/../includes/support_view.php'; ?>
+<?php endif; ?>
 <?php if ($chatWidget): ?>
 </main><script src="../assets/phase5.js?v=<?= (int) filemtime(__DIR__ . '/../assets/phase5.js') ?>" defer></script></body></html>
 <?php else: require_once __DIR__ . '/../includes/footer.php'; endif; ?>
